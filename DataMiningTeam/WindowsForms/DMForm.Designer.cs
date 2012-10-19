@@ -150,7 +150,7 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Results";
             // 
-            // MainForm
+            // DMForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -169,7 +169,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MainForm";
+            this.Name = "DMForm";
             this.Text = "Data Mining Team Project";
             this.ResumeLayout(false);
             this.PerformLayout();
