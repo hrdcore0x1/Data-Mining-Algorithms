@@ -190,5 +190,9 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label1;
+
+
     }
+
+  
 }

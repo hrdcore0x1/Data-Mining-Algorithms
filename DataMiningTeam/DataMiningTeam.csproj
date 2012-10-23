@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AWSaleBLL.cs" />
+    <Compile Include="AdventureWorksSQL.cs" />
     <Compile Include="IndexedDictionary.cs" />
     <Compile Include="Contracts\lApriori.cs" />
     <Compile Include="Data\AdventureWorksModel.Designer.cs">
@@ -62,6 +63,7 @@
     <Compile Include="Implementation\Apriori.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowsForms\Class1.cs" />
     <Compile Include="WindowsForms\DMForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,7 +97,15 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\cloner\Apriori-Algorithm\AprioriAlgorithm\AprioriAlgorithm.csproj">
+      <Project>{49f14bb7-e49e-4574-8038-25abb6d5cf46}</Project>
+      <Name>AprioriAlgorithm</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

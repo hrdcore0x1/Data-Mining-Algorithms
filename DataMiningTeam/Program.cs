@@ -17,6 +17,7 @@ namespace DataMiningTeam
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new DMForm());
+           // Application.Run(new frmMain());
         }
     }
 }
