@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AprioriAlgorithm", "..\..\c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "..\..\..\Downloads\Omar-Salem-Apriori-Algorithm-6192451\Apriori\Client.csproj", "{38F84CE8-56C0-45C8-85FB-37C792DB608B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weka.NET", "..\..\..\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET\Weka.NET.csproj", "{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{38F84CE8-56C0-45C8-85FB-37C792DB608B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{38F84CE8-56C0-45C8-85FB-37C792DB608B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{38F84CE8-56C0-45C8-85FB-37C792DB608B}.Release|x86.ActiveCfg = Release|Any CPU
+		{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}.Debug|x86.ActiveCfg = Debug|x86
+		{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}.Debug|x86.Build.0 = Debug|x86
+		{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}.Release|Any CPU.ActiveCfg = Release|x86
+		{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}.Release|x86.ActiveCfg = Release|x86
+		{7379ADB2-D656-4E1E-8F22-3A9E4FFD507D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
