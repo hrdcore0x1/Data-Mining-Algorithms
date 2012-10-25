@@ -92,15 +92,15 @@ namespace DataMiningTeam.BLL
 
             foreach (AWSaleDto dto in dtos)
             {
-                addToTree(root, dto, itemHeaderTable);
+                addToTree(ref root, dto, ref itemHeaderTable);
             }
 
-            /*
+            
             foreach (ItemHeaderElement e in itemHeaderTable)
             {
                 Console.WriteLine(e.ToString());
             }
-            */
+            
 
             /* Finally, let's mine the tree! */
 
@@ -110,41 +110,69 @@ namespace DataMiningTeam.BLL
 
             //List to hold frequent patterns
             List<FrequentPattern> frequentPatterns = new List<FrequentPattern>();
-            mineTheTree(itemHeaderTable, frequentPatterns);
-
+            mineTheTree(ref itemHeaderTable, ref frequentPatterns);
+            
             return frequentPatterns;
 
          
         }//mine()
 
 
-        private void mineTheTree(List<ItemHeaderElement> itemHeaderTable, List<FrequentPattern> frequentPatterns)
+        private void mineTheTree(ref List<ItemHeaderElement> itemHeaderTable, ref List<FrequentPattern> frequentPatterns)
         {
             if (itemHeaderTable.Count == 0) return;
-            FPNode parent;     
-       
+            FPNode parent;
+            FPNode suffix;
+            List<FPPrefixPath> prefixPaths = new List<FPPrefixPath>();
 
-            //TO-DO: create conditional FP-Trees 
+            
+
             foreach (FPNode node in itemHeaderTable[0].nodeLinks)
             {
-                List<string> items = new List<string>();
+                List<FPNode> prefixes = new List<FPNode>();
+                suffix = node;
                 parent = node.parent;
-
+                
                 while (parent != null)
                 {
-                    items.Add(node.item);
+                    prefixes.Add(parent);
                     parent = node.parent;
                 }
+                prefixPaths.Add(new FPPrefixPath(prefixes, suffix));
+                List<ItemHeaderElement> conditionalItemHeader = new List<ItemHeaderElement>();
+                FPNode conditionalRoot = createConditionalFPTree(prefixPaths, ref conditionalItemHeader);
+
+
             }
 
 
 
             itemHeaderTable.RemoveAt(0);
-            mineTheTree(itemHeaderTable, frequentPatterns);
+            mineTheTree(ref itemHeaderTable, ref frequentPatterns);
+        }
+
+
+        private FPNode createConditionalFPTree(List<FPPrefixPath> prefixPaths, ref List<ItemHeaderElement> itemHeaders)
+        {
+            FPNode root = new FPNode(null, 0);
+                        foreach (FPPrefixPath p in prefixPaths)
+            {   
+                for (int i = 0; i < p.support; i++)
+                {
+                    AWSaleDto dto = new AWSaleDto();
+                    dto.tid = String.Empty;
+                    for (int j = 0; j < p.prefixpath.Count; j++)
+                    {
+                        dto.items.Add(p.prefixpath[j].item);
+                    }
+                    addToTree(ref root, dto, ref itemHeaders);
+                }
+            }
+            return root;
         }
 
         /* add the items in dto to tree recursively && add node links to itemHeaderTable */
-        private void addToTree(FPNode root, AWSaleDto dto, List<ItemHeaderElement> itemHeaderTable)
+        private void addToTree(ref FPNode root, AWSaleDto dto, ref List<ItemHeaderElement> itemHeaderTable)
         {
             if (dto.items.Count == 0) return;
 
@@ -172,7 +200,7 @@ namespace DataMiningTeam.BLL
             }
 
             dto.items.RemoveAt(0);
-            addToTree(parent, dto, itemHeaderTable);
+            addToTree(ref parent, dto, ref itemHeaderTable);
         }
     }//class
 }//namespace

@@ -54,6 +54,7 @@
     <Compile Include="BLL\AWSaleBLL2.cs" />
     <Compile Include="BLL\FPGrowth.cs" />
     <Compile Include="BLL\FPNode.cs" />
+    <Compile Include="BLL\FPPrefixPath.cs" />
     <Compile Include="BLL\FrequentPattern.cs" />
     <Compile Include="BLL\ItemHeaderElement.cs" />
     <Compile Include="Data\AdventureWorksModel.Designer.cs">
