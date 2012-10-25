@@ -27,7 +27,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2006/04/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" >
-        <EntityContainer Name="Model1Container" >
+        <EntityContainer Name="AdventureWorksEntities" >
           <EntitySet Name="SalesItemsetsEntities" EntityType="Model1.SalesItemsetsEntity" />
         </EntityContainer>
         <EntityType Name="SalesItemsetsEntity">
@@ -44,7 +44,7 @@
       <Mapping xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS" Space="C-S">
         <Alias Key="Model" Value="Model1" />
         <Alias Key="Target" Value="Model1.Store" />
-        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1StoreContainer">
+        <EntityContainerMapping CdmEntityContainer="AdventureWorksEntities" StorageEntityContainer="Model1StoreContainer">
           <EntitySetMapping Name="SalesItemsetsEntities">
             <EntityTypeMapping TypeName="Model1.SalesItemsetsEntity">
               <MappingFragment StoreEntitySet="vw_SalesProductsConcentated">

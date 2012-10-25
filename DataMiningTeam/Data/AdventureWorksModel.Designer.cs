@@ -11,36 +11,36 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 
 // Original file name:
-// Generation date: 10/13/2012 1:29:06 PM
+// Generation date: 10/21/2012 6:16:33 PM
 namespace DataMiningTeam.Data
 {
     
     /// <summary>
-    /// There are no comments for Model1Container in the schema.
+    /// There are no comments for AdventureWorksEntities in the schema.
     /// </summary>
-    public partial class Model1Container : global::System.Data.Objects.ObjectContext
+    public partial class AdventureWorksEntities : global::System.Data.Objects.ObjectContext
     {
         /// <summary>
-        /// Initializes a new Model1Container object using the connection string found in the 'Model1Container' section of the application configuration file.
+        /// Initializes a new AdventureWorksEntities object using the connection string found in the 'AdventureWorksEntities' section of the application configuration file.
         /// </summary>
-        public Model1Container() : 
-                base("name=Model1Container", "Model1Container")
+        public AdventureWorksEntities() : 
+                base("name=AdventureWorksEntities", "AdventureWorksEntities")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new Model1Container object.
+        /// Initialize a new AdventureWorksEntities object.
         /// </summary>
-        public Model1Container(string connectionString) : 
-                base(connectionString, "Model1Container")
+        public AdventureWorksEntities(string connectionString) : 
+                base(connectionString, "AdventureWorksEntities")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new Model1Container object.
+        /// Initialize a new AdventureWorksEntities object.
         /// </summary>
-        public Model1Container(global::System.Data.EntityClient.EntityConnection connection) : 
-                base(connection, "Model1Container")
+        public AdventureWorksEntities(global::System.Data.EntityClient.EntityConnection connection) : 
+                base(connection, "AdventureWorksEntities")
         {
             this.OnContextCreated();
         }
