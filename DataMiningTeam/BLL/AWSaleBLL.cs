@@ -9,9 +9,9 @@ namespace DataMiningTeam.BLL
 {
     public class AWSaleBLL
     {
-        public AWSaleDto Process(SalesItemsetsEntity Sale)
+        public TransactionDto Process(SalesItemsetsEntity Sale)
         {
-            AWSaleDto ret = null;
+            TransactionDto ret = null;
 
             ret.OrderNumber = Sale.salesorder;
 
