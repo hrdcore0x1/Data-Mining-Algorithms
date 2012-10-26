@@ -12,7 +12,7 @@ namespace DataMiningTeam.BLL
     {
         public static List<AWSaleDto> getAWSaleDto(){
             string dbConnStr = "Data Source=CWCNANCE-DLT;Initial Catalog=AdventureWorksDW2012;Integrated Security=True";
-            string query = "SELECT salesorder, Products FROM SalesDataConsolidated;";
+            string query = "SELECT TID as salesorder, items as Products FROM BookExample;"; //"SELECT salesorder, Products FROM SalesDataConsolidated;";
             string salesorder;
             string products;
             AWSaleDto dto;

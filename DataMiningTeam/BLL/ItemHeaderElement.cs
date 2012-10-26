@@ -56,7 +56,7 @@ namespace DataMiningTeam.BLL
             _nodeLinks.Add(node);
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return _itemID + " | " + _support + " | " + _nodeLinks.Count;
         }

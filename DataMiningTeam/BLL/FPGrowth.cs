@@ -31,9 +31,8 @@ namespace DataMiningTeam.BLL
                 foreach (string p in dto.items)
                 {
                     index = item.IndexOf(p);
-                    if (index == -1)
+                    if (index == -1) //not found
                     {
-                        //not found
                         item.Add(p);
                         support.Add(1);
                     }
@@ -95,12 +94,12 @@ namespace DataMiningTeam.BLL
                 addToTree(ref root, dto, ref itemHeaderTable);
             }
 
-            
+            /*
             foreach (ItemHeaderElement e in itemHeaderTable)
             {
                 Console.WriteLine(e.ToString());
             }
-            
+            */
 
             /* Finally, let's mine the tree! */
 
@@ -111,11 +110,13 @@ namespace DataMiningTeam.BLL
             //List to hold frequent patterns
             List<FrequentPattern> frequentPatterns = new List<FrequentPattern>();
             mineTheTree(ref itemHeaderTable, ref frequentPatterns);
-            
+            //
+            //frequentPatterns = frequentPatterns.Distinct().ToList();
+            //removeDuplicatePatterns(ref frequentPatterns);
             return frequentPatterns;
-
          
         }//mine()
+
 
 
         private void mineTheTree(ref List<ItemHeaderElement> itemHeaderTable, ref List<FrequentPattern> frequentPatterns)
@@ -136,11 +137,12 @@ namespace DataMiningTeam.BLL
                 while (parent != null)
                 {
                     prefixes.Add(parent);
-                    parent = node.parent;
+                    parent = parent.parent;
                 }
                 prefixPaths.Add(new FPPrefixPath(prefixes, suffix));
                 List<ItemHeaderElement> conditionalItemHeader = new List<ItemHeaderElement>();
-                FPNode conditionalRoot = createConditionalFPTree(prefixPaths, ref conditionalItemHeader);
+                createConditionalFPTree(prefixPaths, ref conditionalItemHeader);
+                mineConditionalFPTree(ref conditionalItemHeader, ref frequentPatterns);
 
 
             }
@@ -152,10 +154,44 @@ namespace DataMiningTeam.BLL
         }
 
 
-        private FPNode createConditionalFPTree(List<FPPrefixPath> prefixPaths, ref List<ItemHeaderElement> itemHeaders)
+        private void mineConditionalFPTree(ref List<ItemHeaderElement> conditionalItemHeader, ref List<FrequentPattern> frequentPatterns)
+        {
+            foreach (ItemHeaderElement ihe in conditionalItemHeader)
+            {
+                int support = 0;
+                List<string> items = new List<string>();
+                Boolean _continue = false;
+                foreach (FPNode fpn in ihe.nodeLinks)
+                {
+                    
+                    if (fpn.support < min_sup || fpn.item == null)
+                    {
+                        _continue = true;
+                        continue;
+                    }
+
+                    
+                    FPNode aFpn = fpn;      
+                    
+                    while (aFpn != null)
+                    {
+                        if (aFpn.item == null) break;
+                        support += aFpn.support;
+
+                        if (items.IndexOf(aFpn.item) == -1) items.Add(aFpn.item);
+                        aFpn = aFpn.parent;
+                    }
+                    
+                    if (support >= min_sup && items.Count > 1) frequentPatterns.Add(new FrequentPattern(items, support));
+                }
+                if (_continue) continue;
+            }
+        }
+
+        private void createConditionalFPTree(List<FPPrefixPath> prefixPaths, ref List<ItemHeaderElement> itemHeaders)
         {
             FPNode root = new FPNode(null, 0);
-                        foreach (FPPrefixPath p in prefixPaths)
+            foreach (FPPrefixPath p in prefixPaths)
             {   
                 for (int i = 0; i < p.support; i++)
                 {
@@ -164,11 +200,20 @@ namespace DataMiningTeam.BLL
                     for (int j = 0; j < p.prefixpath.Count; j++)
                     {
                         dto.items.Add(p.prefixpath[j].item);
+                        Boolean found = false;
+                        for (int k=0; k<itemHeaders.Count; k++){
+                            if (itemHeaders[k].itemID == p.prefixpath[j].item) {
+                                found = true;
+                                itemHeaders[k].support++;
+                            }
+
+                        }
+                        if (!found) itemHeaders.Add(new ItemHeaderElement(p.prefixpath[j].item, 1));
+
                     }
                     addToTree(ref root, dto, ref itemHeaders);
                 }
             }
-            return root;
         }
 
         /* add the items in dto to tree recursively && add node links to itemHeaderTable */

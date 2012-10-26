@@ -27,5 +27,17 @@ namespace DataMiningTeam.BLL
             get { return support; }
             set { _support = value; }
         }
+
+        public override string ToString()
+        {
+            string fp = "{";
+            foreach (string i in items)
+            {
+                fp += i + ", ";
+            }
+            fp = fp.Substring(0, fp.Length - 2) + "}: " + _support;
+            return fp;
+        }
+
     }
 }

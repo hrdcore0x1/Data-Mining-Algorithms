@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataMiningTeam.Dto
 {
-    interface i_dto
+    interface IDto
     {
         string tid
         {

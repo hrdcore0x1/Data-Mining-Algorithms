@@ -6,10 +6,16 @@ using System.Text;
 
 namespace DataMiningTeam.Dto
 {
-    public class AWSaleDto : DataMiningTeam.Dto.i_dto
+    public class AWSaleDto : IDto
     {
         private string _tid;  //transaction id
         private List<string> _items;
+
+        public AWSaleDto()
+        {
+            _tid = string.Empty;
+            _items = new List<string>();
+        }
 
         public string tid
         {
