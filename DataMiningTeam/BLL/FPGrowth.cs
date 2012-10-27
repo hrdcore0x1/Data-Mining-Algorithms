@@ -53,14 +53,13 @@ namespace DataMiningTeam.BLL
 
 
             /* sort in desc order based on support...thank you .NET 4.0!! */
-            var orderedSupport = support.Zip(item, (x, y) => new { x, y }).OrderBy(pair => pair.x).ToList();  //to remove min_sup --> .Where(pair => pair.x >= min_sup)
+            var orderedSupport = support.Zip(item, (x, y) => new { x, y }).OrderBy(pair => pair.x).ToList(); 
             support = orderedSupport.Select(pair => pair.x).ToList();
             item = orderedSupport.Select(pair => pair.y).ToList();
             support.Reverse();
             item.Reverse();
             /* we are now sorted */
 
-            /* CHECK data */
             /*
             Console.WriteLine("Frequent 1-itemsets");
             for (int i = 0; i < support.Count; i++)
@@ -105,10 +104,6 @@ namespace DataMiningTeam.BLL
                 }
 
 
-                /* REVIEW: I am not to sure about this for every case.
-                 * I had to OrderBy pair.y, then Reverse() the order, then sort by pair.x to emulate the results from the book.
-                 * Otherwise I3 comes before I1 and the tree doesn't turn out the same.  BTW -- I3 & I1 have the same support (6) so it *SHOULDN'T* matter.
-                 */
                 orderedSupport = lsupport.Zip(items, (x, y) => new { x, y }).OrderBy(pair => pair.y).Reverse().OrderBy(pair => pair.x).ToList();
                 items = orderedSupport.Select(pair => pair.y).ToList();
                 items.Reverse();
@@ -184,10 +179,9 @@ namespace DataMiningTeam.BLL
 
             //List to hold frequent patterns
             List<FrequentPattern> frequentPatterns = new List<FrequentPattern>();
+
             mineTheTree(ref itemHeaderTable, ref frequentPatterns);
-            //
-            //frequentPatterns = frequentPatterns.Distinct().ToList();
-            //removeDuplicatePatterns(ref frequentPatterns);
+
             return frequentPatterns;
          
         }//mine()
@@ -280,37 +274,7 @@ namespace DataMiningTeam.BLL
                         frequentPatterns.Add(fp);
                     }
                 }
-
-                
             }
-
-            /*
-            foreach (ItemHeaderElement ihe in conditionalItemHeader)
-            {
-                int support = 0;
-
-
-                List<string> items = new List<string>();
-                Boolean _continue = false;
-                foreach (FPNode fpn in ihe.nodeLinks)
-                {
-                    
-                    FPNode aFpn = fpn;      
-                    
-                    while (aFpn != null)
-                    {
-                        if (aFpn.item == null) break;
-                        support += aFpn.support;
-
-                        if (items.IndexOf(aFpn.item) == -1) items.Add(aFpn.item);
-                        aFpn = aFpn.parent;
-                    }
-                    
-                    if (support >= min_sup && items.Count > 1) frequentPatterns.Add(new FrequentPattern(items, support));
-                }
-                if (_continue) continue;
-            }
-             */
         }
 
         private int min(int a, int b)
