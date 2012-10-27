@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using DataMiningTeam.Dto;
 
+/*
+ * Author: Cory Nance
+ * Date: 26 October 2012 
+ * Based off of FP-Growth algorithm presented in Data Mining Concepts and Techniques 3rd edition by Jiawei Han | Micheline Kamber | Jian Pei
+ * pg. 257-259
+ */
 
 namespace DataMiningTeam.BLL
 {
@@ -43,6 +49,9 @@ namespace DataMiningTeam.BLL
                 }//foreach
             }//foreach
 
+
+
+
             /* sort in desc order based on support...thank you .NET 4.0!! */
             var orderedSupport = support.Zip(item, (x, y) => new { x, y }).OrderBy(pair => pair.x).ToList();  //to remove min_sup --> .Where(pair => pair.x >= min_sup)
             support = orderedSupport.Select(pair => pair.x).ToList();
@@ -50,6 +59,17 @@ namespace DataMiningTeam.BLL
             support.Reverse();
             item.Reverse();
             /* we are now sorted */
+
+            /* CHECK data */
+            /*
+            Console.WriteLine("Frequent 1-itemsets");
+            for (int i = 0; i < support.Count; i++)
+            {
+                Console.WriteLine(item[i] + " --> " + support[i]);
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            */
 
             /* create item header table */
             List<ItemHeaderElement> itemHeaderTable = new List<ItemHeaderElement>();
@@ -63,7 +83,10 @@ namespace DataMiningTeam.BLL
             }
 
             /*
-            for (int i = 0; i < item.Count; i++) Console.WriteLine(item[i] + " | " + support[i]);
+            Console.WriteLine("Create ItemHeaderTable");
+            Console.WriteLine("ItemID | Support Count | Node-Link");
+            for (int i = 0; i < item.Count; i++) Console.WriteLine(item[i] + " | " + support[i] + " | NULL");
+            Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             */
             
@@ -80,32 +103,84 @@ namespace DataMiningTeam.BLL
                 {
                     lsupport.Add(support[item.IndexOf(i)]);
                 }
-                orderedSupport = lsupport.Zip(items, (x, y) => new { x, y }).OrderBy(pair => pair.x).ToList();
+
+
+                /* REVIEW: I am not to sure about this for every case.
+                 * I had to OrderBy pair.y, then Reverse() the order, then sort by pair.x to emulate the results from the book.
+                 * Otherwise I3 comes before I1 and the tree doesn't turn out the same.  BTW -- I3 & I1 have the same support (6) so it *SHOULDN'T* matter.
+                 */
+                orderedSupport = lsupport.Zip(items, (x, y) => new { x, y }).OrderBy(pair => pair.y).Reverse().OrderBy(pair => pair.x).ToList();
                 items = orderedSupport.Select(pair => pair.y).ToList();
                 items.Reverse();
                 dto.items = items;
             }
 
+            /*
+            Console.WriteLine("Tranactions sorted in L order");
+            for (int i = 0; i < dtos.Count; i++)
+            {
+                string strItem = string.Empty;
+                foreach (string s in dtos[i].items)
+                {
+                    strItem += s + ", ";
+                }
+                strItem = strItem.Substring(0, strItem.Length - 2);
+                Console.WriteLine(dtos[i].tid + "| " + strItem);
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            */
+
+
             /* start building FP-Tree */
             FPNode root = new FPNode(null, 0);
-
             foreach (AWSaleDto dto in dtos)
             {
                 addToTree(ref root, dto, ref itemHeaderTable);
             }
 
             /*
+            Console.WriteLine("ItemHeaderTable w/node-links");
+            
             foreach (ItemHeaderElement e in itemHeaderTable)
             {
                 Console.WriteLine(e.ToString());
             }
-            */
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
 
+            Console.WriteLine("Root branches");
+            
+            foreach (FPNode aNode in root.children)
+            {
+                Console.WriteLine("----");
+                FPNode myNode = aNode;
+                while (myNode != null)
+                {
+                    Console.WriteLine(myNode.item + " --> ");
+                    if (myNode.children.Count == 0) myNode = null;
+                    else myNode = myNode.children[0];
+                }
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            */
             /* Finally, let's mine the tree! */
 
             /* start at the bottom because we want to work our way up the tree from the leafs */
             //for simplicity I will reverse the list
             itemHeaderTable.Reverse();
+
+            /*
+            Console.WriteLine("Reversed ItemHeaderTable w/node-links");
+            foreach (ItemHeaderElement e in itemHeaderTable)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            */
+
 
             //List to hold frequent patterns
             List<FrequentPattern> frequentPatterns = new List<FrequentPattern>();
@@ -125,28 +200,44 @@ namespace DataMiningTeam.BLL
             FPNode parent;
             FPNode suffix;
             List<FPPrefixPath> prefixPaths = new List<FPPrefixPath>();
-
+            string suffixItem = string.Empty;
             
 
             foreach (FPNode node in itemHeaderTable[0].nodeLinks)
             {
                 List<FPNode> prefixes = new List<FPNode>();
                 suffix = node;
+                suffixItem = suffix.item;
                 parent = node.parent;
+
+                if (parent.item == null) continue;   /* skip those that are the children of the root node.  i.e. I2:7 */
                 
-                while (parent != null)
+                while (parent.item != null)
                 {
                     prefixes.Add(parent);
                     parent = parent.parent;
                 }
+                
+                
                 prefixPaths.Add(new FPPrefixPath(prefixes, suffix));
-                List<ItemHeaderElement> conditionalItemHeader = new List<ItemHeaderElement>();
-                createConditionalFPTree(prefixPaths, ref conditionalItemHeader);
-                mineConditionalFPTree(ref conditionalItemHeader, ref frequentPatterns);
-
-
             }
 
+            /*
+            Console.WriteLine("PrefixPaths");
+            foreach (FPPrefixPath p in prefixPaths)
+            {
+                Console.WriteLine(p);
+
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+             */
+
+            List<ItemHeaderElement> conditionalItemHeader = new List<ItemHeaderElement>();
+            createConditionalFPTree(prefixPaths, ref conditionalItemHeader);
+
+
+            mineConditionalFPTree(ref conditionalItemHeader, ref frequentPatterns, suffixItem);
 
 
             itemHeaderTable.RemoveAt(0);
@@ -154,22 +245,55 @@ namespace DataMiningTeam.BLL
         }
 
 
-        private void mineConditionalFPTree(ref List<ItemHeaderElement> conditionalItemHeader, ref List<FrequentPattern> frequentPatterns)
+        private void mineConditionalFPTree(ref List<ItemHeaderElement> conditionalItemHeader, ref List<FrequentPattern> frequentPatterns, string suffix)
         {
+
+            foreach (ItemHeaderElement ihe in conditionalItemHeader)
+            {
+                List<string> items = new List<string>();
+                items.Add(suffix);
+                items.Add(ihe.itemID);
+                items.Reverse();
+                FrequentPattern fp = new FrequentPattern(items, ihe.support);
+                frequentPatterns.Add(fp);
+            }
+
+
+            foreach (ItemHeaderElement ihe in conditionalItemHeader)
+            { 
+                foreach (FPNode fpn in ihe.nodeLinks)
+                {
+                    List<string> items = new List<string>();
+                    FPNode aFpn = fpn;
+                    int support = aFpn.support;
+                    while (aFpn.item != null)
+                    {
+                        support = min(support, aFpn.support);
+                        items.Add(aFpn.item);
+                        aFpn = aFpn.parent;
+                    }
+                    if (items.Count > 1)
+                    {
+                        items.Reverse();
+                        items.Add(suffix);
+                        FrequentPattern fp = new FrequentPattern(items, support);
+                        frequentPatterns.Add(fp);
+                    }
+                }
+
+                
+            }
+
+            /*
             foreach (ItemHeaderElement ihe in conditionalItemHeader)
             {
                 int support = 0;
+
+
                 List<string> items = new List<string>();
                 Boolean _continue = false;
                 foreach (FPNode fpn in ihe.nodeLinks)
                 {
-                    
-                    if (fpn.support < min_sup || fpn.item == null)
-                    {
-                        _continue = true;
-                        continue;
-                    }
-
                     
                     FPNode aFpn = fpn;      
                     
@@ -186,34 +310,134 @@ namespace DataMiningTeam.BLL
                 }
                 if (_continue) continue;
             }
+             */
+        }
+
+        private int min(int a, int b)
+        {
+            if (a <= b) return a;
+            return b;
         }
 
         private void createConditionalFPTree(List<FPPrefixPath> prefixPaths, ref List<ItemHeaderElement> itemHeaders)
         {
-            FPNode root = new FPNode(null, 0);
+            
             foreach (FPPrefixPath p in prefixPaths)
             {   
                 for (int i = 0; i < p.support; i++)
                 {
-                    AWSaleDto dto = new AWSaleDto();
-                    dto.tid = String.Empty;
                     for (int j = 0; j < p.prefixpath.Count; j++)
                     {
-                        dto.items.Add(p.prefixpath[j].item);
                         Boolean found = false;
                         for (int k=0; k<itemHeaders.Count; k++){
                             if (itemHeaders[k].itemID == p.prefixpath[j].item) {
                                 found = true;
-                                itemHeaders[k].support++;
+                                itemHeaders[k].support = itemHeaders[k].support + 1;
                             }
 
                         }
                         if (!found) itemHeaders.Add(new ItemHeaderElement(p.prefixpath[j].item, 1));
 
                     }
-                    addToTree(ref root, dto, ref itemHeaders);
                 }
             }
+
+
+            /* remove the itemHeaders that don't meet min_sup */
+            for (int n = 0; n < itemHeaders.Count; n++)
+            {
+                if (itemHeaders[n].support < min_sup) itemHeaders.RemoveAt(n);
+            }
+
+
+            /*
+            Console.WriteLine("ConditionalHeaderTable wo/node-links");
+            foreach (ItemHeaderElement e in itemHeaders)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            */
+
+
+            /* remove prefixpath nodes that don't meet min_sup */
+            foreach (FPPrefixPath p in prefixPaths)
+            {
+                List<int> removeList = new List<int>();
+                p.prefixpath.Reverse();
+                for (int i = 0; i < p.prefixpath.Count; i++)
+                {
+                    bool found = false;
+                    for (int j = 0; j < itemHeaders.Count; j++)
+                    {
+                        if (itemHeaders[j].itemID == p.prefixpath[i].item)
+                        {
+                            found = true;
+                        }
+                    }
+                    if (!found) removeList.Add(i);
+                }
+                for (int i = 0; i < removeList.Count; i++)
+                {
+                    p.prefixpath.RemoveAt(removeList[i]);
+                }
+            }
+
+
+
+
+            FPNode root = new FPNode(null, 0);
+            foreach (FPPrefixPath p in prefixPaths)
+            {
+                AWSaleDto dto = new AWSaleDto();
+                foreach (FPNode fpn in p.prefixpath)
+                {
+                    dto.items.Add(fpn.item);
+                }
+                /*
+                Console.WriteLine("Adding to the tree " + p.support + " times: ");
+                Console.WriteLine(dto);
+                Console.ReadKey();
+                */
+                for (int i = 0; i < p.support; i++)
+                {
+                    AWSaleDto tmpDto = new AWSaleDto();
+                    foreach (string item in dto.items)
+                    {
+                        tmpDto.items.Add(item);
+                    }
+                    addToTree(ref root, tmpDto, ref itemHeaders);
+                }
+            }
+
+
+
+
+            /*
+            Console.WriteLine("ConditionalHeaderTable w/node-links");
+            foreach (ItemHeaderElement e in itemHeaders)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+
+            Console.WriteLine("Conditional FP-Tree children");
+            foreach (FPNode aNode in root.children)
+            {
+                Console.WriteLine("----");
+                FPNode myNode = aNode;
+                while (myNode != null)
+                {
+                    Console.WriteLine(myNode.item + ":" + myNode.support + " --> ");
+                    if (myNode.children.Count == 0) myNode = null;
+                    else myNode = myNode.children[0];
+                }
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            */
         }
 
         /* add the items in dto to tree recursively && add node links to itemHeaderTable */
@@ -234,6 +458,7 @@ namespace DataMiningTeam.BLL
             {
                 FPNode fpn = new FPNode(dto.items[0], 1, parent);
                 parent.children.Add(fpn);
+                parent = fpn;
                 for (int i = 0; i < itemHeaderTable.Count; i++)
                 {
                     if (itemHeaderTable[i].itemID == dto.items[0]) itemHeaderTable[i].addNodeLink(fpn);

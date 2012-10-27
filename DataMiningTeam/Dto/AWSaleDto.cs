@@ -28,6 +28,18 @@ namespace DataMiningTeam.Dto
             get { return _items; }
             set { _items = value; }
         }
+
+        public override string ToString()
+        {
+            string r = string.Empty;
+            foreach (string i in _items)
+            {
+                r += i + ", ";
+            }
+            r = r.Substring(0, r.Length - 2);
+            r = _tid + ": {" + r + "}";
+            return r;
+        }
     }//class
 }//namespace
 

@@ -42,7 +42,7 @@ namespace DataMiningTeam.BLL
         public int support
         {
             get { return _support; }
-            set { _support = support; }
+            set { _support = value; }
         }
 
         public List<FPNode> nodeLinks
@@ -58,7 +58,14 @@ namespace DataMiningTeam.BLL
 
         public override string ToString()
         {
-            return _itemID + " | " + _support + " | " + _nodeLinks.Count;
+            string nodes = string.Empty;
+            foreach (FPNode n in _nodeLinks)
+            {
+                nodes += n.item + ":" + n.support +  " -> ";
+            }
+            if (nodes.Length > 4) nodes = nodes.Substring(0, nodes.Length - 4);
+            else nodes = "NULL";
+            return _itemID + " | " + _support + " | " + nodes;
         }
     }
 }

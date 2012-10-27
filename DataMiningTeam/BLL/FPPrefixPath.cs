@@ -35,5 +35,19 @@ namespace DataMiningTeam.BLL
             get { return _support; }
             set { _support = value; }
         }
+
+        public override string ToString()
+        {
+            string prefixes = string.Empty;
+            foreach (FPNode f in _prefixpath)
+            {
+                prefixes += f.item + ", ";
+
+            }
+            if (prefixes.Length > 2) prefixes = prefixes.Substring(0, prefixes.Length - 2);
+            else prefixes = "NULL";
+            prefixes = "{" + prefixes + "}:" + _support;
+            return "SUFFIX: " + _suffix.item + " --> " + prefixes;
+        }
     }
 }
