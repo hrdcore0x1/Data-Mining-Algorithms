@@ -18,7 +18,8 @@ namespace DataMiningTeam
             {
                 Console.WriteLine(f.ToString());
             }
-            Console.ReadKey();
+            //Console.ReadKey();
+            Console.Read();
         }
     }
 }
