@@ -1,0 +1,9 @@
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\DataMiningTeam.exe.config
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\DataMiningTeam.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\DataMiningTeam.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\x86\Debug\DataMiningTeam.Properties.Resources.resources
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\x86\Debug\DataMiningTeam.WindowsForms.DMForm.resources
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\x86\Debug\DataMiningTeam.csproj.GenerateResource.Cache
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\x86\Debug\DataMiningTeam.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\x86\Debug\DataMiningTeam.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\x86\Debug\DataMiningTeam.csprojResolveAssemblyReference.cache

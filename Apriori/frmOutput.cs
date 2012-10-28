@@ -53,5 +53,45 @@ namespace Client
                 lv_Frequent.Items.Add(lvi);
             }
         }
+
+        private void lb_maximal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gb_FrequentItems_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gb_MaximalItems_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gb_ClosedItems_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lv_Rules_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lv_Frequent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_closed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gb_StrongRules_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

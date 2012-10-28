@@ -52,17 +52,6 @@ namespace AprioriAlgorithm
             var frequentItemsL1 = new List<Item>();
             double transactionsCount = transactions.Count;
 
-            foreach (var item in items)
-            {
-                double support = GetSupport(item, transactions);
-
-                if ((support / transactionsCount >= minSupport))
-                {
-                    frequentItemsL1.Add(new Item { Name = item, Support = support });
-                    _allFrequentItems.Add(new Item { Name = item, Support = support });
-                }
-            }
-
             return frequentItemsL1;
         }
 

@@ -1,0 +1,5 @@
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET\obj\Debug\Weka.NET.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET\obj\Debug\Weka.NET.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET\bin\Debug\Weka.NET.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET\bin\Debug\Weka.NET.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET\bin\Debug\Weka.NET.exe.config

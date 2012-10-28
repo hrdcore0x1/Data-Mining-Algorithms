@@ -1,0 +1,17 @@
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\Debug\DataMiningTeam.csprojResolveAssemblyReference.cache
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\Debug\DataMiningTeam.Properties.Resources.resources
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\Debug\DataMiningTeam.WindowsForms.DMForm.resources
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\Debug\DataMiningTeam.csproj.GenerateResource.Cache
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\DataMiningTeam.exe.config
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\Debug\DataMiningTeam.WindowsForms.frmOutput1.resources
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\Data\AdventureWorksDW2012.sdf
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\DataMiningTeam.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\DataMiningTeam.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\Client.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\Data.AdventureWorksModel.Designer.cs.dll
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\Properties.Resources.Designer.cs.dll
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\AprioriAlgorithm.dll
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\Client.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\bin\Debug\AprioriAlgorithm.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\Debug\DataMiningTeam.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\DataMiningTeam\obj\Debug\DataMiningTeam.pdb

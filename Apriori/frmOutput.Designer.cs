@@ -31,16 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOutput));
             this.gb_FrequentItems = new System.Windows.Forms.GroupBox();
             this.lv_Frequent = new System.Windows.Forms.ListView();
-            this.colItem = new System.Windows.Forms.ColumnHeader();
-            this.colSupport = new System.Windows.Forms.ColumnHeader();
+            this.colItem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSupport = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gb_MaximalItems = new System.Windows.Forms.GroupBox();
             this.lb_maximal = new System.Windows.Forms.ListBox();
             this.gb_ClosedItems = new System.Windows.Forms.GroupBox();
             this.lb_closed = new System.Windows.Forms.ListBox();
             this.gb_StrongRules = new System.Windows.Forms.GroupBox();
             this.lv_Rules = new System.Windows.Forms.ListView();
-            this.colRule = new System.Windows.Forms.ColumnHeader();
-            this.colConfidence = new System.Windows.Forms.ColumnHeader();
+            this.colRule = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colConfidence = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gb_FrequentItems.SuspendLayout();
             this.gb_MaximalItems.SuspendLayout();
             this.gb_ClosedItems.SuspendLayout();
@@ -56,6 +56,7 @@
             this.gb_FrequentItems.TabIndex = 0;
             this.gb_FrequentItems.TabStop = false;
             this.gb_FrequentItems.Text = "Frequent Items";
+            this.gb_FrequentItems.Enter += new System.EventHandler(this.gb_FrequentItems_Enter);
             // 
             // lv_Frequent
             // 
@@ -69,6 +70,7 @@
             this.lv_Frequent.TabIndex = 0;
             this.lv_Frequent.UseCompatibleStateImageBehavior = false;
             this.lv_Frequent.View = System.Windows.Forms.View.Details;
+            this.lv_Frequent.SelectedIndexChanged += new System.EventHandler(this.lv_Frequent_SelectedIndexChanged);
             // 
             // colItem
             // 
@@ -88,6 +90,7 @@
             this.gb_MaximalItems.TabIndex = 1;
             this.gb_MaximalItems.TabStop = false;
             this.gb_MaximalItems.Text = "Maximal Items";
+            this.gb_MaximalItems.Enter += new System.EventHandler(this.gb_MaximalItems_Enter);
             // 
             // lb_maximal
             // 
@@ -95,8 +98,9 @@
             this.lb_maximal.FormattingEnabled = true;
             this.lb_maximal.Location = new System.Drawing.Point(3, 16);
             this.lb_maximal.Name = "lb_maximal";
-            this.lb_maximal.Size = new System.Drawing.Size(152, 121);
+            this.lb_maximal.Size = new System.Drawing.Size(152, 133);
             this.lb_maximal.TabIndex = 1;
+            this.lb_maximal.SelectedIndexChanged += new System.EventHandler(this.lb_maximal_SelectedIndexChanged);
             // 
             // gb_ClosedItems
             // 
@@ -107,6 +111,7 @@
             this.gb_ClosedItems.TabIndex = 1;
             this.gb_ClosedItems.TabStop = false;
             this.gb_ClosedItems.Text = "Closed Items";
+            this.gb_ClosedItems.Enter += new System.EventHandler(this.gb_ClosedItems_Enter);
             // 
             // lb_closed
             // 
@@ -114,8 +119,9 @@
             this.lb_closed.FormattingEnabled = true;
             this.lb_closed.Location = new System.Drawing.Point(3, 16);
             this.lb_closed.Name = "lb_closed";
-            this.lb_closed.Size = new System.Drawing.Size(152, 121);
+            this.lb_closed.Size = new System.Drawing.Size(152, 133);
             this.lb_closed.TabIndex = 1;
+            this.lb_closed.SelectedIndexChanged += new System.EventHandler(this.lb_closed_SelectedIndexChanged);
             // 
             // gb_StrongRules
             // 
@@ -126,6 +132,7 @@
             this.gb_StrongRules.TabIndex = 1;
             this.gb_StrongRules.TabStop = false;
             this.gb_StrongRules.Text = "Strong Rules";
+            this.gb_StrongRules.Enter += new System.EventHandler(this.gb_StrongRules_Enter);
             // 
             // lv_Rules
             // 
@@ -139,6 +146,7 @@
             this.lv_Rules.TabIndex = 1;
             this.lv_Rules.UseCompatibleStateImageBehavior = false;
             this.lv_Rules.View = System.Windows.Forms.View.Details;
+            this.lv_Rules.SelectedIndexChanged += new System.EventHandler(this.lv_Rules_SelectedIndexChanged);
             // 
             // colRule
             // 

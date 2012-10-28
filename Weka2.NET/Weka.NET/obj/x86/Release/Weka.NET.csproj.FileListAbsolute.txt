@@ -1,0 +1,4 @@
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET\bin\Release\Weka.NET.exe
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET\bin\Release\Weka.NET.pdb
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET\obj\x86\Release\Weka.NET.exe
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET\obj\x86\Release\Weka.NET.pdb

@@ -3,34 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace DataMiningTeam.Dto
 {
-    public class AWSaleDto
+    public class AWSaleDto : IDto
     {
-        //Properties/Variables ***************************************
-        private string _orderNumber;
-        private List<string> _productList;
+        private string _tid;  //transaction id
+        private List<string> _items;
 
-        //Constructors ***********************************************
-        public AWSaleDto() { }
-
-        public AWSaleDto(string OrderNumber, List<string> Products)
+        public AWSaleDto()
         {
-            this._orderNumber = OrderNumber;
-            this._productList = Products;
-        }//AWSaleDto
-
-        //Gets/Sets **************************************************
-        public string OrderNumber
-        {
-            get { return _orderNumber; }
-            set { _orderNumber = value; }
+            _tid = string.Empty;
+            _items = new List<string>();
         }
 
-        public List<string> ProductList
+        public string tid
         {
-            get { return _productList; }
-            set { _productList = value; }
+            get { return _tid; }
+            set { _tid = value; }
+        }
+
+        public List<string> items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
+
+        public override string ToString()
+        {
+            string r = string.Empty;
+            foreach (string i in _items)
+            {
+                r += i + ", ";
+            }
+            r = r.Substring(0, r.Length - 2);
+            r = _tid + ": {" + r + "}";
+            return r;
         }
     }//class
 }//namespace
+

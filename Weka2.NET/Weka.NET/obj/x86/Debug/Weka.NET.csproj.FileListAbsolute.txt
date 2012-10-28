@@ -1,0 +1,13 @@
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET\bin\Debug\Weka.NET.exe
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET\bin\Debug\Weka.NET.pdb
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET\obj\x86\Debug\Weka.NET.exe
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET\obj\x86\Debug\Weka.NET.pdb
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET\obj\x86\Debug\Weka.NET.csprojResolveAssemblyReference.cache
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET\bin\Debug\Weka.NET.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET\bin\Debug\Weka.NET.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET\obj\x86\Debug\Weka.NET.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET\obj\x86\Debug\Weka.NET.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka2.NET\Weka.NET\bin\Debug\Weka.NET.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka2.NET\Weka.NET\bin\Debug\Weka.NET.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka2.NET\Weka.NET\obj\x86\Debug\Weka.NET.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka2.NET\Weka.NET\obj\x86\Debug\Weka.NET.pdb

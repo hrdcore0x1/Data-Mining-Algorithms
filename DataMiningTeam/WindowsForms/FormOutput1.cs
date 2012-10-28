@@ -1,0 +1,107 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using AprioriAlgorithm;
+
+namespace DataMiningTeam.WindowsForms
+{
+    public partial class frmOutput1 : Form
+    {
+        public frmOutput1(Output output)
+        {
+            InitializeComponent();
+            LoadClosedItems(output.ClosedItemSets);
+            lb_maximal.DataSource = output.MaximalItemSets;
+            LoadFrequentItems(output.FrequentItems);
+            LoadRules(output.StrongRules);
+        }
+
+        private void LoadFrequentItems(IndexedDictionary indexedDictionary)
+        {
+           // throw new NotImplementedException();
+        }
+
+        private void LoadClosedItems(Dictionary<string, Dictionary<string, double>> dicClosedItemSets)
+        {
+            foreach (string strItem in dicClosedItemSets.Keys)
+            {
+                lb_closed.Items.Add(strItem);
+            }
+        }
+
+        private void LoadRules(IList<AprioriAlgorithm.Rule> lstStrongRules)
+        {
+            foreach (AprioriAlgorithm.Rule Rule in lstStrongRules)
+            {
+                ListViewItem lvi = new ListViewItem(Rule.X + "-->" + Rule.Y);
+                lvi.SubItems.Add(String.Format("{0:0.00}", (Rule.Confidence * 100)) + "%");
+                lv_Rules.Items.Add(lvi);
+            }
+        }
+
+        private void LoadFrequentItems(Dictionary<string, double> dicFrequentItems)
+        {
+            foreach (string strItem in dicFrequentItems.Keys)
+            {
+                ListViewItem lvi = new ListViewItem(strItem);
+                lvi.SubItems.Add(dicFrequentItems[strItem].ToString());
+                lv_Frequent.Items.Add(lvi);
+            }
+        }
+
+        private void lb_maximal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gb_FrequentItems_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gb_MaximalItems_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gb_ClosedItems_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lv_Rules_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lv_Frequent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_closed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gb_StrongRules_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lv_Frequent_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmOutput1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

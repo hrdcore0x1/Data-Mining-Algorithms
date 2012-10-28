@@ -1,0 +1,23 @@
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\bin\Debug\Weka.NET.Tests.dll
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\bin\Debug\Weka.NET.Tests.pdb
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\bin\Debug\Moq.dll
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\bin\Debug\nunit.framework.dll
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\bin\Debug\Weka.NET.exe
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\bin\Debug\Weka.NET.pdb
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\bin\Debug\Moq.pdb
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\bin\Debug\Moq.xml
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\obj\Debug\Weka.NET.Tests.csprojResolveAssemblyReference.cache
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\obj\Debug\Weka.NET.Tests.dll
+C:\Users\desktop\Documents\Visual Studio 2010\Projects\Weka.NET.Sources\Weka.NET\Weka.NET.Tests\obj\Debug\Weka.NET.Tests.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\bin\Debug\Weka.NET.Tests.dll
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\bin\Debug\Weka.NET.Tests.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\bin\Debug\Moq.dll
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\bin\Debug\nunit.framework.dll
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\bin\Debug\Weka.NET.exe
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\bin\Debug\Weka.NET.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\bin\Debug\Moq.pdb
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\bin\Debug\Moq.xml
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\bin\Debug\nunit.framework.xml
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\obj\Debug\Weka.NET.Tests.csprojResolveAssemblyReference.cache
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\obj\Debug\Weka.NET.Tests.dll
+C:\Users\desktop\Desktop\waswas\DMRepo\Weka.NET\Weka.NET.Tests\obj\Debug\Weka.NET.Tests.pdb
