@@ -1,0 +1,84 @@
+<<<<<<< HEAD:DataMiningTeam/Dto/AWSaleDto.cs
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace DataMiningTeam.Dto
+{
+    public class AWSaleDto : IDto
+    {
+        private string _tid;  //transaction id
+        private List<string> _items;
+
+        public AWSaleDto()
+        {
+            _tid = string.Empty;
+            _items = new List<string>();
+        }
+
+        public string tid
+        {
+            get { return _tid; }
+            set { _tid = value; }
+        }
+
+        public List<string> items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
+
+        public override string ToString()
+        {
+            string r = string.Empty;
+            foreach (string i in _items)
+            {
+                r += i + ", ";
+            }
+            r = r.Substring(0, r.Length - 2);
+            r = _tid + ": {" + r + "}";
+            return r;
+        }
+    }//class
+}//namespace
+
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DataMiningTeam.Dto
+{
+    public class TransactionDto
+    {
+        //Properties/Variables ***************************************
+        private string _orderNumber;
+        private List<string> _productList;
+
+        //Constructors ***********************************************
+        public TransactionDto() { }
+
+        public TransactionDto(string OrderNumber, List<string> Products)
+        {
+            this._orderNumber = OrderNumber;
+            this._productList = Products;
+        }//AWSaleDto
+
+        //Gets/Sets **************************************************
+        public string OrderNumber
+        {
+            get { return _orderNumber; }
+            set { _orderNumber = value; }
+        }
+
+        public List<string> ProductList
+        {
+            get { return _productList; }
+            set { _productList = value; }
+        }
+    }//class
+}//namespace
+>>>>>>> master:DataMiningTeam/Dto/TransactionDto.cs
