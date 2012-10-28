@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="BLL\Apriori.cs" />
     <Compile Include="BLL\AWSaleBLL.cs" />
-    <Compile Include="BLL\AWSaleBLL2.cs" />
+    <Compile Include="BLL\BookExBLL.cs" />
     <Compile Include="BLL\DataSourceBLL.cs" />
     <Compile Include="BLL\FPGrowth.cs" />
     <Compile Include="BLL\FPNode.cs" />

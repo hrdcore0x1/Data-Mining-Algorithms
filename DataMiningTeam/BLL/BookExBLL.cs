@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace DataMiningTeam.BLL
 {
-    class AWSaleBLL2
+    class BookExBLL
     {
         public static List<TransactionDto> getAWSaleDto(){
             //string dbConnStr = "Data Source=hrdcore_vb;Initial Catalog=AdventureWorksDW2012;Integrated Security=True";  //CWCNANCE-DLT

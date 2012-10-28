@@ -10,7 +10,7 @@ namespace DataMiningTeam
     {
         public static void Main()
         {
-            List<TransactionDto> dtos = AWSaleBLL2.getAWSaleDto();
+            List<TransactionDto> dtos = BookExBLL.getAWSaleDto();
             FPGrowth fpg = new FPGrowth(dtos, 2);
             List<FrequentPattern> fp = fpg.mine();
             Console.WriteLine("Done, found " + fp.Count + " frequent patterns!");
