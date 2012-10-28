@@ -21,6 +21,7 @@ namespace DataMiningTeam.WindowsForms
         {
             InitializeComponent();
             cmbSource.Items.Add("AdventureWorks");
+            cmbSource.Items.Add("Book Example");
         }//DMForm
 
         //Methods *************************************************************

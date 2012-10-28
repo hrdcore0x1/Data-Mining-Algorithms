@@ -31,7 +31,10 @@ namespace DataMiningTeam.BLL
                     }//foreach
                 }//using
             }//if AdventureWorks
-
+            else if (DataSource.Equals("Book Example"))
+            {
+                ret = BookExBLL.getAWSaleDto();
+            }
             return ret;
         }//process
     }//class
