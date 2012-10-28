@@ -5,16 +5,16 @@ using System.Text;
 
 namespace DataMiningTeam.Dto
 {
-    public class AWSaleDto
+    public class TransactionDto
     {
         //Properties/Variables ***************************************
         private string _orderNumber;
         private List<string> _productList;
 
         //Constructors ***********************************************
-        public AWSaleDto() { }
+        public TransactionDto() { }
 
-        public AWSaleDto(string OrderNumber, List<string> Products)
+        public TransactionDto(string OrderNumber, List<string> Products)
         {
             this._orderNumber = OrderNumber;
             this._productList = Products;

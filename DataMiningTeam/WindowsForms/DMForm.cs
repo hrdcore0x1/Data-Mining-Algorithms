@@ -11,7 +11,7 @@ using DataMiningTeam.Dto;
 
 namespace DataMiningTeam.WindowsForms
 {
-    public partial class MainForm : Form
+    public partial class DMForm : Form
     {
         //Properties/Variables ************************************************
         List<ItemSetDto> results = new List<ItemSetDto>();

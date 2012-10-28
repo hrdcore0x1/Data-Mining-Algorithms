@@ -1,11 +1,19 @@
+<<<<<<< HEAD
+using System;
+=======
 ﻿using System;
+>>>>>>> master
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace DataMiningTeam.Dto
 {
+<<<<<<< HEAD
     public class ItemSetDto:IEquatable<ItemSetDto>,IComparable<ItemSetDto>
+=======
+    public class ItemSetDto
+>>>>>>> master
     {
         //Properties/Variables ********************************************
         private string _itemset;
@@ -17,7 +25,11 @@ namespace DataMiningTeam.Dto
         public ItemSetDto(string ItemSet)
         {
             _itemset = ItemSet;
+<<<<<<< HEAD
             _setCount = 0;
+=======
+            _setCount = 1;
+>>>>>>> master
         }//initial Itemset constructor
 
         public ItemSetDto(ItemSetDto Old)
@@ -33,6 +45,7 @@ namespace DataMiningTeam.Dto
         }//full constructor
 
         //Methods *********************************************************
+<<<<<<< HEAD
         public bool Equals(ItemSetDto other)
         {
             if (this._itemset.Equals(other._itemset))
@@ -55,6 +68,8 @@ namespace DataMiningTeam.Dto
             _setCount++;
         }//Increment
 
+=======
+>>>>>>> master
         //Gets/Sets *******************************************************
         public string Itemset
         {
