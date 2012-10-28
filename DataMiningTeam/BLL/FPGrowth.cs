@@ -15,10 +15,10 @@ namespace DataMiningTeam.BLL
 {
     class FPGrowth
     {
-        private List<AWSaleDto> dtos;
+        private List<TransactionDto> dtos;
         private int min_sup;
 
-        public FPGrowth(List<AWSaleDto> dtos, int min_sup)
+        public FPGrowth(List<TransactionDto> dtos, int min_sup)
         {
             this.dtos = dtos;
             this.min_sup = min_sup;
@@ -32,7 +32,7 @@ namespace DataMiningTeam.BLL
 
 
             /* get support count of each item */
-            foreach (AWSaleDto dto in dtos)
+            foreach (TransactionDto dto in dtos)
             {
                 foreach (string p in dto.items)
                 {
@@ -93,7 +93,7 @@ namespace DataMiningTeam.BLL
             List<string> items;
             List<int> lsupport;
             /* sort all transaction items in L order */
-            foreach (AWSaleDto dto in dtos)
+            foreach (TransactionDto dto in dtos)
             {
                 items = dto.items;
                 lsupport = new List<int>();
@@ -129,7 +129,7 @@ namespace DataMiningTeam.BLL
 
             /* start building FP-Tree */
             FPNode root = new FPNode(null, 0);
-            foreach (AWSaleDto dto in dtos)
+            foreach (TransactionDto dto in dtos)
             {
                 addToTree(ref root, dto, ref itemHeaderTable);
             }
@@ -354,7 +354,7 @@ namespace DataMiningTeam.BLL
             FPNode root = new FPNode(null, 0);
             foreach (FPPrefixPath p in prefixPaths)
             {
-                AWSaleDto dto = new AWSaleDto();
+                TransactionDto dto = new TransactionDto();
                 foreach (FPNode fpn in p.prefixpath)
                 {
                     dto.items.Add(fpn.item);
@@ -366,7 +366,7 @@ namespace DataMiningTeam.BLL
                 */
                 for (int i = 0; i < p.support; i++)
                 {
-                    AWSaleDto tmpDto = new AWSaleDto();
+                    TransactionDto tmpDto = new TransactionDto();
                     foreach (string item in dto.items)
                     {
                         tmpDto.items.Add(item);
@@ -405,7 +405,7 @@ namespace DataMiningTeam.BLL
         }
 
         /* add the items in dto to tree recursively && add node links to itemHeaderTable */
-        private void addToTree(ref FPNode root, AWSaleDto dto, ref List<ItemHeaderElement> itemHeaderTable)
+        private void addToTree(ref FPNode root, TransactionDto dto, ref List<ItemHeaderElement> itemHeaderTable)
         {
             if (dto.items.Count == 0) return;
 

@@ -11,7 +11,7 @@ namespace DataMiningTeam.BLL
 {
     class AWSaleBLL2
     {
-        public static List<AWSaleDto> getAWSaleDto(){
+        public static List<TransactionDto> getAWSaleDto(){
             //string dbConnStr = "Data Source=hrdcore_vb;Initial Catalog=AdventureWorksDW2012;Integrated Security=True";  //CWCNANCE-DLT
             //string query = "SELECT TID as salesorder, items as Products FROM BookExample;";
             ////string query = "SELECT salesorder, Products FROM SalesDataConsolidated;";
@@ -47,8 +47,8 @@ namespace DataMiningTeam.BLL
             //dbConn.Close();
 
 
-            AWSaleDto dto;
-            List<AWSaleDto> dtos = new List<AWSaleDto>();
+            TransactionDto dto;
+            List<TransactionDto> dtos = new List<TransactionDto>();
 
             using (AdventureWorksEntities awe = new AdventureWorksEntities())
             {
@@ -56,7 +56,7 @@ namespace DataMiningTeam.BLL
 
                 foreach(BookExampleEntity be in bee)
                 {
-                    dto = new AWSaleDto();
+                    dto = new TransactionDto();
                     dto.tid = be.TID;
                     dto.items = be.items.Split('|').ToList();
                     dtos.Add(dto);

@@ -63,9 +63,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AdventureWorksModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Dto\AWSaleDto.cs" />
-    <Compile Include="Dto\IDto.cs" />
     <Compile Include="Dto\TransactionDto.cs" />
+    <Compile Include="Dto\IDto.cs" />
     <Compile Include="Dto\ItemSetDto.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="MainTest.cs" />
