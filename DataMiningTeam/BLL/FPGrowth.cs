@@ -344,7 +344,7 @@ namespace DataMiningTeam.BLL
                 }
                 for (int i = 0; i < removeList.Count; i++)
                 {
-                    p.prefixpath.RemoveAt(removeList[i]);
+                    p.prefixpath.RemoveAt(removeList[i] - i); //CAN: Added because indexes change after the removing an element.  Did not encounter this issue in testing
                 }
             }
 
