@@ -16,6 +16,13 @@ namespace DataMiningTeam.BLL
             _support = support;
         }
 
+        public FrequentPattern(string item, int support)
+        {
+            _items = new List<string>();
+            _items.Add(item);
+            _support = support;
+        }
+
         public List<string> items
         {
             get { return _items; }
@@ -24,7 +31,7 @@ namespace DataMiningTeam.BLL
 
         public int support
         {
-            get { return support; }
+            get { return _support; }
             set { _support = value; }
         }
 

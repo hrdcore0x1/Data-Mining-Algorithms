@@ -18,7 +18,7 @@ namespace DataMiningTeam.BLL
 
             List<ItemSetDto> ret = GetFrequentItemSets(ItemSets, Transactions, minSupport);
 
-            return ret;
+            return ret.OrderBy(x => x.SetCount).Reverse().ToList();
         }//Process
 
         private List<ItemSetDto> GetFrequentItemSets(List<ItemSetDto> TargetItemSets, List<TransactionDto> Transactions, int MinimumSupport)

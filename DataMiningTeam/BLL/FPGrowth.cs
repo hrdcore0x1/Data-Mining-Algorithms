@@ -17,17 +17,21 @@ namespace DataMiningTeam.BLL
     {
         private List<TransactionDto> dtos;
         private int min_sup;
+        private List<FrequentPattern> frequentPatterns;
 
         public FPGrowth(List<TransactionDto> dtos, int min_sup)
         {
             this.dtos = dtos;
             this.min_sup = min_sup;
+            frequentPatterns = new List<FrequentPattern>();
         }
 
         public FPGrowth(List<TransactionDto> dtos, double min_sup)
         {
             this.dtos = dtos;
             this.min_sup = Convert.ToInt32(dtos.Count * min_sup);
+            frequentPatterns = new List<FrequentPattern>();
+            
         }
 
         public List<FrequentPattern> mine()
@@ -83,6 +87,7 @@ namespace DataMiningTeam.BLL
                 if (support[i] >= min_sup)
                 {
                     itemHeaderTable.Add(new ItemHeaderElement(item[i], support[i]));
+                    if (support[i] >= min_sup) frequentPatterns.Add(new FrequentPattern(item[i], support[i]));  //CAN: Add singleton sets to frequent pattern list
                 }
 
             }
@@ -183,12 +188,12 @@ namespace DataMiningTeam.BLL
             */
 
 
-            //List to hold frequent patterns
-            List<FrequentPattern> frequentPatterns = new List<FrequentPattern>();
+
 
             mineTheTree(ref itemHeaderTable, ref frequentPatterns);
 
-            return frequentPatterns;
+            return frequentPatterns.OrderBy(x => x.support).Reverse().ToList();
+
          
         }//mine()
 
