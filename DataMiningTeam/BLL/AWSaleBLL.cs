@@ -11,7 +11,7 @@ namespace DataMiningTeam.BLL
     {
         public TransactionDto Process(SalesItemsetsEntity Sale)
         {
-            TransactionDto ret = null;
+            TransactionDto ret = new TransactionDto();
 
             ret.tid = Sale.salesorder;
 

@@ -277,7 +277,7 @@ namespace DataMiningTeam.BLL
                         items.Add(aFpn.item);
                         aFpn = aFpn.parent;
                     }
-                    if (items.Count > 1)
+                    if (items.Count > 1 && support >= min_sup)
                     {
                         items.Reverse();
                         items.Add(suffix);
@@ -321,7 +321,10 @@ namespace DataMiningTeam.BLL
             /* remove the itemHeaders that don't meet min_sup */
             for (int n = 0; n < itemHeaders.Count; n++)
             {
-                if (itemHeaders[n].support < min_sup) itemHeaders.RemoveAt(n);
+                if (itemHeaders[n].support < min_sup)
+                {
+                    itemHeaders.RemoveAt(n--);
+                }
             }
 
 
