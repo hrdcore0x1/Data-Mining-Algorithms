@@ -29,7 +29,7 @@ namespace DataMiningTeam.BLL
         public FPGrowth(List<TransactionDto> dtos, double min_sup)
         {
             this.dtos = dtos;
-            this.min_sup = Convert.ToInt32(dtos.Count * min_sup);
+            this.min_sup = (int)Math.Round((min_sup / 100 * dtos.Count), MidpointRounding.AwayFromZero);
             frequentPatterns = new List<FrequentPattern>();
             
         }

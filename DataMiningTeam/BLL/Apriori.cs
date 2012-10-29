@@ -13,8 +13,7 @@ namespace DataMiningTeam.BLL
         //Methods **********************************************************************
         public List<ItemSetDto> Process(List<TransactionDto> Transactions, List<ItemSetDto> ItemSets, double MinimumSupport)
         {
-            /* CAN: Changed because when using the Book Example and passing 0.2 minimum support from DMForm, minSupport was converted to 0 instead of 2. */
-            int minSupport = Convert.ToInt32(Transactions.Count * MinimumSupport); // (int)Math.Round((MinimumSupport / 100 * Transactions.Count), MidpointRounding.AwayFromZero);
+            int minSupport = (int)Math.Round((MinimumSupport / 100 * Transactions.Count), MidpointRounding.AwayFromZero);
 
             List<ItemSetDto> ret = GetFrequentItemSets(ItemSets, Transactions, minSupport);
 
