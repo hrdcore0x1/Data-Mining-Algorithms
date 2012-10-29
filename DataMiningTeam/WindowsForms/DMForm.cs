@@ -77,10 +77,20 @@ namespace DataMiningTeam.WindowsForms
             }//if "Apriori"
             else if (algorithm.Equals("FPGrowth"))
             {
+                
+                if (txtMinSupport.Text.Equals(""))
+                {
+                    MessageBox.Show("Please enter a Minimum Support");
+                    return;
+                }//if
+                double minSupport = Convert.ToDouble(txtMinSupport.Text);
+                string datasource = cmbSource.SelectedItem.ToString();
+                DataSourceBLL dsBLL = new DataSourceBLL();
+                List<TransactionDto> dtos = dsBLL.process(datasource);
                 rtbResults.Text = "";
                 DateTime timer = DateTime.Now;
-                List<TransactionDto> dtos = BookExBLL.getAWSaleDto();
-                FPGrowth fpg = new FPGrowth(dtos, 2);
+                //List<TransactionDto> dtos = BookExBLL.getAWSaleDto();
+                FPGrowth fpg = new FPGrowth(dtos, minSupport);
                 List<FrequentPattern> fp = fpg.mine();
                 StringBuilder sb = new StringBuilder();
                 foreach (FrequentPattern f in fp)
@@ -93,7 +103,7 @@ namespace DataMiningTeam.WindowsForms
             else if (algorithm.Equals("Eclat"))
             {
                 throw new NotImplementedException();
-            }//if "FPGrowth"
+            }//if "Eclat"
         }//btnExecute_Click
 
         private void btnClear_Click(object sender, EventArgs e)

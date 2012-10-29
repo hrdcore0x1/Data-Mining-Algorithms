@@ -24,6 +24,12 @@ namespace DataMiningTeam.BLL
             this.min_sup = min_sup;
         }
 
+        public FPGrowth(List<TransactionDto> dtos, double min_sup)
+        {
+            this.dtos = dtos;
+            this.min_sup = Convert.ToInt32(dtos.Count * min_sup);
+        }
+
         public List<FrequentPattern> mine()
         {
             var item = new List<string>();
