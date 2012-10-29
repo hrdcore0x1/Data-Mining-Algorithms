@@ -40,14 +40,7 @@ namespace DataMiningTeam.WindowsForms
                 return;
             }//if
 
-            if (txtMinConfidence.Text.Equals(""))
-            {
-                MessageBox.Show("Please enter a Minimum Confidence");
-                return;
-            }//if
-
             double minSupport = Convert.ToDouble(txtMinSupport.Text);
-            double minConfidence = Convert.ToDouble(txtMinConfidence.Text);
             string datasource = cmbSource.SelectedItem.ToString();
 
             DataSourceBLL dsBLL = new DataSourceBLL();
@@ -55,11 +48,15 @@ namespace DataMiningTeam.WindowsForms
 
             List<TransactionDto> transactions = dsBLL.process(datasource);
 
-            results = ap.Process(transactions, null, minSupport, minConfidence);
+            results = ap.Process(transactions, null, minSupport);
+
+            StringBuilder sb = new StringBuilder();
             foreach (ItemSetDto isd in results)
             {
-                Console.WriteLine(isd.toString());
+                sb.AppendLine(isd.toString());
             }
+
+            rtbResults.AppendText(sb.ToString());
         }//button1_Click
     }//class
 }//namespace

@@ -11,17 +11,16 @@ namespace DataMiningTeam.BLL
         //Properties/Variables *********************************************************
         //Constructors *****************************************************************
         //Methods **********************************************************************
-        public List<ItemSetDto> Process(List<TransactionDto> Transactions, List<ItemSetDto> ItemSets, double MinimumSupport, double MinimumConfidence)
+        public List<ItemSetDto> Process(List<TransactionDto> Transactions, List<ItemSetDto> ItemSets, double MinimumSupport)
         {
             int minSupport = (int)Math.Round((MinimumSupport / 100 * Transactions.Count),MidpointRounding.AwayFromZero);
-            int minConfidence = (int)Math.Round((MinimumConfidence / 100 * Transactions.Count),MidpointRounding.AwayFromZero);
 
-            List<ItemSetDto> ret = GetFrequentItemSets(ItemSets, Transactions, minSupport, minConfidence);
+            List<ItemSetDto> ret = GetFrequentItemSets(ItemSets, Transactions, minSupport);
 
             return ret;
         }//Process
 
-        private List<ItemSetDto> GetFrequentItemSets(List<ItemSetDto> TargetItemSets, List<TransactionDto> Transactions, int MinimumSupport, int MinimumConfidence)
+        private List<ItemSetDto> GetFrequentItemSets(List<ItemSetDto> TargetItemSets, List<TransactionDto> Transactions, int MinimumSupport)
         {
             List<ItemSetDto> ret = new List<ItemSetDto>();
 
@@ -69,7 +68,7 @@ namespace DataMiningTeam.BLL
             }//foreach
 
             //call GetFrequentItemSets with the new candidate set and add all it returns to ret
-            ret.AddRange(GetFrequentItemSets(newCandidates,Transactions,MinimumSupport,MinimumConfidence));
+            ret.AddRange(GetFrequentItemSets(newCandidates,Transactions,MinimumSupport));
 
             return ret;
         }//GetFrequentItemSets

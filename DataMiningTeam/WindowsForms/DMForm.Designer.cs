@@ -37,7 +37,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtbResults = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMinSupport = new System.Windows.Forms.Label();
             this.txtMinSupport = new System.Windows.Forms.TextBox();
@@ -120,13 +120,13 @@
             this.button9.Text = "FPGrowth";
             this.button9.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // rtbResults
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(156, 42);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(486, 273);
-            this.richTextBox1.TabIndex = 10;
-            this.richTextBox1.Text = "";
+            this.rtbResults.Location = new System.Drawing.Point(156, 42);
+            this.rtbResults.Name = "rtbResults";
+            this.rtbResults.Size = new System.Drawing.Size(486, 273);
+            this.rtbResults.TabIndex = 10;
+            this.rtbResults.Text = "";
             // 
             // label1
             // 
@@ -199,7 +199,7 @@
             this.Controls.Add(this.txtMinSupport);
             this.Controls.Add(this.lblMinSupport);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.rtbResults);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -226,7 +226,7 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtbResults;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblMinSupport;
         private System.Windows.Forms.TextBox txtMinSupport;
