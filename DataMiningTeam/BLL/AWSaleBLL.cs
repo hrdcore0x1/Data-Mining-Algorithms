@@ -13,11 +13,11 @@ namespace DataMiningTeam.BLL
         {
             TransactionDto ret = null;
 
-            ret.OrderNumber = Sale.salesorder;
+            ret.tid = Sale.salesorder;
 
             string[] productArray = Sale.Products.Split('|');
 
-            ret.ProductList = productArray.ToList();
+            ret.items = productArray.ToList();
 
             return ret;
         }//Process

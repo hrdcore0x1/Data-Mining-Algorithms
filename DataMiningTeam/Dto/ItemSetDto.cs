@@ -8,13 +8,13 @@ namespace DataMiningTeam.Dto
     public class ItemSetDto:IEquatable<ItemSetDto>,IComparable<ItemSetDto>
     {
         //Properties/Variables ********************************************
-        private string _itemset;
+        private List<string> _itemset;
         private int _setCount;
 
         //Constructors ****************************************************
         public ItemSetDto() { }
 
-        public ItemSetDto(string ItemSet)
+        public ItemSetDto(List<string> ItemSet)
         {
             _itemset = ItemSet;
             _setCount = 0;
@@ -26,7 +26,7 @@ namespace DataMiningTeam.Dto
             this._setCount = Old._setCount;
         }//copy constructor
 
-        public ItemSetDto(string ItemSet, int SetCount)
+        public ItemSetDto(List<string> ItemSet, int SetCount)
         {
             this._itemset = ItemSet;
             this._setCount = SetCount;
@@ -35,19 +35,27 @@ namespace DataMiningTeam.Dto
         //Methods *********************************************************
         public bool Equals(ItemSetDto other)
         {
-            if (this._itemset.Equals(other._itemset))
+            bool eq = true;
+
+            foreach (string s in other.Itemset)
             {
-                return true;
+                if (!this._itemset.Contains(s))
+                {
+                    eq = false;
+                }//if
+            }//foreach
+
+            if (this._itemset.Count != other._itemset.Count)
+            {
+                eq = false;
             }//if
-            else
-            {
-                return false;
-            }//else
+
+            return eq;
         }//Equals
 
         public int CompareTo(ItemSetDto other)
         {
-            return this._setCount - other._setCount;
+            return other._setCount - this._setCount;
         }//CompareTo
 
         public void Increment()
@@ -55,8 +63,22 @@ namespace DataMiningTeam.Dto
             _setCount++;
         }//Increment
 
+        public string toString()
+        {
+            string s = "{";
+
+            foreach (string i in _itemset)
+            {
+                s = s + i + "|";
+            }//foreach
+
+            s = s.Substring(0, s.Length - 1) + "}";
+
+            return s;
+        }//toString
+
         //Gets/Sets *******************************************************
-        public string Itemset
+        public List<string> Itemset
         {
             get { return _itemset; }
             set { _itemset = value; }

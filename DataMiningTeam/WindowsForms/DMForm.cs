@@ -56,6 +56,10 @@ namespace DataMiningTeam.WindowsForms
             List<TransactionDto> transactions = dsBLL.process(datasource);
 
             results = ap.Process(transactions, null, minSupport, minConfidence);
+            foreach (ItemSetDto isd in results)
+            {
+                Console.WriteLine(isd.toString());
+            }
         }//button1_Click
     }//class
 }//namespace
