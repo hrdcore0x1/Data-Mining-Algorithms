@@ -192,7 +192,7 @@ namespace DataMiningTeam.BLL
 
             mineTheTree(ref itemHeaderTable, ref frequentPatterns);
 
-            return frequentPatterns.OrderBy(x => x.support).Reverse().ToList();
+            return frequentPatterns.OrderBy(x => x.support).ThenBy(x => x.items.Count).Reverse().ToList();
 
          
         }//mine()
