@@ -89,7 +89,6 @@ namespace DataMiningTeam.WindowsForms
                 List<TransactionDto> dtos = dsBLL.process(datasource);
                 rtbResults.Text = "";
                 DateTime timer = DateTime.Now;
-                //List<TransactionDto> dtos = BookExBLL.getAWSaleDto();
                 FPGrowth fpg = new FPGrowth(dtos, minSupport);
                 List<FrequentPattern> fp = fpg.mine();
                 StringBuilder sb = new StringBuilder();

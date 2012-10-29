@@ -69,10 +69,10 @@ namespace DataMiningTeam.Dto
 
             foreach (string i in _itemset)
             {
-                s = s + i + "|";
+                s = s + i + ", ";  //CAN: Modified to be uniform with FPGrowth
             }//foreach
 
-            s = s.Substring(0, s.Length - 1) + "} Support Count = " + _setCount;
+            s = s.Substring(0, s.Length - 2) + "}: " + _setCount;  //CAN: Modified to be uniform with FPGrowth
 
             return s;
         }//toString
