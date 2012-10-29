@@ -29,14 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DMForm));
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnExecute = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.rtbResults = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMinSupport = new System.Windows.Forms.Label();
@@ -45,21 +42,13 @@
             this.txtMinConfidence = new System.Windows.Forms.TextBox();
             this.cmbSource = new System.Windows.Forms.ComboBox();
             this.lblSource = new System.Windows.Forms.Label();
+            this.lblAlgorithm = new System.Windows.Forms.Label();
+            this.cmbAlgorithm = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(33, 94);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Apriori";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(33, 195);
+            this.button2.Location = new System.Drawing.Point(33, 244);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 26);
             this.button2.TabIndex = 1;
@@ -68,30 +57,32 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(33, 227);
+            this.button4.Location = new System.Drawing.Point(33, 276);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 26);
             this.button4.TabIndex = 3;
             this.button4.Text = "Bonus 2";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnClear
             // 
-            this.button5.Location = new System.Drawing.Point(492, 321);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Clear";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnClear.Location = new System.Drawing.Point(492, 321);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 4;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // button6
+            // btnExecute
             // 
-            this.button6.Location = new System.Drawing.Point(573, 321);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Execute";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnExecute.Location = new System.Drawing.Point(573, 321);
+            this.btnExecute.Name = "btnExecute";
+            this.btnExecute.Size = new System.Drawing.Size(75, 23);
+            this.btnExecute.TabIndex = 5;
+            this.btnExecute.Text = "Execute";
+            this.btnExecute.UseVisualStyleBackColor = true;
+            this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
             // 
             // button7
             // 
@@ -101,24 +92,6 @@
             this.button7.TabIndex = 6;
             this.button7.Text = "Help";
             this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(33, 152);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 7;
-            this.button8.Text = "Eclat";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(33, 123);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "FPGrowth";
-            this.button9.UseVisualStyleBackColor = true;
             // 
             // rtbResults
             // 
@@ -186,12 +159,31 @@
             this.lblSource.TabIndex = 17;
             this.lblSource.Text = "Data Source:";
             // 
+            // lblAlgorithm
+            // 
+            this.lblAlgorithm.AutoSize = true;
+            this.lblAlgorithm.Location = new System.Drawing.Point(12, 79);
+            this.lblAlgorithm.Name = "lblAlgorithm";
+            this.lblAlgorithm.Size = new System.Drawing.Size(53, 13);
+            this.lblAlgorithm.TabIndex = 18;
+            this.lblAlgorithm.Text = "Algorithm:";
+            // 
+            // cmbAlgorithm
+            // 
+            this.cmbAlgorithm.FormattingEnabled = true;
+            this.cmbAlgorithm.Location = new System.Drawing.Point(15, 96);
+            this.cmbAlgorithm.Name = "cmbAlgorithm";
+            this.cmbAlgorithm.Size = new System.Drawing.Size(121, 21);
+            this.cmbAlgorithm.TabIndex = 19;
+            // 
             // DMForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(677, 378);
+            this.Controls.Add(this.cmbAlgorithm);
+            this.Controls.Add(this.lblAlgorithm);
             this.Controls.Add(this.lblSource);
             this.Controls.Add(this.cmbSource);
             this.Controls.Add(this.txtMinConfidence);
@@ -200,14 +192,11 @@
             this.Controls.Add(this.lblMinSupport);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rtbResults);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnExecute);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DMForm";
             this.Text = "Data Mining Team Project";
@@ -218,14 +207,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnExecute;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.RichTextBox rtbResults;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblMinSupport;
@@ -234,5 +220,7 @@
         private System.Windows.Forms.TextBox txtMinConfidence;
         private System.Windows.Forms.ComboBox cmbSource;
         private System.Windows.Forms.Label lblSource;
+        private System.Windows.Forms.Label lblAlgorithm;
+        private System.Windows.Forms.ComboBox cmbAlgorithm;
     }
 }

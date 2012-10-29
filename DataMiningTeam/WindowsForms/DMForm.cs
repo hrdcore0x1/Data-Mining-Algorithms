@@ -14,7 +14,7 @@ namespace DataMiningTeam.WindowsForms
     public partial class DMForm : Form
     {
         //Properties/Variables ************************************************
-        List<ItemSetDto> results = new List<ItemSetDto>();
+        
 
         //Constructors ********************************************************
         public DMForm()
@@ -22,41 +22,85 @@ namespace DataMiningTeam.WindowsForms
             InitializeComponent();
             cmbSource.Items.Add("AdventureWorks");
             cmbSource.Items.Add("Book Example");
+            cmbAlgorithm.Items.Add("Apriori");
+            cmbAlgorithm.Items.Add("FPGrowth");
+            cmbAlgorithm.Items.Add("Eclat");
         }//DMForm
 
         //Methods *************************************************************
         //Events **************************************************************
-        private void button1_Click(object sender, EventArgs e)
+        private void btnExecute_Click(object sender, EventArgs e)
         {
-            if (cmbSource.SelectedItem == null)
+            if (cmbAlgorithm.SelectedItem == null)
             {
-                MessageBox.Show("Please select a data source");
+                MessageBox.Show("Please select an algorithm.");
                 return;
-            }//if
+            }//if no algorithm
 
-            if (txtMinSupport.Text.Equals(""))
+            string algorithm = cmbAlgorithm.SelectedItem.ToString();
+
+            if (algorithm.Equals("Apriori"))
             {
-                MessageBox.Show("Please enter a Minimum Support");
-                return;
-            }//if
+                rtbResults.Text = "";
+                List<ItemSetDto> results = new List<ItemSetDto>();
+                DateTime timer = DateTime.Now;
+                if (cmbSource.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a data source");
+                    return;
+                }//if
 
-            double minSupport = Convert.ToDouble(txtMinSupport.Text);
-            string datasource = cmbSource.SelectedItem.ToString();
+                if (txtMinSupport.Text.Equals(""))
+                {
+                    MessageBox.Show("Please enter a Minimum Support");
+                    return;
+                }//if
 
-            DataSourceBLL dsBLL = new DataSourceBLL();
-            Apriori ap = new Apriori();
+                double minSupport = Convert.ToDouble(txtMinSupport.Text);
+                string datasource = cmbSource.SelectedItem.ToString();
 
-            List<TransactionDto> transactions = dsBLL.process(datasource);
+                DataSourceBLL dsBLL = new DataSourceBLL();
+                Apriori ap = new Apriori();
 
-            results = ap.Process(transactions, null, minSupport);
+                List<TransactionDto> transactions = dsBLL.process(datasource);
 
-            StringBuilder sb = new StringBuilder();
-            foreach (ItemSetDto isd in results)
+                results = ap.Process(transactions, null, minSupport);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (ItemSetDto isd in results)
+                {
+                    sb.AppendLine(isd.toString());
+                }
+
+                rtbResults.AppendText(sb.ToString() + "\nTime to Complete: " + (DateTime.Now - timer).ToString());
+
+            }//if "Apriori"
+            else if (algorithm.Equals("FPGrowth"))
             {
-                sb.AppendLine(isd.toString());
-            }
+                rtbResults.Text = "";
+                DateTime timer = DateTime.Now;
+                List<TransactionDto> dtos = BookExBLL.getAWSaleDto();
+                FPGrowth fpg = new FPGrowth(dtos, 2);
+                List<FrequentPattern> fp = fpg.mine();
+                StringBuilder sb = new StringBuilder();
+                foreach (FrequentPattern f in fp)
+                {
+                    sb.AppendLine(f.ToString());
+                }
 
-            rtbResults.AppendText(sb.ToString());
+                rtbResults.AppendText(sb.ToString() + "\nTime to Complete: " + (DateTime.Now - timer).ToString());
+            }//if "FPGrowth"
+            else if (algorithm.Equals("Eclat"))
+            {
+                throw new NotImplementedException();
+            }//if "FPGrowth"
+        }//btnExecute_Click
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            rtbResults.Text = "";
+            txtMinConfidence.Text = "";
+            txtMinSupport.Text = "";
         }//button1_Click
     }//class
 }//namespace
