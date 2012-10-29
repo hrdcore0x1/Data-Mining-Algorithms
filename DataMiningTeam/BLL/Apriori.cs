@@ -13,8 +13,8 @@ namespace DataMiningTeam.BLL
         //Methods **********************************************************************
         public List<ItemSetDto> Process(List<TransactionDto> Transactions, List<ItemSetDto> ItemSets, double MinimumSupport, double MinimumConfidence)
         {
-            int minSupport = (int)(MinimumSupport / 100 * Transactions.Count);
-            int minConfidence = (int)(MinimumConfidence / 100 * Transactions.Count);
+            int minSupport = (int)Math.Round((MinimumSupport / 100 * Transactions.Count),MidpointRounding.AwayFromZero);
+            int minConfidence = (int)Math.Round((MinimumConfidence / 100 * Transactions.Count),MidpointRounding.AwayFromZero);
 
             List<ItemSetDto> ret = GetFrequentItemSets(ItemSets, Transactions, minSupport, minConfidence);
 
@@ -77,15 +77,26 @@ namespace DataMiningTeam.BLL
         private int getCount(ItemSetDto c, List<TransactionDto> Transactions)
         {
             int count = 0;
+            bool inThere = true;
 
             //look at each transaction and see if c = the itemset
             foreach (TransactionDto t in Transactions)
             {
-                ItemSetDto n = new ItemSetDto(t.items);
-                if (c.Equals(n))
+                foreach (string item in c.Itemset)
+                {
+                    if (!t.items.Contains(item))
+                    {
+                        inThere = false;
+                        break;
+                    }//if
+                }//foreach
+
+                if (inThere)
                 {
                     count++;
                 }//if
+
+                inThere = true;
             }//foreach
 
             return count;

@@ -72,7 +72,7 @@ namespace DataMiningTeam.Dto
                 s = s + i + "|";
             }//foreach
 
-            s = s.Substring(0, s.Length - 1) + "}";
+            s = s.Substring(0, s.Length - 1) + "} Support Count = " + _setCount;
 
             return s;
         }//toString
