@@ -156,7 +156,11 @@ namespace DataMiningTeam.BLL
                     {
                         List<string> newItems = new List<string>();
                         newItems.AddRange(survivors[i].Itemset);
-                        newItems.Add(survivors[j].Itemset[x]);
+
+                        if (!survivors[i].Itemset.Contains(survivors[j].Itemset[x]))
+                        {
+                            newItems.Add(survivors[j].Itemset[x]);
+                        }//if
 
                         ItemSetDto newItemset = new ItemSetDto(newItems);
 
