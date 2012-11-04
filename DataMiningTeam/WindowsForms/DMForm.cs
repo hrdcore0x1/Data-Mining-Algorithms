@@ -22,6 +22,9 @@ namespace DataMiningTeam.WindowsForms
             InitializeComponent();
             cmbSource.Items.Add("AdventureWorks");
             cmbSource.Items.Add("Book Example");
+            cmbSource.Items.Add("'|' Delimited File");
+            cmbSource.Items.Add("Comma Delimited File");
+            cmbSource.Items.Add("Tab Delimited File");
             cmbAlgorithm.Items.Add("Apriori");
             cmbAlgorithm.Items.Add("FPGrowth");
             cmbAlgorithm.Items.Add("Eclat");
@@ -64,6 +67,8 @@ namespace DataMiningTeam.WindowsForms
 
                 List<TransactionDto> transactions = dsBLL.process(datasource);
 
+                if (transactions == null) return;
+
                 results = ap.Process(transactions, null, minSupport);
 
                 StringBuilder sb = new StringBuilder();
@@ -87,6 +92,9 @@ namespace DataMiningTeam.WindowsForms
                 string datasource = cmbSource.SelectedItem.ToString();
                 DataSourceBLL dsBLL = new DataSourceBLL();
                 List<TransactionDto> dtos = dsBLL.process(datasource);
+
+                if (dtos == null) return;
+
                 rtbResults.Text = "";
                 DateTime timer = DateTime.Now;
                 FPGrowth fpg = new FPGrowth(dtos, minSupport);

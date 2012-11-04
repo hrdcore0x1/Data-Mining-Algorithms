@@ -52,6 +52,7 @@
     <Compile Include="BLL\AWSaleBLL.cs" />
     <Compile Include="BLL\BookExBLL.cs" />
     <Compile Include="BLL\DataSourceBLL.cs" />
+    <Compile Include="BLL\FlatFileBLL.cs" />
     <Compile Include="BLL\FPGrowth.cs" />
     <Compile Include="BLL\FPNode.cs" />
     <Compile Include="BLL\FPPrefixPath.cs" />
@@ -76,6 +77,12 @@
     <Compile Include="WindowsForms\DMForm.Designer.cs">
       <DependentUpon>DMForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowsForms\FilePickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowsForms\FilePickerForm.Designer.cs">
+      <DependentUpon>FilePickerForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -88,6 +95,9 @@
     </Compile>
     <EmbeddedResource Include="WindowsForms\DMForm.resx">
       <DependentUpon>DMForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowsForms\FilePickerForm.resx">
+      <DependentUpon>FilePickerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Data\AdventureWorksModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

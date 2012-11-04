@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using DataMiningTeam.Dto;
 using DataMiningTeam.Data;
+using DataMiningTeam.WindowsForms;
+using System.Windows.Forms;
 
 namespace DataMiningTeam.BLL
 {
     public class DataSourceBLL
     {
         //Properties/Variables *********************************************************
+        private string _fileName;
+
         //Constructors *****************************************************************
         //Methods **********************************************************************
         public List<TransactionDto> process(string DataSource)
@@ -34,8 +38,27 @@ namespace DataMiningTeam.BLL
             else if (DataSource.Equals("Book Example"))
             {
                 ret = BookExBLL.getAWSaleDto();
-            }
+            }// if Book Example
+            else if (DataSource.Equals("'|' Delimited File") || DataSource.Equals("Comma Delimited File") || DataSource.Equals("Tab Delimited File"))
+            {
+                _fileName = "";
+                frmFilePicker filePicker = new frmFilePicker(this);
+                DialogResult flatFile = filePicker.ShowDialog();
+                if (flatFile == DialogResult.OK)
+                {
+                    ret = FlatFileBLL.Process(DataSource, _fileName);
+                }//if
+
+            }//If flat file
+
             return ret;
         }//process
+
+        //Gets/Sets ********************************************************************
+        public string FileName
+        {
+            get { return _fileName; }
+            set { _fileName = value; }
+        }
     }//class
 }//namespace
