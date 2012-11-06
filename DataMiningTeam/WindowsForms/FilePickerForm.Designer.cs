@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFilePicker));
             this.ofdFlatFile = new System.Windows.Forms.OpenFileDialog();
             this.lblExplaination = new System.Windows.Forms.Label();
             this.lblFile = new System.Windows.Forms.Label();
@@ -102,13 +103,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 213);
+            this.ClientSize = new System.Drawing.Size(577, 163);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.txtFileName);
             this.Controls.Add(this.lblFile);
             this.Controls.Add(this.lblExplaination);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmFilePicker";
             this.Text = "Select File";
             this.Load += new System.EventHandler(this.frmFilePicker_Load);

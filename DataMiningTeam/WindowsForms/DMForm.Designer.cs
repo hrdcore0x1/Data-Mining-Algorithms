@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DMForm));
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnBonus1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnExecute = new System.Windows.Forms.Button();
@@ -46,20 +46,21 @@
             this.cmbAlgorithm = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // button2
+            // btnBonus1
             // 
-            this.button2.Location = new System.Drawing.Point(33, 244);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 26);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Bonus 1";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnBonus1.Location = new System.Drawing.Point(33, 244);
+            this.btnBonus1.Name = "btnBonus1";
+            this.btnBonus1.Size = new System.Drawing.Size(87, 26);
+            this.btnBonus1.TabIndex = 1;
+            this.btnBonus1.Text = "Classification";
+            this.btnBonus1.UseVisualStyleBackColor = true;
+            this.btnBonus1.Click += new System.EventHandler(this.button2_Click);
             // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(33, 276);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 26);
+            this.button4.Size = new System.Drawing.Size(87, 26);
             this.button4.TabIndex = 3;
             this.button4.Text = "Bonus 2";
             this.button4.UseVisualStyleBackColor = true;
@@ -95,8 +96,10 @@
             // 
             // rtbResults
             // 
+            this.rtbResults.BackColor = System.Drawing.Color.White;
             this.rtbResults.Location = new System.Drawing.Point(156, 42);
             this.rtbResults.Name = "rtbResults";
+            this.rtbResults.ReadOnly = true;
             this.rtbResults.Size = new System.Drawing.Size(486, 273);
             this.rtbResults.TabIndex = 10;
             this.rtbResults.Text = "";
@@ -149,6 +152,7 @@
             this.cmbSource.Name = "cmbSource";
             this.cmbSource.Size = new System.Drawing.Size(121, 21);
             this.cmbSource.TabIndex = 16;
+            this.cmbSource.SelectedIndexChanged += new System.EventHandler(this.cmbSource_SelectedIndexChanged);
             // 
             // lblSource
             // 
@@ -175,6 +179,7 @@
             this.cmbAlgorithm.Name = "cmbAlgorithm";
             this.cmbAlgorithm.Size = new System.Drawing.Size(121, 21);
             this.cmbAlgorithm.TabIndex = 19;
+            this.cmbAlgorithm.SelectedIndexChanged += new System.EventHandler(this.cmbAlgorithm_SelectedIndexChanged);
             // 
             // DMForm
             // 
@@ -196,7 +201,7 @@
             this.Controls.Add(this.btnExecute);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnBonus1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DMForm";
             this.Text = "Data Mining Team Project";
@@ -207,7 +212,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnBonus1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnExecute;

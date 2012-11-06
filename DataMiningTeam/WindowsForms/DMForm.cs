@@ -49,7 +49,7 @@ namespace DataMiningTeam.WindowsForms
                 DateTime timer = DateTime.Now;
                 if (cmbSource.SelectedItem == null)
                 {
-                    MessageBox.Show("Please select a data source");
+                    MessageBox.Show("Please select a data source.");
                     return;
                 }//if
 
@@ -118,6 +118,23 @@ namespace DataMiningTeam.WindowsForms
             rtbResults.Text = "";
             txtMinConfidence.Text = "";
             txtMinSupport.Text = "";
+        }
+
+        private void cmbAlgorithm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbSource_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ClassificationForm cfm = new ClassificationForm(this);
+            cfm.Show();
+            this.Hide();
         }//button1_Click
     }//class
 }//namespace
