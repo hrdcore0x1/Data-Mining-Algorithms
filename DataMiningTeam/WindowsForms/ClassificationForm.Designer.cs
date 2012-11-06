@@ -84,6 +84,7 @@
             this.btnTrain.TabIndex = 7;
             this.btnTrain.Text = "Train";
             this.btnTrain.UseVisualStyleBackColor = true;
+            this.btnTrain.Click += new System.EventHandler(this.btnTrain_Click);
             // 
             // cmbSource
             // 

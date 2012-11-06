@@ -52,6 +52,9 @@
     <Compile Include="BLL\AWSaleBLL.cs" />
     <Compile Include="BLL\BookExBLL.cs" />
     <Compile Include="BLL\DataSourceBLL.cs" />
+    <Compile Include="BLL\DecisionTree.cs" />
+    <Compile Include="BLL\DecisionTreeClass.cs" />
+    <Compile Include="BLL\DecisionTreeNode.cs" />
     <Compile Include="BLL\FlatFileBLL.cs" />
     <Compile Include="BLL\FPGrowth.cs" />
     <Compile Include="BLL\FPNode.cs" />
@@ -64,7 +67,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AdventureWorksModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Dto\ClassificationDto.cs" />
     <Compile Include="Dto\TransactionDto.cs" />
     <Compile Include="Dto\IDto.cs" />
     <Compile Include="Dto\ItemSetDto.cs" />

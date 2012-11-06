@@ -14,6 +14,8 @@ namespace DataMiningTeam.WindowsForms
     public partial class ClassificationForm : Form
     {
         DMForm parent;
+        DecisionTree dtree;
+        List<TransactionDto> trainingDtos;
         public ClassificationForm(DMForm dmf)
         {
             InitializeComponent();
@@ -35,8 +37,8 @@ namespace DataMiningTeam.WindowsForms
 
             string datasource = cmbSource.SelectedItem.ToString();
             DataSourceBLL dsBLL = new DataSourceBLL();
-            List<TransactionDto> transactions = dsBLL.process(datasource);
-            TransactionDto t1 = transactions[0];
+            trainingDtos = dsBLL.process(datasource);
+            TransactionDto t1 = trainingDtos[0];
 
             foreach (string i in t1.items)
             {
@@ -44,6 +46,12 @@ namespace DataMiningTeam.WindowsForms
             }
             cmbColumn.SelectedIndex = t1.items.Count - 1;
             btnTrain.Enabled = true;
+
+            if (DialogResult.Yes == MessageBox.Show("Does your file have headers?", "File import", MessageBoxButtons.YesNo))
+            {
+                trainingDtos.RemoveAt(0);
+            }
+            
 
         }
         private void ClassificationForm_Close(object sender, EventArgs e)
@@ -56,6 +64,11 @@ namespace DataMiningTeam.WindowsForms
             cmbSource.Items.Add("'|' Delimited File");
             cmbSource.Items.Add("Comma Delimited File");
             cmbSource.Items.Add("Tab Delimited File");
+        }
+
+        private void btnTrain_Click(object sender, EventArgs e)
+        {
+            dtree = new DecisionTree(trainingDtos, cmbColumn.SelectedIndex);
         }
     }
 }
