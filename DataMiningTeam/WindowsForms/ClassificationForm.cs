@@ -69,6 +69,34 @@ namespace DataMiningTeam.WindowsForms
         private void btnTrain_Click(object sender, EventArgs e)
         {
             dtree = new DecisionTree(trainingDtos, cmbColumn.SelectedIndex);
+            btnClassify.Enabled = true;
+            cmbClassification.Items.Add("'|' Delimited File");
+            cmbClassification.Items.Add("Comma Delimited File");
+            cmbClassification.Items.Add("Tab Delimited File");
+        }
+
+        private void btnClassify_Click(object sender, EventArgs e)
+        {
+            if (cmbSource.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a data source.");
+                return;
+            }//if
+
+            string datasource = cmbSource.SelectedItem.ToString();
+            DataSourceBLL dsBLL = new DataSourceBLL();
+            List<TransactionDto> dtos = dsBLL.process(datasource);
+
+            if (DialogResult.Yes == MessageBox.Show("Does your file have headers?", "File import", MessageBoxButtons.YesNo))
+            {
+                dtos.RemoveAt(0);
+            }
+
+            foreach (TransactionDto dto in dtos)
+            {
+                string classification = dtree.decide(dto);
+                txtResults.Text += dto.tid + ": " + classification + Environment.NewLine;
+            }
         }
     }
 }

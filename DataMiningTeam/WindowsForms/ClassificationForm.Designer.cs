@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClassificationForm));
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.cmbColumn = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,14 +41,11 @@
             this.btnClassify = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtResults = new System.Windows.Forms.TextBox();
+            this.myToolTips = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog1";
             // 
             // cmbColumn
             // 
@@ -57,6 +54,7 @@
             this.cmbColumn.Name = "cmbColumn";
             this.cmbColumn.Size = new System.Drawing.Size(121, 21);
             this.cmbColumn.TabIndex = 4;
+            this.myToolTips.SetToolTip(this.cmbColumn, "The column that contains the classification.");
             // 
             // label1
             // 
@@ -83,6 +81,7 @@
             this.btnTrain.Size = new System.Drawing.Size(75, 23);
             this.btnTrain.TabIndex = 7;
             this.btnTrain.Text = "Train";
+            this.myToolTips.SetToolTip(this.btnTrain, "Build the decision tree.");
             this.btnTrain.UseVisualStyleBackColor = true;
             this.btnTrain.Click += new System.EventHandler(this.btnTrain_Click);
             // 
@@ -111,6 +110,9 @@
             this.cmbClassification.Name = "cmbClassification";
             this.cmbClassification.Size = new System.Drawing.Size(121, 21);
             this.cmbClassification.TabIndex = 19;
+            this.myToolTips.SetToolTip(this.cmbClassification, "Make sure your attributes are in the same order as the training data.  Don\'t omit" +
+        " the classification column.  It can be empty of have a value, the algorithm will" +
+        " ignore what is in it\'s place.");
             // 
             // label3
             // 
@@ -129,6 +131,7 @@
             this.btnClassify.TabIndex = 21;
             this.btnClassify.Text = "Classify";
             this.btnClassify.UseVisualStyleBackColor = true;
+            this.btnClassify.Click += new System.EventHandler(this.btnClassify_Click);
             // 
             // groupBox1
             // 
@@ -150,7 +153,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.txtResults);
             this.groupBox2.Location = new System.Drawing.Point(13, 135);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(333, 216);
@@ -158,21 +161,28 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Results";
             // 
-            // textBox1
+            // txtResults
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(9, 20);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(311, 185);
-            this.textBox1.TabIndex = 0;
+            this.txtResults.BackColor = System.Drawing.Color.White;
+            this.txtResults.Location = new System.Drawing.Point(9, 20);
+            this.txtResults.Multiline = true;
+            this.txtResults.Name = "txtResults";
+            this.txtResults.ReadOnly = true;
+            this.txtResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtResults.Size = new System.Drawing.Size(311, 185);
+            this.txtResults.TabIndex = 0;
+            // 
+            // myToolTips
+            // 
+            this.myToolTips.AutoPopDelay = 10000;
+            this.myToolTips.InitialDelay = 500;
+            this.myToolTips.ReshowDelay = 100;
             // 
             // ClassificationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 350);
+            this.ClientSize = new System.Drawing.Size(351, 353);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -191,7 +201,6 @@
 
         #endregion
 
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ComboBox cmbColumn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -203,6 +212,7 @@
         private System.Windows.Forms.Button btnClassify;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtResults;
+        private System.Windows.Forms.ToolTip myToolTips;
     }
 }

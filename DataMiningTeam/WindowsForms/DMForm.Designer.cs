@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DMForm));
             this.btnBonus1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -44,6 +45,7 @@
             this.lblSource = new System.Windows.Forms.Label();
             this.lblAlgorithm = new System.Windows.Forms.Label();
             this.cmbAlgorithm = new System.Windows.Forms.ComboBox();
+            this.myToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnBonus1
@@ -53,6 +55,8 @@
             this.btnBonus1.Size = new System.Drawing.Size(87, 26);
             this.btnBonus1.TabIndex = 1;
             this.btnBonus1.Text = "Classification";
+            this.myToolTip.SetToolTip(this.btnBonus1, "Classify descrete valued tuples by creating a decision tree with ID3 algorithm us" +
+        "ing information gain.");
             this.btnBonus1.UseVisualStyleBackColor = true;
             this.btnBonus1.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -181,6 +185,12 @@
             this.cmbAlgorithm.TabIndex = 19;
             this.cmbAlgorithm.SelectedIndexChanged += new System.EventHandler(this.cmbAlgorithm_SelectedIndexChanged);
             // 
+            // myToolTip
+            // 
+            this.myToolTip.AutoPopDelay = 10000;
+            this.myToolTip.InitialDelay = 500;
+            this.myToolTip.ReshowDelay = 100;
+            // 
             // DMForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,5 +237,6 @@
         private System.Windows.Forms.Label lblSource;
         private System.Windows.Forms.Label lblAlgorithm;
         private System.Windows.Forms.ComboBox cmbAlgorithm;
+        private System.Windows.Forms.ToolTip myToolTip;
     }
 }
