@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataMiningTeam.Dto;
+
+/*
+ * Author: Cory Nance
+ * Date: 7 November 2012 
+ * Based off of ID3 algorithm presented in Data Mining Concepts and Techniques 3rd edition by Jiawei Han | Micheline Kamber | Jian Pei
+ * pg. 338-340
+ */
+
 namespace DataMiningTeam.BLL
 {
     class DecisionTree
