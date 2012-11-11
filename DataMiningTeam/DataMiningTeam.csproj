@@ -55,6 +55,7 @@
     <Compile Include="BLL\DecisionTree.cs" />
     <Compile Include="BLL\DecisionTreeClass.cs" />
     <Compile Include="BLL\DecisionTreeNode.cs" />
+    <Compile Include="BLL\Eclat.cs" />
     <Compile Include="BLL\FlatFileBLL.cs" />
     <Compile Include="BLL\FPGrowth.cs" />
     <Compile Include="BLL\FPNode.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Dto\TransactionDto.cs" />
     <Compile Include="Dto\IDto.cs" />
     <Compile Include="Dto\ItemSetDto.cs" />
+    <Compile Include="Dto\VerticalItemSetDto.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="MainTest.cs" />
     <Compile Include="Program.cs" />

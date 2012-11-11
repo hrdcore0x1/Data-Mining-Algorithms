@@ -109,7 +109,40 @@ namespace DataMiningTeam.WindowsForms
             }//if "FPGrowth"
             else if (algorithm.Equals("Eclat"))
             {
-                throw new NotImplementedException();
+                rtbResults.Text = "";
+                List<VerticalItemSetDto> results = new List<VerticalItemSetDto>();
+                DateTime timer = DateTime.Now;
+                if (cmbSource.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a data source.");
+                    return;
+                }//if
+
+                if (txtMinSupport.Text.Equals(""))
+                {
+                    MessageBox.Show("Please enter a Minimum Support");
+                    return;
+                }//if
+
+                double minSupport = Convert.ToDouble(txtMinSupport.Text);
+                string datasource = cmbSource.SelectedItem.ToString();
+
+                DataSourceBLL dsBLL = new DataSourceBLL();
+                Eclat ec = new Eclat();
+
+                List<TransactionDto> transactions = dsBLL.process(datasource);
+
+                if (transactions == null) return;
+
+                results = ec.Process(transactions, null, minSupport);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (VerticalItemSetDto isd in results)
+                {
+                    sb.AppendLine(isd.toString());
+                }
+
+                rtbResults.AppendText(sb.ToString() + "\nTime to Complete: " + (DateTime.Now - timer).ToString());
             }//if "Eclat"
         }//btnExecute_Click
 
