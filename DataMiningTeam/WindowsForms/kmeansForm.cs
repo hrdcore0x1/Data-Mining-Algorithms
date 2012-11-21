@@ -27,7 +27,7 @@ namespace DataMiningTeam.WindowsForms
         private void kmeansForm_Load(object sender, EventArgs e)
         {  
             
-            //adds new kind of file
+            //adds new kind of file   
             this.comboBox1.Items.Add("| Delimited Points (x,y) File");
             
 
