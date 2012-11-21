@@ -10,7 +10,7 @@ namespace DataMiningTeam.BLL
 {
     public class FlatFileBLL
     {
-        //Properties/Variables ***********************************************************
+        //Properties/Variables * **********************************************************
         //Constructors *******************************************************************
         //Methods ************************************************************************
         public static List<TransactionDto> Process(string FileType, string FileName)

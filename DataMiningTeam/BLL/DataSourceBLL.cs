@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace DataMiningTeam.BLL
 {
     public class DataSourceBLL
-    {
+    {   
         //Properties/Variables *********************************************************
         private string _fileName;
 
