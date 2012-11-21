@@ -48,9 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdventureWorksDW2012DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdventureWorksDW2012DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="BLL\Apriori.cs" />
     <Compile Include="BLL\AWSaleBLL.cs" />
     <Compile Include="BLL\BookExBLL.cs" />
+    <Compile Include="BLL\KmeansData.cs" />
     <Compile Include="BLL\DataSourceBLL.cs" />
     <Compile Include="BLL\DecisionTree.cs" />
     <Compile Include="BLL\DecisionTreeClass.cs" />
@@ -62,6 +68,8 @@
     <Compile Include="BLL\FPPrefixPath.cs" />
     <Compile Include="BLL\FrequentPattern.cs" />
     <Compile Include="BLL\ItemHeaderElement.cs" />
+    <Compile Include="BLL\KmeansRun.cs" />
+    <Compile Include="BLL\NewKmeans.cs" />
     <Compile Include="CreateWideTable.cs" />
     <Compile Include="Data\AdventureWorksModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -94,6 +102,10 @@
     <Compile Include="WindowsForms\FilePickerForm.Designer.cs">
       <DependentUpon>FilePickerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowsForms\kmeansForm.cs" />
+    <Compile Include="WindowsForms\kmeansForm.Designer.cs">
+      <DependentUpon>kmeansForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -113,13 +125,28 @@
     <EmbeddedResource Include="WindowsForms\FilePickerForm.resx">
       <DependentUpon>FilePickerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WindowsForms\kmeansForm.resx">
+      <DependentUpon>kmeansForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Data\AdventureWorksModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AdventureWorksModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="AdventureWorksDW2012DataSet.xsc">
+      <DependentUpon>AdventureWorksDW2012DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AdventureWorksDW2012DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AdventureWorksDW2012DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AdventureWorksDW2012DataSet.xss">
+      <DependentUpon>AdventureWorksDW2012DataSet.xsd</DependentUpon>
+    </None>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="DataMiningTeam.Data.AdventureWorksEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
