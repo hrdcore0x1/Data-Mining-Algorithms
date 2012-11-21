@@ -25,10 +25,12 @@ namespace DataMiningTeam.WindowsForms
 
 
         private void kmeansForm_Load(object sender, EventArgs e)
-        {  
-            
-            
-            this.comboBox1.Items.Add("| Delimited Points (x,y) File");
+        {
+
+
+            this.comboBox1.Items.Add("'|' Delimited File");
+            this.comboBox1.Items.Add("Comma Delimited File");
+            this.comboBox1.Items.Add("Tab Delimited File");
             
 
         }
