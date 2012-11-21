@@ -51,6 +51,18 @@ namespace DataMiningTeam.BLL
 
             }//If flat file
 
+            else if (DataSource.Equals("| Delimited Points (x,y) File"))
+            {
+                _fileName = "";
+                frmFilePicker filePicker = new frmFilePicker(this);
+                DialogResult flatFile = filePicker.ShowDialog();
+                if (flatFile == DialogResult.OK)
+                {
+                    ret = FlatFileBLL.Process(DataSource, _fileName);
+                }//if
+
+            }//If flat file
+
             return ret;
         }//process
 

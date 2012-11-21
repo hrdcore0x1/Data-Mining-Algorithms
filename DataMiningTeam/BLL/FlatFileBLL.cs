@@ -34,6 +34,10 @@ namespace DataMiningTeam.BLL
                     {
                         delimiter = "\t";
                     }
+                    else if (FileType.Equals("| Delimited Points (x,y) File"))
+                    {
+                        delimiter = "|";
+                    }
                     else return null;
 
                     string line;
