@@ -31,7 +31,7 @@ namespace DataMiningTeam.BLL
                         delimiter = ",";
                     }
                     else if (FileType.Equals("Tab Delimited File"))
-                    {
+                    { 
                         delimiter = "\t";
                     }
                     else if (FileType.Equals("| Delimited Points (x,y) File"))
