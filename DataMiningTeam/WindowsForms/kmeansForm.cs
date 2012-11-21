@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,12 +25,10 @@ namespace DataMiningTeam.WindowsForms
 
 
         private void kmeansForm_Load(object sender, EventArgs e)
-        {
-
-
-            this.comboBox1.Items.Add("'|' Delimited File");
-            this.comboBox1.Items.Add("Comma Delimited File");
-            this.comboBox1.Items.Add("Tab Delimited File");
+        {  
+            
+            //adds new kind of file
+            this.comboBox1.Items.Add("| Delimited Points (x,y) File");
             
 
         }
