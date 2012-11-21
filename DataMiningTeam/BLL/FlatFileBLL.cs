@@ -31,12 +31,12 @@ namespace DataMiningTeam.BLL
                         delimiter = ",";
                     }
                     else if (FileType.Equals("Tab Delimited File"))
-                    {
+                    { 
                         delimiter = "\t";
                     }
-                        //modified to accept new files   
+                        //modified to accept new files    
                     else if (FileType.Equals("| Delimited Points (x,y) File"))
-                    {
+                    {  
                         delimiter = "|";
                     }
                     else return null;

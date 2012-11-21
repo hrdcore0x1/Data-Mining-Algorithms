@@ -51,9 +51,9 @@ namespace DataMiningTeam.BLL
 
             }//If flat file
 
-                //modified to accept new files   
+                //modified to accept new files      
             else if (DataSource.Equals("| Delimited Points (x,y) File"))
-            {
+            { 
                 _fileName = "";
                 frmFilePicker filePicker = new frmFilePicker(this);
                 DialogResult flatFile = filePicker.ShowDialog();
