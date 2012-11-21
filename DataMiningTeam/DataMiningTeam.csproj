@@ -48,11 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdventureWorksDW2012DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AdventureWorksDW2012DataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="BLL\Apriori.cs" />
     <Compile Include="BLL\AWSaleBLL.cs" />
     <Compile Include="BLL\BookExBLL.cs" />
@@ -102,7 +97,9 @@
     <Compile Include="WindowsForms\FilePickerForm.Designer.cs">
       <DependentUpon>FilePickerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WindowsForms\kmeansForm.cs" />
+    <Compile Include="WindowsForms\kmeansForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WindowsForms\kmeansForm.Designer.cs">
       <DependentUpon>kmeansForm.cs</DependentUpon>
     </Compile>
@@ -132,17 +129,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AdventureWorksModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AdventureWorksDW2012DataSet.xsc">
-      <DependentUpon>AdventureWorksDW2012DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="AdventureWorksDW2012DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AdventureWorksDW2012DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="AdventureWorksDW2012DataSet.xss">
-      <DependentUpon>AdventureWorksDW2012DataSet.xsd</DependentUpon>
-    </None>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>

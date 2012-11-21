@@ -35,17 +35,17 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.adventureWorksEntitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bookExampleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.adventureWorksDW2012DataSet = new DataMiningTeam.AdventureWorksDW2012DataSet();
+           //this.adventureWorksDW2012DataSet = new DataMiningTeam.AdventureWorksDW2012DataSet();
             this.adventureWorksEntitiesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.adventureWorksEntitiesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.bookExampleTableAdapter = new DataMiningTeam.AdventureWorksDW2012DataSetTableAdapters.BookExampleTableAdapter();
+           // this.bookExampleTableAdapter = new DataMiningTeam.AdventureWorksDW2012DataSetTableAdapters.BookExampleTableAdapter();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookExampleBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.adventureWorksDW2012DataSet)).BeginInit();
+           // ((System.ComponentModel.ISupportInitialize)(this.adventureWorksDW2012DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource2)).BeginInit();
             this.SuspendLayout();
@@ -84,12 +84,12 @@
             // bookExampleBindingSource
             // 
             this.bookExampleBindingSource.DataMember = "BookExample";
-            this.bookExampleBindingSource.DataSource = this.adventureWorksDW2012DataSet;
+            //this.bookExampleBindingSource.DataSource = this.adventureWorksDW2012DataSet;
             // 
             // adventureWorksDW2012DataSet
             // 
-            this.adventureWorksDW2012DataSet.DataSetName = "AdventureWorksDW2012DataSet";
-            this.adventureWorksDW2012DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            //this.adventureWorksDW2012DataSet.DataSetName = "AdventureWorksDW2012DataSet";
+            //this.adventureWorksDW2012DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // adventureWorksEntitiesBindingSource1
             // 
@@ -101,7 +101,7 @@
             // 
             // bookExampleTableAdapter
             // 
-            this.bookExampleTableAdapter.ClearBeforeFill = true;
+            //this.bookExampleTableAdapter.ClearBeforeFill = true;
             // 
             // comboBox1
             // 
@@ -150,7 +150,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookExampleBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.adventureWorksDW2012DataSet)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.adventureWorksDW2012DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource2)).EndInit();
             this.ResumeLayout(false);
@@ -165,9 +165,9 @@
         private System.Windows.Forms.TextBox txtData;
         private System.Windows.Forms.BindingSource adventureWorksEntitiesBindingSource1;
         private System.Windows.Forms.BindingSource adventureWorksEntitiesBindingSource2;
-        private AdventureWorksDW2012DataSet adventureWorksDW2012DataSet;
+        //private AdventureWorksDW2012DataSet adventureWorksDW2012DataSet;
         private System.Windows.Forms.BindingSource bookExampleBindingSource;
-        private AdventureWorksDW2012DataSetTableAdapters.BookExampleTableAdapter bookExampleTableAdapter;
+       // private AdventureWorksDW2012DataSetTableAdapters.BookExampleTableAdapter bookExampleTableAdapter;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btnLoad;

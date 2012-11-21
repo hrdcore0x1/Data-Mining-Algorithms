@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataMiningTeam", "DataMiningTeam\DataMiningTeam.csproj", "{A98C11C5-33F0-4B46-82CF-C5FF290C7E1C}"
 EndProject
 Global
