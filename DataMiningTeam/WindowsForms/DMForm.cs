@@ -168,6 +168,17 @@ namespace DataMiningTeam.WindowsForms
             ClassificationForm cfm = new ClassificationForm(this);
             cfm.Show();
             this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            kmeansForm form = new kmeansForm();
+            form.Show();
+            this.Hide();
+
+
+
+
         }//button1_Click
     }//class
 }//namespace

@@ -66,8 +66,9 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(87, 26);
             this.button4.TabIndex = 3;
-            this.button4.Text = "Bonus 2";
+            this.button4.Text = "Clusters";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnClear
             // 
