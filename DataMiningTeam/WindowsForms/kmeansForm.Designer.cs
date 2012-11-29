@@ -35,17 +35,14 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.adventureWorksEntitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bookExampleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-           //this.adventureWorksDW2012DataSet = new DataMiningTeam.AdventureWorksDW2012DataSet();
             this.adventureWorksEntitiesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.adventureWorksEntitiesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-           // this.bookExampleTableAdapter = new DataMiningTeam.AdventureWorksDW2012DataSetTableAdapters.BookExampleTableAdapter();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookExampleBindingSource)).BeginInit();
-           // ((System.ComponentModel.ISupportInitialize)(this.adventureWorksDW2012DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource2)).BeginInit();
             this.SuspendLayout();
@@ -84,12 +81,6 @@
             // bookExampleBindingSource
             // 
             this.bookExampleBindingSource.DataMember = "BookExample";
-            //this.bookExampleBindingSource.DataSource = this.adventureWorksDW2012DataSet;
-            // 
-            // adventureWorksDW2012DataSet
-            // 
-            //this.adventureWorksDW2012DataSet.DataSetName = "AdventureWorksDW2012DataSet";
-            //this.adventureWorksDW2012DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // adventureWorksEntitiesBindingSource1
             // 
@@ -98,10 +89,6 @@
             // adventureWorksEntitiesBindingSource2
             // 
             this.adventureWorksEntitiesBindingSource2.DataSource = typeof(DataMiningTeam.Data.AdventureWorksEntities);
-            // 
-            // bookExampleTableAdapter
-            // 
-            //this.bookExampleTableAdapter.ClearBeforeFill = true;
             // 
             // comboBox1
             // 
@@ -130,6 +117,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(88, 290);
             this.textBox1.TabIndex = 10;
+            this.textBox1.Visible = false;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // kmeansForm
@@ -150,7 +138,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookExampleBindingSource)).EndInit();
-            //((System.ComponentModel.ISupportInitialize)(this.adventureWorksDW2012DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource2)).EndInit();
             this.ResumeLayout(false);

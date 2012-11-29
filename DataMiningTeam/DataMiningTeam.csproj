@@ -51,6 +51,7 @@
     <Compile Include="BLL\Apriori.cs" />
     <Compile Include="BLL\AWSaleBLL.cs" />
     <Compile Include="BLL\BookExBLL.cs" />
+    <Compile Include="BLL\KmeansCluster.cs" />
     <Compile Include="BLL\KmeansData.cs" />
     <Compile Include="BLL\DataSourceBLL.cs" />
     <Compile Include="BLL\DecisionTree.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Dto\IDto.cs" />
     <Compile Include="Dto\ItemSetDto.cs" />
     <Compile Include="Dto\VerticalItemSetDto.cs" />
+    <Compile Include="BLL\Global.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

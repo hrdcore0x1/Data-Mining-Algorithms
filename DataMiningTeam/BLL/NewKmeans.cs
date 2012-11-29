@@ -8,6 +8,8 @@ using System.ComponentModel;
 using DataMiningTeam.BLL;
 using DataMiningTeam.Dto;
 using DataMiningTeam.WindowsForms;
+
+
 /*code adapted for project from several code snippets found @ kunuk.wordpress.com
  * Amanda Fouts
  * changing file for push
@@ -17,19 +19,24 @@ using DataMiningTeam.WindowsForms;
 
 namespace DataMiningTeam.BLL
 {
+
+
+    
     public class NewKmeans
     {
-
+        
+        //public static String program = String.Empty;
         public static List<TransactionDto> datainput;
         public static DateTime Starttime;
-
         public static int num = 0;
-
+        public static KmeansCluster kmc = new KmeansCluster();
+        List<XY> plist2 = new List<XY>();
         public static StringBuilder kmeanst(List<TransactionDto> trainingDtos)
         {
-            if(trainingDtos == null)
-            System.Windows.Forms.MessageBox.Show("no data");
-        
+            
+            if (trainingDtos == null)
+                System.Windows.Forms.MessageBox.Show("no data");
+            GlobalClass.program += "1. kmeanst .. ";
 
             datainput = trainingDtos;
             num = 100;
@@ -40,18 +47,19 @@ namespace DataMiningTeam.BLL
             // run kmeans or grid
             algo.Run(ClusterType.KMeans);
             //algo.Run(ClusterType.Grid);
-
+            
             StringBuilder sb =
                 algo.GenerateClusterGrid();
-
+            
             return sb;
 
 
-            var timespend = DateTime.Now.Subtract(Starttime).TotalSeconds;
-        
+            //var timespend = DateTime.Now.Subtract(Starttime).TotalSeconds;
+
         }
         public static StringBuilder kmeanstoo()
         {
+            GlobalClass.program += "2. kmeanstoo .. ";
             datainput = null;
             Starttime = DateTime.Now;
             var algo = new NewKmeans();
@@ -66,11 +74,11 @@ namespace DataMiningTeam.BLL
             return sb;
 
 
-            var timespend = DateTime.Now.Subtract(Starttime).TotalSeconds;
-            
+            //var timespend = DateTime.Now.Subtract(Starttime).TotalSeconds;
+
         }
 
-        
+
         public const bool DoUpdateAllCentroidsToNearestContainingPoint = false;
         public const bool UseProfiling = false; //debug, output time spend
 
@@ -81,8 +89,10 @@ namespace DataMiningTeam.BLL
 
 
 
-        static readonly List<XY> _points = new List<XY>();
-        List<XY> _clusters = new List<XY>();
+        public static readonly List<XY> _points = new List<XY>();
+        static List<XY> _clusters = new List<XY>();
+        static List<XY> clusterPoints = new List<XY>();
+
 
         public static readonly Random _rand = new Random();
         public const double MinX = 10;
@@ -107,50 +117,58 @@ namespace DataMiningTeam.BLL
 
         public NewKmeans()
         {
-            CreateDataSet();
+            GlobalClass.program += "3. NewKmeans .. ";
+            if (NewKmeans.datainput == null)
+            {
+
+                CreateDataSet();
+            }
+            else
+            {
+                Data(datainput);
+            }//end else
         }
         public static List<XY> Data(List<TransactionDto> trainingDtos)
         {
+            GlobalClass.program += "4. Data .. ";
 
             datainput = trainingDtos;
-
-            int counterx = 0;
-            int countery = 0;
 
             Array arr = datainput.ToArray();
             int counterz = arr.Length;
 
 
-         
-                   
-                foreach(TransactionDto TXY in datainput){
-                 
-                    Array arrz = TXY.items.ToArray();
-                    counterz = arrz.Length;
-
-                    for (int r = 0; r < counterz/2; r++)
-                    {
 
 
-                        //should be parsing (x,y)
+            foreach (TransactionDto TXY in datainput)
+            {
+                GlobalClass.program += "5. For each transaction in data .. ";
+                Array arrz = TXY.items.ToArray();
+                counterz = arrz.Length;
 
-                        //var x = XY.ToString().Substring(1,1);
-                        var x = TXY.items[r].ToString();
+                for (int r = 0; r < counterz / 2; r++)
+                {
 
 
-                        //System.Windows.Forms.MessageBox.Show(counterz.ToString());
+                    //should be parsing (x,y)
+
+                    //var x = XY.ToString().Substring(1,1);
+                    var x = TXY.items[r].ToString();
 
 
-                        x = x.Substring(1, 1);
-                        double xdouble = Double.Parse(x);
-                        //var y = TXY.ToString().Substring(3,1);
-                        var y = TXY.items[r].ToString();
-                        y = y.Substring(3, 1);
-                        double ydouble = Double.Parse(y);
-                        _points.Add(new XY(xdouble, ydouble));
-                    }//end for
-                }//end foreach
-     
+                    //System.Windows.Forms.MessageBox.Show(counterz.ToString());
+
+
+                    x = x.Substring(1, 1);
+                    double xdouble = Double.Parse(x);
+                    //var y = TXY.ToString().Substring(3,1);
+                    var y = TXY.items[r].ToString();
+                    y = y.Substring(3, 1);
+                    double ydouble = Double.Parse(y);
+                    _points.Add(new XY(xdouble, ydouble));
+                }//end for
+            }//end foreach
+
 
             return _points;
 
@@ -158,127 +176,461 @@ namespace DataMiningTeam.BLL
         }//end data
         public static string GetId(int idx, int idy) //O(1)
         {
+            GlobalClass.program += "6. GetId .. ";
             return idx + ";" + idy;
         }
 
         public static List<XY> CreateDataSet()
         {
 
-            
-              
-                // Create random region of clusters
-                for (int i = 0; i < 50; i++)
-                {
-                    var x = MinX + _rand.NextDouble() * 100;
-                    var y = MinY + _rand.NextDouble() * 100;
-                    _points.Add(new XY(x, y));
-                }
+            GlobalClass.program += "7. CreateDataSet .. ";
 
-                for (int i = 0; i < 50; i++)
-                {
-                    var x = MinX + 200 + _rand.NextDouble() * 100;
-                    var y = MinY + 10 + _rand.NextDouble() * 100;
-                    _points.Add(new XY(x, y));
-                }
+            // Create random region of clusters
+            for (int i = 0; i < 50; i++)
+            {
+                var x = MinX + _rand.NextDouble() * 100;
+                var y = MinY + _rand.NextDouble() * 100;
+                _points.Add(new XY(x, y));
+            }
 
-                for (int i = 0; i < 50; i++)
-                {
-                    var x = MinX + 50 + _rand.NextDouble() * 100;
-                    var y = MinY + 150 + _rand.NextDouble() * 100;
-                    _points.Add(new XY(x, y));
-                }
-                //this pulls null
-              
-               
-            
-         
-          
+            for (int i = 0; i < 50; i++)
+            {
+                var x = MinX + 200 + _rand.NextDouble() * 100;
+                var y = MinY + 10 + _rand.NextDouble() * 100;
+                _points.Add(new XY(x, y));
+            }
 
-                return _points;
-            
+            for (int i = 0; i < 50; i++)
+            {
+                var x = MinX + 50 + _rand.NextDouble() * 100;
+                var y = MinY + 150 + _rand.NextDouble() * 100;
+                _points.Add(new XY(x, y));
+            }
+            //this pulls null
+
+
+
+
+
+
+            return _points;
+
         }
 
         public void Run(ClusterType clustertype)
         {
-            
-            
-                    _clusters = new KMeans(_points).GetCluster();
-                   
-            
+
+            GlobalClass.program += "9. Run .. ";
+            _clusters = new KMeans(_points).GetCluster();
+
+
         }
 
-      
+        int counterx = 0;
         public StringBuilder GenerateClusterGrid()
         {
+            GlobalClass.program += "10. GenerateClusterGrid .. ";
+            counterx = counterx + 1;
             var sb = new StringBuilder();
 
-      
+            sb.Append("Total number of points   " +
+                _points.Count.ToString() + NL + NL
+                );
+
             // markers
             if (_points != null)
                 foreach (var p in _points)
                 {
                     sb.Append(string.Format("Point({0}, {1})",
-                        ToStringEN(p.X), ToStringEN(p.Y), NL, NL));
+                        ToStringEN(p.X), ToStringEN(p.Y), counterx, p.Color.ToString(), NL, NL));
                     sb.Append(NL);
                 }
+            
 
+          
+
+             Dictionary<string, Bucket> points = new Dictionary<string,Bucket>();
+           
             string clusterInfo = "0";
+            int cluscounter = 0;
             if (_clusters != null)
             {
+                /*XY clu; 
                 foreach (var c in _clusters)
+                {
+                    clu = c;
+                    
                     sb.Append(string.Format("Cluster({0}, {1}, {2});{3}",
-                        ToStringEN(c.X), ToStringEN(c.Y), 
+                        ToStringEN(c.X), ToStringEN(c.Y),
                                             c.Size, NL));
+                }//end foreach
+                */
+                 //may want to change the 100 here - it is hard coded
+                 int [] clu33 = new int[100];
+                 
+                
+                //set to the number of clusters
+                 int count = 0;
+                 //assigns clusters to an array
+                 XY[] arrc = _clusters.ToArray();
+
+                 List<XY> plist = new List<XY>();
+                 XY mmn;
+                foreach (XY mm in KMeans.cluster)
+                {
+                    
+                    sb.Append(string.Format("Cluster - cluster point({0}, {1}, {2});{3}",
+                        ToStringEN(mm.X), ToStringEN(mm.Y),
+                                            mm.Size, NL));
+                   
+                    clu33[count] = mm.Size;
+                    count++;
+                    plist.Add(mm);
+                    mmn = mm;
+
+                  
+                }
+                
+               
+
+          //the program draws the clusters with a centroid of radius 12
+          //all points must fit in this radius to be part of the cluster
+               // foreach (XY c in _points)
+                //{
+                int pc = _points.Count;
+                    XY[] points42 = _points.ToArray();
+                    List<XY> points41 = _points;
+                    List<XY> points49 = new List<XY>();
+                    List<XY> cpoints = _points;
+                    // new array
+                    XY[] newps = new XY[10000];
+                    points42 = points41.ToArray();
+                    sb.Append(NL);
+
+                    //distance between that point and the cluster centroid 
+                    //must be less than 12 -- call the distance formula
+                    foreach (XY c in _clusters)
+                    {
+                        sb.Append(NL + (string.Format(NL + "Cluster - cluster point({0}, {1}, {2});{3}",
+                        ToStringEN(c.X), ToStringEN(c.Y),
+                                            c.Size, NL)));
+
+                        int countern = 0;
+                        XY[] dbn = new XY[100];
+                        dbn = BaseClusternewKmeans.kcentroids2.ToArray();
+                        Segment append = Segment.Closest_BruteForce(_points);
+
+                        points49 = Segment.resulta;
+
+                        foreach(XY p in _points)
+                        {
+                            if (p.Color == c.Color)
+                            {
+                                sb.Append(NL + (string.Format("------- cluster point({0}, {1}, {2});",
+                            ToStringEN(p.X), ToStringEN(p.Y),
+                                                p.Size)));
+                            }
+                    }
+
+                        for (int ee = 0; ee < pc; ee++)
+                        {
+
+                            
+                            //&& the point has not already been Appended 
+                            //need to place point in bucket with least distance to centroid point
+                            foreach (XY d in BaseClusternewKmeans.kcentroids2)
+                            {
+
+                                countern++;
+
+                                
+
+
+                                /*if ((MathTool.Distance(d, points42[ee]) < (MathTool.Distance(dbn[countern], points42[ee]))))
+                                {
+
+                                    sb.Append("(" + points42[ee].XToString + ", " + points42[ee].YToString + ")");
+                                    //points41.RemoveAt(ee);
+                                    cpoints.Add(points42[ee]);
+                                    pc--;
+                                    //countern++;
+                                }//end if*/ 
+                            }//end foreach
+                        }
+                    }
+                    sb.Append(NL);
+                //}
+                
+                
+                /*
+                for(int oo = 0; oo < GridBaseCluster.BaseBucketsLookup.Count; oo++)
+                {
+                     
+                    sb.Append(string.Format("Cluster - cpp({0}, {1});",
+                   ToStringEN(GridBaseCluster.kcentroids), ToStringEN(oo.Value.Idy)));
+                    sb.Append(NL);
+
+                
+                }//end for each
+                */
+                //again this is a hard coded array 
+                double[] cp = new double[10000];
+
+                List<XY> clusterlist = KMeans.clpoints;
+                List<XY> clusterPartList = null;
+                int nnp = 0;
+                int intx = 0;
+                int inty = 0;
+                int clcount = 0;
+
+                    for (int nn = 0; nn < clcount; nn++)
+                    {
+                        nnp = nn + 1;
+                        sb.Append("Beginning of cluster" + nnp.ToString()  + "----------------------------------------------------------" + NL);
+                        sb.Append("Cluster Points in clusters: " +  NL);
+
+                        if (clcount == 0)
+                        {
+                            intx = 0;
+                            inty = clu33[clcount];
+                        }//end if
+                        if (clcount == 1)
+                        {
+                            intx = clu33[clcount] + 1;
+                            inty = clu33[clcount + 1];
+
+                        }//end if 
+                        //this line needs to read clusterlist.GetRange(0..x)then (x...y) however many clusters
+                        clusterPartList = clusterlist.GetRange(intx,  inty);
+                        foreach (var e in clusterPartList)
+                        {
+                            sb.Append("(" + e.XToString + ", " + e.YToString + "), ");
+                             
+                        }//end for each
+
+                        sb.Append("End of cluster ----------------------------------------------------------" + NL);
+                   
+                    }//end for
+
+                cluscounter += cluscounter;
+
 
                 clusterInfo = _clusters.Count + string.Empty;
+
             }
 
-           
+
+            sb.Append(NL);
+
             sb.Append(string.Format("Clusters = ' + {0}, {1}, {2});{3}",
                 clusterInfo, ToStringEN(MinX + 10), ToStringEN(MaxY + 20), NL));
 
-            
-           
+
+
+          
+
             return sb;
         }
         public static string ToStringEN(double d)
         {
+            GlobalClass.program += "11. ToStringEN .. ";
             double rounded = Math.Round(d, 3);
             return rounded.ToString(S, Culture_enUS);
         }
         public static void Profile(string s)
         {
+            GlobalClass.program += "12. Profile .. ";
             if (!UseProfiling)
                 return;
-            var timespend = DateTime.Now.Subtract(Starttime).TotalSeconds;
-            
+            //var timespend = DateTime.Now.Subtract(Starttime).TotalSeconds;
+
+        }
+        public static Boolean pointinlist(List<XY> points, XY point)
+        {
+
+            foreach (XY i in points)
+            {
+                if (point == i)
+                {
+                    return false;
+
+                }
+                else
+                    return true;
+
+            }//end foreach
+
+            return true;
+
+        }//end pointinlist
+
+
+
+
+        public class Segment
+        {
+            public Segment(NewKmeans.XY p1, NewKmeans.XY p2)
+            {
+                P1 = p1;
+                P2 = p2;
+            }
+
+            public readonly XY P1;
+            public readonly XY P2;
+
+            public float Length()
+            {
+                return (float)Math.Sqrt(LengthSquared());
+            }
+
+            public double LengthSquared()
+            {
+                return (P1.X- P2.X) * (P1.X - P2.X) + (P1.Y - P2.Y) * (P1.Y - P2.Y);
+            }
+
+
+            /*code for brute-force taken from Rosetta code
+             */
+            public static List<XY> resulta = new List<XY>();
+            public static Segment Closest_BruteForce(List<XY> points)
+            {
+                int n = points.Count;
+                Segment result = Enumerable.Range(0, n - 1)
+                    .SelectMany(i => Enumerable.Range(i + 1, n - (i + 1))
+                        .Select(j => new Segment(points[i], points[j])))
+                        .OrderBy(seg => seg.LengthSquared())
+                        .First();
+
+
+                resulta.Add(result.P1);
+                resulta.Add(result.P2);
+
+                return result;
+            }
+
+            public Segment MyClosestDivide(List<XY> points)
+            {
+                return MyClosestRec(points.OrderBy(p => p.X).ToList());
+            }
+
+            private static Segment MyClosestRec(List<XY> pointsByX)
+            {
+                int count = pointsByX.Count;
+                if (count <= 4)
+                {
+
+
+                    return Segment.Closest_BruteForce(pointsByX);
+                }
+                // left and right lists sorted by X, as order retained from full list
+                var leftByX = pointsByX.Take(count / 2).ToList();
+                var leftResult = MyClosestRec(leftByX);
+
+                var rightByX = pointsByX.Skip(count / 2).ToList();
+                var rightResult = MyClosestRec(rightByX);
+
+                var result = rightResult.Length() < leftResult.Length() ? rightResult : leftResult;
+
+                // There may be a shorter distance that crosses the divider
+                // Thus, extract all the points within result.Length either side
+                var midX = leftByX.Last().X;
+                var bandWidth = result.Length();
+                var inBandByX = pointsByX.Where(p => Math.Abs(midX - p.X) <= bandWidth);
+
+                // Sort by Y, so we can efficiently check for closer pairs
+                var inBandByY = inBandByX.OrderBy(p => p.Y).ToArray();
+
+                int iLast = inBandByY.Length - 1;
+                for (int i = 0; i < iLast; i++)
+                {
+                    var pLower = inBandByY[i];
+
+                    for (int j = i + 1; j <= iLast; j++)
+                    {
+                        var pUpper = inBandByY[j];
+
+                        // Comparing each point to successivly increasing Y values
+                        // Thus, can terminate as soon as deltaY is greater than best result
+                        if ((pUpper.Y - pLower.Y) >= result.Length())
+                            break;
+
+                        if (MathTool.Distance(pLower, pUpper) < result.Length())
+                            result = new Segment(pLower, pUpper);
+                    }
+                }
+
+                return result;
+            }
+         
         }
 
-        public class XY : IComparable
+
+
+
+
+
+
+
+
+
+
+
+
+        public class Cluster
         {
+            public static double clusterx, clustery;
+            public Cluster(double X1, double Y1)
+            {
+                clusterx = X1; 
+                clustery = Y1;
+               
+            }//end method
+
+        }//end Cluster class
+
+
+        public class XY : IComparable 
+        {
+           
+            
+            //newka.program = program +  "13. XY IComparable .. ";
             public double X { get; set; }
             public double Y { get; set; }
-            
+            public string Color { get; set; }
+
             public int Size { get; set; }
             public string XToString { get { return X.ToString(S, Culture_enUS); } }
             public string YToString { get { return Y.ToString(S, Culture_enUS); } }
             public XY(double x, double y)
             {
+               // GlobalClass.program += "13. IComp. XY .. ";
                 X = x;
                 Y = y;
                 //Color = "'rgb(0,0,0)'";//default
                 Size = 1;
             }
+
+            /*enumerator method
+            public XY GetEnumerator()
+            {
+               // return new XY(KMeans.cluster);
+                
+            }//end 
+            */
+            public static XY plist;
             public XY(XY p) //clone
             {
+                plist = p;
+                GlobalClass.program += "14. IComp. XY clone.. ";
                 this.X = p.X;
                 this.Y = p.Y;
-                //this.Color = p.Color;
+                this.Color = p.Color;
                 this.Size = p.Size;
             }
 
             public int CompareTo(object o) // if used in sorted list
             {
+                GlobalClass.program += "15. IComp. CompareTo .. ";
                 if (this.Equals(o))
                     return 0;
 
@@ -292,6 +644,7 @@ namespace DataMiningTeam.BLL
             }
             public override int GetHashCode()
             {
+                GlobalClass.program += "16. GetHashCode() .. ";
                 var x = X * 10000;
                 var y = Y * 10000;
                 var r = x * 17 + y * 37;
@@ -300,6 +653,7 @@ namespace DataMiningTeam.BLL
             private const int ROUND = 6;
             public override bool Equals(Object o)
             {
+                GlobalClass.program += "17. IComp. Equals .. ";
                 if (o == null)
                     return false;
                 var other = o as XY;
@@ -313,6 +667,7 @@ namespace DataMiningTeam.BLL
         }
         public class Bucket
         {
+            
             public string Id { get; private set; }
             public List<XY> Points { get; private set; }
             public XY Centroid { get; set; }
@@ -322,11 +677,13 @@ namespace DataMiningTeam.BLL
             private bool _IsUsed;
             public bool IsUsed
             {
+               
                 get { return _IsUsed && Centroid != null; }
                 set { _IsUsed = value; }
             }
             public Bucket(string id)
             {
+                GlobalClass.program += "19. Bucket.bucket .. ";
                 IsUsed = true;
                 Centroid = null;
                 Points = new List<XY>();
@@ -334,6 +691,7 @@ namespace DataMiningTeam.BLL
             }
             public Bucket(int idx, int idy)
             {
+                GlobalClass.program += "20. Bucket.Bucket .. ";
                 IsUsed = true;
                 Centroid = null;
                 Points = new List<XY>();
@@ -345,17 +703,23 @@ namespace DataMiningTeam.BLL
 
         public abstract class BaseClusternewKmeans
         {
-            public List<XY> BaseDataset; // all points
+            public static List<XY> BaseDataset; // all points
             //id, bucket
-            public readonly Dictionary<string, Bucket> BaseBucketsLookup =
+            public static readonly Dictionary<string, Bucket> BaseBucketsLookup =
                 new Dictionary<string, Bucket>();
             public abstract List<XY> GetCluster();
-            //O(k?? random fn can be slow)
+            public static int kone;
+            public static XY[] kcentroids = new XY[kone];
+            public static XY[] kcentroids2 = new XY[kone];
+
             public static XY[] BaseGetRandomCentroids(List<XY> list, int k)
             {
+                GlobalClass.program += "21. BaseClusternewKmeans.Basegetrandomcentroids .. ";
+                kone = k;
+                kcentroids = new XY[kone];
                 var set = new HashSet<XY>();
                 int i = 0;
-                var kcentroids = new XY[k];
+                //var kcentroids = new XY[k];
 
                 int MAX = list.Count;
                 while (MAX >= k)
@@ -373,16 +737,19 @@ namespace DataMiningTeam.BLL
                 }
 
                 Profile("BaseGetRandomCentroids");
+                kcentroids2 = kcentroids;
                 return kcentroids;
             }
 
-            public List<XY> BaseGetClusterResult()//O(k*n)
+            public static List<XY> BaseGetClusterResult()//O(k*n)
             {
-                var clusterPoints = new List<XY>();
+                GlobalClass.program += "22. BaseClusternewKmeans.BAseGetClusterResult .. ";
+               //var clusterPoints = new List<XY>();
 
                 if (DoUpdateAllCentroidsToNearestContainingPoint)
+                {
                     BaseUpdateAllCentroidsToNearestContainingPoint();
-
+                }//end if 
                 foreach (var item in BaseBucketsLookup)
                 {
                     var bucket = item.Value;
@@ -393,31 +760,53 @@ namespace DataMiningTeam.BLL
                 Profile("BaseGetClusterResult");
                 return clusterPoints;
             }
+            public static List<XY> clist;
+
             public static XY BaseGetCentroidFromCluster(List<XY> list) //O(n)
             {
+                
+                GlobalClass.program += "23. BaseClusternewKmeans.Basegetcentroidfromcluster .. ";
                 int count = list.Count;
                 if (list == null || count == 0)
                     return null;
 
                 // color is set for the points and the cluster point here
-                //var color = GetRandomColor(); //O(1)
+                var color = GetRandomColor(); //O(1)
                 XY centroid = new XY(0, 0) { Size = list.Count };//O(1)
                 foreach (XY p in list)
                 {
-                    //p.Color = color;
+                    p.Color = color;
                     centroid.X += p.X;
                     centroid.Y += p.Y;
                 }
                 centroid.X /= count;
                 centroid.Y /= count;
-                var cp = new XY(centroid.X, centroid.Y) { Size = count };
+                var cp = new XY(centroid.X, centroid.Y) { Size = count, Color = color };
 
                 Profile("BaseGetCentroidFromCluster");
                 return cp;
             }
-            //O(k*n)
+
+            public static readonly Random Rand = new Random();
+
+             public static string GetRandomColor()
+
+            {
+
+            int r = Rand.Next(10, 250);
+            int g = Rand.Next(10, 250);
+            int b = Rand.Next(10, 250);
+            return string.Format("'rgb({0},{1},{2})'", r, g, b);
+
+             }
+
+ 
+
+
+
             public static void BaseSetCentroidForAllBuckets(IEnumerable<Bucket> buckets)
             {
+                GlobalClass.program += "24. BaseClusternewKmeans.BaseSetCentroidForAllBuckets .. ";
                 foreach (var item in buckets)
                 {
                     var bucketPoints = item.Points;
@@ -426,13 +815,14 @@ namespace DataMiningTeam.BLL
                 }
                 Profile("BaseSetCentroidForAllBuckets");
             }
-            public double BaseGetTotalError()
+            public static double BaseGetTotalError()
             {
+                GlobalClass.program += "25. BaseClusternewKmeans.Basegetrandomcentroids .. ";
                 int centroidsUsed = BaseBucketsLookup.Values.Count(b => b.IsUsed);
                 double sum = BaseBucketsLookup.Values.Where(b => b.IsUsed).Sum(b => b.ErrorLevel);
                 return sum / centroidsUsed;
             }
-            public string BaseGetMaxError() 
+            public static string BaseGetMaxError()
             {
                 double maxError = -double.MaxValue;
                 string id = string.Empty;
@@ -446,8 +836,9 @@ namespace DataMiningTeam.BLL
                 }
                 return id;
             }
-            public XY BaseGetClosestPoint(XY from, List<XY> list) //O(n)
+            public static XY BaseGetClosestPoint(XY from, List<XY> list) //O(n)
             {
+                GlobalClass.program += "26. BaseClusternewKmeans.BaseGetClosestPoint .. ";
                 double min = double.MaxValue;
                 XY closests = null;
                 foreach (var p in list)
@@ -462,8 +853,9 @@ namespace DataMiningTeam.BLL
                 }
                 return closests;
             }
-            public XY BaseGetLongestPoint(XY from, List<XY> list) //O(n)
+            public static XY BaseGetLongestPoint(XY from, List<XY> list) //O(n)
             {
+                GlobalClass.program += "27. BaseClusternewKmeans.BaeGetLongestPoint .. ";
                 double max = -double.MaxValue;
                 XY longest = null;
                 foreach (var p in list)
@@ -482,8 +874,9 @@ namespace DataMiningTeam.BLL
             // update centroid location to nearest point, 
             // e.g. if you want to show cluster point on a real existing point area
             //O(n)
-            public void BaseUpdateCentroidToNearestContainingPoint(Bucket bucket)
+            public static void BaseUpdateCentroidToNearestContainingPoint(Bucket bucket)
             {
+                GlobalClass.program += "28. BaseClusternewKmeans.BaseUpdateCentroidtoNearestContainingPoint .. ";
                 if (bucket == null || bucket.Centroid == null ||
                     bucket.Points == null || bucket.Points.Count == 0)
                     return;
@@ -494,8 +887,10 @@ namespace DataMiningTeam.BLL
                 Profile("BaseUpdateCentroidToNearestContainingPoint");
             }
             //O(k*n)
-            public void BaseUpdateAllCentroidsToNearestContainingPoint()
+            public static void BaseUpdateAllCentroidsToNearestContainingPoint()
             {
+                GlobalClass.program += "29. BaseClusternewKmeans.BaseUpdateAllCentroidstoNearestContainingPoint .. ";
+               
                 foreach (var bucket in BaseBucketsLookup.Values)
                     BaseUpdateCentroidToNearestContainingPoint(bucket);
                 Profile("BaseUpdateAllCentroidsToNearestContainingPoint");
@@ -505,7 +900,8 @@ namespace DataMiningTeam.BLL
         // O(exponential) ~ can be slow when n or k is big
         public class KMeans : BaseClusternewKmeans
         {
-            private const int _InitClusterSize = 1; // start from this cluster points
+            //manually sets k = 3
+            private const int _InitClusterSize = 3; // start from this cluster points
 
             // heuristic, set tolerance for cluster density, has effect on running time.
             // Set high for many points in dataset, can be lower for fewer points
@@ -513,37 +909,48 @@ namespace DataMiningTeam.BLL
 
             private const int _MaxIterations = 100; // cluster point optimization iterations
             private const int _MaxClusters = 100;
+            public static List<XY> clpoints;
 
             public KMeans(List<XY> dataset)
             {
+                GlobalClass.program += "30. KMeans .. ";
+               
+                clpoints = dataset;
                 if (dataset == null || dataset.Count == 0)
                     throw new ApplicationException(
                         string.Format("KMeans dataset is null or empty"));
 
-                this.BaseDataset = dataset;
+                BaseDataset = dataset;
             }
-
+            public static List<XY> cluster;
             public override List<XY> GetCluster()
             {
-                var cluster = RunClusterAlgo();
+                GlobalClass.program += "31. getcluster .. ";
+               
+                cluster = RunClusterAlgo();
                 return cluster;
             }
 
-            List<XY> RunClusterAlgo()
+            public static List<XY> clusterPPP = new List<XY>();
+            public static List<XY> RunClusterAlgo()
             {
-              
 
-                var clusterPoints = new List<XY>();
+                GlobalClass.program += "32. runclusteralg .. ";
+                //var clusterPoints = new List<XY>();
                 // params invalid
                 if (BaseDataset == null || BaseDataset.Count == 0)
+                {
+                    clusterPPP = clusterPoints;
                     return clusterPoints;
-
+                }//end if 
+                     
                 RunAlgo();
                 return BaseGetClusterResult();
             }
 
-            void RunAlgo()
+            public static void RunAlgo()
             {
+                GlobalClass.program += "32. runalgo .. ";
                 // Init clusters
                 var centroids = BaseGetRandomCentroids(BaseDataset, _InitClusterSize);
                 for (int i = 0; i < centroids.Length; i++)
@@ -559,6 +966,7 @@ namespace DataMiningTeam.BLL
                     RunIterationsUntilKClusterPlacementAreDone();
 
                     var id = BaseGetMaxError();
+                        //BaseGetMaxError();
                     var bucket = BaseBucketsLookup[id];
                     currentMaxError = bucket.ErrorLevel; //update
                     if (currentMaxError > MAX_ERROR)
@@ -572,8 +980,9 @@ namespace DataMiningTeam.BLL
                 }
             }
 
-            void RunIterationsUntilKClusterPlacementAreDone()
+            public static void RunIterationsUntilKClusterPlacementAreDone()
             {
+                GlobalClass.program += "34. runiterationsuntilkclusterplacement are done .. ";
                 double prevError = Double.MaxValue;
                 double currError = Double.MaxValue;
 
@@ -587,8 +996,9 @@ namespace DataMiningTeam.BLL
                 Profile("RunIterationsUntilKClusterPlacementAreDone");
             }
 
-            double RunOneIteration() //O(k*n)
+           static double RunOneIteration() //O(k*n)
             {
+                GlobalClass.program += "35. Runoneiteration .. ";
                 // update points, assign points to cluster
                 UpdatePointsByCentroid();
                 // update centroid pos by its points
@@ -618,8 +1028,9 @@ namespace DataMiningTeam.BLL
                 Profile("RunOneIteration");
                 return BaseGetTotalError();
             }
-            void UpdatePointsByCentroid()//O(n*k)
+            static void UpdatePointsByCentroid()//O(n*k)
             {
+                GlobalClass.program += "36. Updatepointsbycentroid.. ";
                 int count = BaseBucketsLookup.Count();
 
                 // clear points in the buckets, they will be re-inserted
@@ -647,7 +1058,7 @@ namespace DataMiningTeam.BLL
                     }
                     //update color for point to match centroid and re-insert
                     var closestBucket = BaseBucketsLookup[index.ToString()];
-                    //p.Color = closestBucket.Centroid.Color;
+                    p.Color = closestBucket.Centroid.Color;
                     closestBucket.Points.Add(p);
                 }
 
@@ -655,22 +1066,33 @@ namespace DataMiningTeam.BLL
             }
         }
 
+
+
+
+
         public class GridBaseCluster : BaseClusternewKmeans
         {
+            public static Array neighP;
             public GridBaseCluster(List<XY> dataset)
             {
+                GlobalClass.program += "38. GridBaseCluster.Gridbasecluster .. ";
                 BaseDataset = dataset;
             }
 
             public override List<XY> GetCluster()
             {
+                GlobalClass.program += "39. GridBaseCluster.GetCluster .. ";
                 var cluster = RunClusterAlgo(GridX, GridY);
                 return cluster;
+
             }
 
-            // O(k*n)
+
+
+            public static string[] nei = new string[10000];
             void MergeClustersGrid()
             {
+                GlobalClass.program += "40. GridBaseCluster.MergeClustersGrid .. ";
                 foreach (var key in BaseBucketsLookup.Keys)
                 {
                     var bucket = BaseBucketsLookup[key];
@@ -690,12 +1112,15 @@ namespace DataMiningTeam.BLL
                     var W = GetId(x - 1, y);
                     var NW = GetId(x - 1, y - 1);
                     var neighbors = new[] { N, NE, E, SE, S, SW, W, NW };
-
+                    nei = neighbors;
                     MergeClustersGridHelper(key, neighbors);
                 }
+               
+
             }
             void MergeClustersGridHelper(string currentKey, string[] neighborKeys)
             {
+                GlobalClass.program += "41. GridBaseCluster.MergeClustersGridHelper .. ";
                 double minDistX = DeltaX / 2.0;//heuristic, higher value gives less merging
                 double minDistY = DeltaY / 2.0;
                 //if clusters in grid are too close to each other, merge them
@@ -715,7 +1140,16 @@ namespace DataMiningTeam.BLL
                     if (dist > minDist)
                         continue;
 
-                   
+                    var color = current.Centroid.Color;
+                    foreach (var p in neighbor.Points)
+                    {
+                        //update color
+                        p.Color = color;
+
+                    }//end
+
+                    neighP = neighbor.Points.ToArray();
+
 
                     current.Points.AddRange(neighbor.Points);//O(n)
 
@@ -728,7 +1162,8 @@ namespace DataMiningTeam.BLL
 
             public List<XY> RunClusterAlgo(int gridx, int gridy)
             {
-                var clusterPoints = new List<XY>();
+                GlobalClass.program += "43. GridBaseCluster.RunClusterAlgo .. ";
+               // var clusterPoints = new List<XY>();
                 // params invalid
                 if (BaseDataset == null || BaseDataset.Count == 0 ||
                     gridx <= 0 || gridy <= 0)
@@ -772,10 +1207,12 @@ namespace DataMiningTeam.BLL
 
         public class MathTool
         {
+
             private const double Exp = 2; // 2=euclid, 1=manhatten
             //Minkowski dist
             public static double Distance(NewKmeans.XY a, NewKmeans.XY b)
             {
+                //GlobalClass.program += "44. MathTool.Distance .. ";
                 return Math.Pow(Math.Pow(Math.Abs(a.X - b.X), Exp) +
                     Math.Pow(Math.Abs(a.Y - b.Y), Exp), 1.0 / Exp);
             }
@@ -790,6 +1227,9 @@ namespace DataMiningTeam.BLL
             }
         }
 
-        
+
+
     }
+   
 }
+

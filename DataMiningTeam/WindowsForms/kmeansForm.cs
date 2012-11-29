@@ -47,7 +47,7 @@ namespace DataMiningTeam.WindowsForms
             
             List<NewKmeans.XY> dsList = new List<NewKmeans.XY>();
 
-            dsList =  NewKmeans.CreateDataSet();
+            dsList = NewKmeans._points;
 
             String listds = String.Empty;
             foreach(NewKmeans.XY XY in dsList){
@@ -60,7 +60,7 @@ namespace DataMiningTeam.WindowsForms
 
             
             this.dataGridView1.DataSource = dsList;
-            
+            this.textBox1.Text = GlobalClass.program;
 
         }
 
@@ -71,6 +71,7 @@ namespace DataMiningTeam.WindowsForms
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
+            
             if (this.comboBox1.SelectedItem == null)
             {
                 MessageBox.Show("Please select a data source.");
@@ -114,9 +115,15 @@ namespace DataMiningTeam.WindowsForms
            
 
             //NewKmeans k = new NewKmeans();
-            
-            List<NewKmeans.XY> points;
+
+            StringBuilder sb; 
+              sb = NewKmeans.kmeanst(trainingDtos);
+
+
+
+            /*List<NewKmeans.XY> points;
             points = NewKmeans.Data(trainingDtos);
+            points = NewKmeans._points;
             String listp = String.Empty;
 
             foreach(NewKmeans.XY p in points){
@@ -126,11 +133,14 @@ namespace DataMiningTeam.WindowsForms
                 this.textBox1.Text = listp;
 
             }//end foreach
-            this.dataGridView1.DataSource = points;
+            */
 
-            StringBuilder sb = NewKmeans.kmeanst(trainingDtos);
+              this.dataGridView1.DataSource = NewKmeans._points;
+
+            //StringBuilder sb2 = NewKmeans.kmeanst(trainingDtos);
 
             this.txtData.Text = sb.ToString();
+            this.textBox1.Text = GlobalClass.program;
         
         }
 
