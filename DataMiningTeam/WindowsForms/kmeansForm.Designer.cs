@@ -33,16 +33,18 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.txtData = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.adventureWorksEntitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bookExampleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.adventureWorksEntitiesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.adventureWorksEntitiesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnLoad = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtKset = new System.Windows.Forms.TextBox();
+            this.KButton = new System.Windows.Forms.Button();
+            this.adventureWorksEntitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.adventureWorksEntitiesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.adventureWorksEntitiesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookExampleBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource2)).BeginInit();
             this.SuspendLayout();
@@ -74,21 +76,9 @@
             this.dataGridView1.Size = new System.Drawing.Size(296, 290);
             this.dataGridView1.TabIndex = 7;
             // 
-            // adventureWorksEntitiesBindingSource
-            // 
-            this.adventureWorksEntitiesBindingSource.DataSource = typeof(DataMiningTeam.Data.AdventureWorksEntities);
-            // 
             // bookExampleBindingSource
             // 
             this.bookExampleBindingSource.DataMember = "BookExample";
-            // 
-            // adventureWorksEntitiesBindingSource1
-            // 
-            this.adventureWorksEntitiesBindingSource1.DataSource = typeof(DataMiningTeam.Data.AdventureWorksEntities);
-            // 
-            // adventureWorksEntitiesBindingSource2
-            // 
-            this.adventureWorksEntitiesBindingSource2.DataSource = typeof(DataMiningTeam.Data.AdventureWorksEntities);
             // 
             // comboBox1
             // 
@@ -109,23 +99,53 @@
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // textBox1
+            // txtKset
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 71);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(88, 290);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.Visible = false;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            this.txtKset.Location = new System.Drawing.Point(247, 41);
+            this.txtKset.Name = "txtKset";
+            this.txtKset.Size = new System.Drawing.Size(71, 20);
+            this.txtKset.TabIndex = 10;
+            // 
+            // KButton
+            // 
+            this.KButton.Location = new System.Drawing.Point(332, 42);
+            this.KButton.Name = "KButton";
+            this.KButton.Size = new System.Drawing.Size(122, 23);
+            this.KButton.TabIndex = 11;
+            this.KButton.Text = "Set K = ?";
+            this.KButton.UseVisualStyleBackColor = true;
+            this.KButton.Click += new System.EventHandler(this.KButton_Click);
+            // 
+            // adventureWorksEntitiesBindingSource
+            // 
+            this.adventureWorksEntitiesBindingSource.DataSource = typeof(DataMiningTeam.Data.AdventureWorksEntities);
+            // 
+            // adventureWorksEntitiesBindingSource1
+            // 
+            this.adventureWorksEntitiesBindingSource1.DataSource = typeof(DataMiningTeam.Data.AdventureWorksEntities);
+            // 
+            // adventureWorksEntitiesBindingSource2
+            // 
+            this.adventureWorksEntitiesBindingSource2.DataSource = typeof(DataMiningTeam.Data.AdventureWorksEntities);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(713, 379);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 12;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // kmeansForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(823, 402);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(823, 414);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.KButton);
+            this.Controls.Add(this.txtKset);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
@@ -136,8 +156,8 @@
             this.Text = "Clustering Kmeans";
             this.Load += new System.EventHandler(this.kmeansForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookExampleBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource2)).EndInit();
             this.ResumeLayout(false);
@@ -158,6 +178,8 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtKset;
+        private System.Windows.Forms.Button KButton;
+        private System.Windows.Forms.Button btnClose;
     }
 }

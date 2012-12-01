@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
+using System.IO;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -17,6 +19,9 @@ namespace DataMiningTeam.WindowsForms
     public partial class kmeansForm : Form
     {
         public List<TransactionDto> trainingDtos;
+        public static int Kpick = 0;
+        public static String Kval = String.Empty;
+        public static String randomMark = String.Empty; 
 
         public kmeansForm()
         {
@@ -37,9 +42,12 @@ namespace DataMiningTeam.WindowsForms
         {
 
         }
-
+        
         private void btnStart_Click(object sender, EventArgs e)
         {
+            Kpick = 3;
+            randomMark = "y";
+
             NewKmeans kmeans = new NewKmeans();
             StringBuilder sb =  NewKmeans.kmeanstoo();
 
@@ -56,12 +64,8 @@ namespace DataMiningTeam.WindowsForms
 
             }//end foreach
 
-            //this.txtData.Text = listds;
-
-            
             this.dataGridView1.DataSource = dsList;
-            this.textBox1.Text = GlobalClass.program;
-
+           
         }
 
         private void GridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -71,7 +75,13 @@ namespace DataMiningTeam.WindowsForms
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            
+            //kmeansForm.randomMark = "n";
+            if (Kval == String.Empty)
+            {
+                MessageBox.Show("Please specify a K value.");
+                return;
+            }//end if 
+
             if (this.comboBox1.SelectedItem == null)
             {
                 MessageBox.Show("Please select a data source.");
@@ -92,55 +102,11 @@ namespace DataMiningTeam.WindowsForms
            
 
 
-
-            /*NewKmeans kmeans2 = new NewKmeans();
-            StringBuilder sb2 = kmeans2.kmeanst(trainingDtos);
-
-            this.txtData.Text = sb2.ToString();
-            
-            List<NewKmeans.XY> dsList = new List<NewKmeans.XY>();
-            
-            dsList = kmeans2.Data(trainingDtos);
-
-            String listds = String.Empty;
-            foreach (NewKmeans.XY XY in dsList)
-            {
-
-                listds += "(" + XY.XToString + "  " + XY.YToString + ") , ";
-
-            }//end foreach
-            */
-            
-
-           
-
-            //NewKmeans k = new NewKmeans();
-
             StringBuilder sb; 
               sb = NewKmeans.kmeanst(trainingDtos);
-
-
-
-            /*List<NewKmeans.XY> points;
-            points = NewKmeans.Data(trainingDtos);
-            points = NewKmeans._points;
-            String listp = String.Empty;
-
-            foreach(NewKmeans.XY p in points){
-            
-                listp += "(" + p.XToString + ", " + p.YToString + ")";
-
-                this.textBox1.Text = listp;
-
-            }//end foreach
-            */
-
               this.dataGridView1.DataSource = NewKmeans._points;
-
-            //StringBuilder sb2 = NewKmeans.kmeanst(trainingDtos);
-
-            this.txtData.Text = sb.ToString();
-            this.textBox1.Text = GlobalClass.program;
+              this.txtData.Text = sb.ToString();
+          
         
         }
 
@@ -152,6 +118,41 @@ namespace DataMiningTeam.WindowsForms
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        public void setk(){
+            Kpick = Int32.Parse(this.txtKset.Text);
+
+        }
+        public static int getk()
+        {
+            
+                return Kpick;
+          
+        }
+
+        private void KButton_Click(object sender, EventArgs e)
+        {
+            
+            Kval = this.txtKset.Text;
+            int kvalint = Int16.Parse(Kval);
+            if (kvalint > 9)
+            {
+                MessageBox.Show("Please enter a value between 1 and 9.", "Consistency");
+                return;
+
+            }
+            Kpick = Int32.Parse(Kval);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            DMForm dmform = new DMForm();
+            dmform.ShowDialog();
+
+            this.Close();
         }
     }
 }
