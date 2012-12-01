@@ -579,7 +579,7 @@ namespace DataMiningTeam.BLL
                 kcentroids = new XY[kone];
                 var set = new HashSet<XY>();
                 int i = 0;
-                //var kcentroids = new XY[k];
+                
 
                 int MAX = list.Count;
                 while (MAX >= k12)
