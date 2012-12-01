@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using DataMiningTeam.BLL;
 using DataMiningTeam.Dto;
 
-
+//this form allows the user to enter kmeans specs
 namespace DataMiningTeam.WindowsForms
 {
     public partial class kmeansForm : Form
