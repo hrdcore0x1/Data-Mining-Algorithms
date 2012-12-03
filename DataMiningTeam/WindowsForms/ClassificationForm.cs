@@ -38,21 +38,28 @@ namespace DataMiningTeam.WindowsForms
             string datasource = cmbSource.SelectedItem.ToString();
             DataSourceBLL dsBLL = new DataSourceBLL();
             trainingDtos = dsBLL.process(datasource);
-            TransactionDto t1 = trainingDtos[0];
 
-            foreach (string i in t1.items)
+            if (trainingDtos != null)
             {
-                cmbColumn.Items.Add(i);
-            }
-            cmbColumn.SelectedIndex = t1.items.Count - 1;
-            btnTrain.Enabled = true;
+                TransactionDto t1 = trainingDtos[0];
 
-            if (DialogResult.Yes == MessageBox.Show("Does your file have headers?", "File import", MessageBoxButtons.YesNo))
+                foreach (string i in t1.items)
+                {
+                    cmbColumn.Items.Add(i);
+                }
+                cmbColumn.SelectedIndex = t1.items.Count - 1;
+                btnTrain.Enabled = true;
+
+                if (DialogResult.Yes == MessageBox.Show("Does your file have headers?", "File import", MessageBoxButtons.YesNo))
+                {
+                    trainingDtos.RemoveAt(0);
+                }
+
+            }//if
+            else
             {
-                trainingDtos.RemoveAt(0);
-            }
-            
-
+                MessageBox.Show("Please select a valid file.");
+            }//else
         }
         private void ClassificationForm_Close(object sender, EventArgs e)
         {
