@@ -110,7 +110,7 @@ namespace DataMiningTeam.WindowsForms
                 trainingDtos.RemoveAt(0);
             }
            
-            
+
 
             StringBuilder sb; 
               sb = NewKmeans.kmeanst(trainingDtos);
