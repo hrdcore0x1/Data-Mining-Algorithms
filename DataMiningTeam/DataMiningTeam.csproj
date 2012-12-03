@@ -51,7 +51,6 @@
     <Compile Include="BLL\Apriori.cs" />
     <Compile Include="BLL\AWSaleBLL.cs" />
     <Compile Include="BLL\BookExBLL.cs" />
-    <Compile Include="BLL\KmeansCluster.cs" />
     <Compile Include="BLL\KmeansData.cs" />
     <Compile Include="BLL\DataSourceBLL.cs" />
     <Compile Include="BLL\DecisionTree.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="BLL\FPPrefixPath.cs" />
     <Compile Include="BLL\FrequentPattern.cs" />
     <Compile Include="BLL\ItemHeaderElement.cs" />
-    <Compile Include="BLL\KmeansRun.cs" />
     <Compile Include="BLL\NewKmeans.cs" />
     <Compile Include="Data\AdventureWorksModel.Designer.cs">
       <AutoGen>True</AutoGen>

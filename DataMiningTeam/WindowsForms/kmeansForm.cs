@@ -19,21 +19,27 @@ namespace DataMiningTeam.WindowsForms
         public List<TransactionDto> trainingDtos;
         public static int Kpick = 0;
         public static String Kval = String.Empty;
-        public static String randomMark = String.Empty; 
-
-        public kmeansForm()
+        public static String randomMark = String.Empty;
+        private DMForm dfm;
+        public kmeansForm(DMForm dfm)
         {
+            this.dfm = dfm;
             InitializeComponent();
         }
 
 
+        private void kmeansForm_Unload(object sender, EventArgs e)
+        {
+            dfm.Show();
+        }
+
         private void kmeansForm_Load(object sender, EventArgs e)
-        {  
-            
+        {
+            Kpick = 3;
+            Kval = "3";
             //adds new kind of file       
             this.comboBox1.Items.Add("| Delimited Points (x,y) File");
-            
-
+            Kpick = 3;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -43,7 +49,7 @@ namespace DataMiningTeam.WindowsForms
         
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Kpick = 3;
+
             randomMark = "y";
 
             NewKmeans kmeans = new NewKmeans();
@@ -90,6 +96,9 @@ namespace DataMiningTeam.WindowsForms
             DataSourceBLL dsBLL = new DataSourceBLL();
             trainingDtos = dsBLL.process(datasource);
 
+            if (trainingDtos == null) return; 
+            if (trainingDtos.Count == 0) return;
+     
          
             
 
@@ -131,26 +140,28 @@ namespace DataMiningTeam.WindowsForms
 
         private void KButton_Click(object sender, EventArgs e)
         {
-            
-            Kval = this.txtKset.Text;
-            int kvalint = Int16.Parse(Kval);
-            if (kvalint > 9)
+            try
             {
-                MessageBox.Show("Please enter a value between 1 and 9.", "Consistency");
-                return;
+                Kval = this.txtKset.Text;
+                int kvalint = Int16.Parse(Kval);
+                if (kvalint > 9)
+                {
+                    MessageBox.Show("Please enter a value between 1 and 9.", "Consistency");
+                    return;
+
+                }
+                Kpick = Int32.Parse(Kval);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please enter a value for k.","K Means",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
 
             }
-            Kpick = Int32.Parse(Kval);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Hide();
 
-            DMForm dmform = new DMForm();
-            dmform.ShowDialog();
-
-            this.Close();
         }
     }
 }

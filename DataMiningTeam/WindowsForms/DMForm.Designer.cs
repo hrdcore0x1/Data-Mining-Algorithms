@@ -191,6 +191,7 @@
             this.myToolTip.AutoPopDelay = 10000;
             this.myToolTip.InitialDelay = 500;
             this.myToolTip.ReshowDelay = 100;
+            this.myToolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.myToolTip_Popup);
             // 
             // DMForm
             // 
@@ -216,6 +217,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DMForm";
             this.Text = "Data Mining Team Project";
+            this.Load += new System.EventHandler(this.DMForm_Load);
+            this.Disposed += new System.EventHandler(this.DMForm_Unload);
             this.ResumeLayout(false);
             this.PerformLayout();
 

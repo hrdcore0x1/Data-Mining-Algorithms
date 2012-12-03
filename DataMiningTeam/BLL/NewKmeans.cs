@@ -30,7 +30,6 @@ namespace DataMiningTeam.BLL
         public static int num = 0;
 
         List<XY> plist2 = new List<XY>();
-        public static KmeansCluster kmc = new KmeansCluster();
 
         //method to generate a string of data for the form
         //this method used for file uploads
@@ -606,10 +605,12 @@ namespace DataMiningTeam.BLL
                 GlobalClass.program += "22. BaseClusternewKmeans.BAseGetClusterResult .. ";
                 //var clusterPoints = new List<XY>();
 
+                /*
                 if (DoUpdateAllCentroidsToNearestContainingPoint)
                 {
                     BaseUpdateAllCentroidsToNearestContainingPoint();
                 }//end if 
+                 */
                 foreach (var item in BaseBucketsLookup)
                 {
                     var bucket = item.Value;
