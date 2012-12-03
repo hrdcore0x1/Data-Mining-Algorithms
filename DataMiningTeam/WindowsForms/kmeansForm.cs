@@ -98,8 +98,11 @@ namespace DataMiningTeam.WindowsForms
 
             if (trainingDtos == null) return; 
             if (trainingDtos.Count == 0) return;
-     
-         
+
+            foreach (TransactionDto tdto in trainingDtos)
+            {
+                tdto.items.Insert(0, tdto.tid);
+            }
             
 
             if (DialogResult.Yes == MessageBox.Show("Does your file have headers?", "File import", MessageBoxButtons.YesNo))
@@ -107,7 +110,7 @@ namespace DataMiningTeam.WindowsForms
                 trainingDtos.RemoveAt(0);
             }
            
-
+            
 
             StringBuilder sb; 
               sb = NewKmeans.kmeanst(trainingDtos);

@@ -146,10 +146,12 @@ namespace DataMiningTeam.BLL
                 Array arrz = TXY.items.ToArray();
                 counterz = arrz.Length;
 
-                for (int r = 0; r < counterz / 2; r++)
+                for (int r = 0; r < counterz - 1; r++)
                 {
+                    
                     //parse string to set x and y variables
-                    var x = TXY.items[r].ToString();
+                    string x = TXY.items[r].ToString();
+                    if (x == string.Empty) continue;
                     x = x.Substring(x.IndexOf("(") + 1, x.IndexOf(",") - 1);
                     double xdouble = Double.Parse(x);
                     var y = TXY.items[r].ToString();
@@ -324,8 +326,8 @@ namespace DataMiningTeam.BLL
 
             sb.Append(NL);
 
-            sb.Append(string.Format("Clusters = ' + {0}, {1}, {2});{3}",
-                clusterInfo, ToStringEN(MinX + 10), ToStringEN(MaxY + 20), NL));
+            //sb.Append(string.Format("Clusters = ' + {0}, {1}, {2});{3}",
+               // clusterInfo, ToStringEN(MinX + 10), ToStringEN(MaxY + 20), NL));
 
             return sb;
         }
