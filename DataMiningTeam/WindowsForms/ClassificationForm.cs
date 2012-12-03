@@ -39,7 +39,7 @@ namespace DataMiningTeam.WindowsForms
             DataSourceBLL dsBLL = new DataSourceBLL();
             trainingDtos = dsBLL.process(datasource);
 
-            if (trainingDtos != null)
+            if (trainingDtos != null && trainingDtos.Count > 0)
             {
                 TransactionDto t1 = trainingDtos[0];
 
