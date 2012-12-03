@@ -144,10 +144,11 @@ namespace DataMiningTeam.BLL
                 Array arrz = TXY.items.ToArray();
                 counterz = arrz.Length;
 
-                for (int r = 0; r < counterz / 2; r++)
+                for (int r = 0; r < counterz; r++)
                 {
                     //parse string to set x and y variables
                     var x = TXY.items[r].ToString();
+                    if (x == String.Empty) continue;
                     x = x.Substring(x.IndexOf("(") + 1, x.IndexOf(",") - 1);
                     double xdouble = Double.Parse(x);
                     var y = TXY.items[r].ToString();
