@@ -172,12 +172,25 @@ namespace DataMiningTeam.WindowsForms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            kmeansForm form = new kmeansForm();
+            kmeansForm form = new kmeansForm(this);
             form.Show();
             this.Hide();
 
 
 
+
+        }
+        private void DMForm_Unload(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void DMForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void myToolTip_Popup(object sender, PopupEventArgs e)
+        {
 
         }//button1_Click
     }//class
