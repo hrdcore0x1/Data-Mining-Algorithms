@@ -49,26 +49,66 @@ namespace DataMiningTeam.WindowsForms
         
         private void btnStart_Click(object sender, EventArgs e)
         {
+             List<NewKmeans.XY> _pointsb = new List<NewKmeans.XY>();
+             Random _rand = new Random();
+
+
+            // Create random region of clusters
+            for (int i = 0; i < 50; i++)
+            {
+                var x = _rand.Next(0, 100);
+                var y = _rand.NextDouble() * 100;
+                _pointsb.Add(new NewKmeans.XY(x, y));
+            }
+            for (int i = 0; i < 50; i++)
+            {
+                var x = _rand.Next(0, 100);
+                var y = _rand.Next(0, 100);
+                _pointsb.Add(new NewKmeans.XY(x, y));
+            }
+            for (int i = 0; i < 50; i++)
+            {
+                var x = _rand.Next(0, 100);
+                var y = _rand.Next(0, 100);
+                _pointsb.Add(new NewKmeans.XY(x, y));
+            }
+
+
+
+
+
+            Kval = this.txtKset.Text;
+            int kvalint = Int16.Parse(Kval);
+            if (kvalint > 9)
+            {
+                MessageBox.Show("Please enter a value between 1 and 9.", "Consistency");
+                return;
+
+            }
+            Kpick = Int32.Parse(Kval);
+
 
             randomMark = "y";
 
-            NewKmeans kmeans = new NewKmeans();
-            StringBuilder sb =  NewKmeans.kmeanstoo();
+            //NewKmeans kmeans = new NewKmeans();
+            StringBuilder sb = NewKmeans.kmeanstoo(_pointsb);
 
             this.txtData.Text = sb.ToString();
-            
+
             List<NewKmeans.XY> dsList = new List<NewKmeans.XY>();
 
             dsList = NewKmeans._points;
 
             String listds = String.Empty;
-            foreach(NewKmeans.XY XY in dsList){
+            foreach (NewKmeans.XY XYS in dsList)
+            {
 
-                listds +=  "(" + XY.XToString + "  " + XY.YToString + ") , ";
+                listds += "(" + XYS.XToString + "  " + XYS.YToString + ") , ";
 
             }//end foreach
 
             this.dataGridView1.DataSource = dsList;
+           
            
         }
 
