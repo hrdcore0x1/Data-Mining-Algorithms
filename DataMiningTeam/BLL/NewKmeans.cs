@@ -26,10 +26,12 @@ namespace DataMiningTeam.BLL
 
         //public static String program = String.Empty;
         public static List<TransactionDto> datainput;
+        public static List<XY> datainput2;
         public static DateTime Starttime;
         public static int num = 0;
 
         List<XY> plist2 = new List<XY>();
+        //public static KmeansCluster kmc = new KmeansCluster();
 
         //method to generate a string of data for the form
         //this method used for file uploads
@@ -46,9 +48,8 @@ namespace DataMiningTeam.BLL
             Starttime = DateTime.Now;
             var algo = new NewKmeans();
 
-            // run kmeans or grid
+            // run kmeans 
             algo.Run(ClusterType.KMeans);
-            //algo.Run(ClusterType.Grid);
 
             StringBuilder sb =
                 algo.GenerateClusterGrid();
@@ -62,22 +63,23 @@ namespace DataMiningTeam.BLL
 
         //method to generate a string of data for the form
         //this method used to generate random data
-        public static StringBuilder kmeanstoo()
+        public static StringBuilder kmeanstoo(List<XY> _pointsa)
         {
             GlobalClass.program += "2. kmeanstoo .. ";
-            datainput = null;
+            datainput2 = _pointsa;
             Starttime = DateTime.Now;
             var algo = new NewKmeans();
 
-            // run kmeans or grid
+            // run kmeans 
             algo.Run(ClusterType.KMeans);
-            //algo.Run(ClusterType.Grid);
 
             StringBuilder sb =
                 algo.GenerateClusterGrid();
 
             return sb;
 
+
+            //var timespend = DateTime.Now.Subtract(Starttime).TotalSeconds;
 
         }
 
@@ -90,7 +92,7 @@ namespace DataMiningTeam.BLL
         const string S = "G";
 
         //lists to contain points and clusters
-        public static readonly List<XY> _points = new List<XY>();
+        public static List<XY> _points = new List<XY>();
         static List<XY> _clusters = new List<XY>();
         static List<XY> clusterPoints = new List<XY>();
 
@@ -122,7 +124,7 @@ namespace DataMiningTeam.BLL
             if (NewKmeans.datainput == null)
             {
 
-                CreateDataSet();
+                Data(datainput2);
             }
             else
             {
@@ -131,24 +133,24 @@ namespace DataMiningTeam.BLL
         }
         public static List<XY> Data(List<TransactionDto> trainingDtos)
         {
+            _points.Clear();
             //sets transaction data to XY list type after parsing
             GlobalClass.program += "4. Data .. ";
             datainput = trainingDtos;
             Array arr = datainput.ToArray();
             int counterz = arr.Length;
 
-           
+
             foreach (TransactionDto TXY in datainput)
             {
                 GlobalClass.program += "5. For each transaction in data .. ";
                 Array arrz = TXY.items.ToArray();
                 counterz = arrz.Length;
 
-                for (int r = 0; r < counterz; r++)
+                for (int r = 0; r < counterz - 1; r++)
                 {
                     //parse string to set x and y variables
                     var x = TXY.items[r].ToString();
-                    if (x == String.Empty) continue;
                     x = x.Substring(x.IndexOf("(") + 1, x.IndexOf(",") - 1);
                     double xdouble = Double.Parse(x);
                     var y = TXY.items[r].ToString();
@@ -165,6 +167,21 @@ namespace DataMiningTeam.BLL
 
 
         }//end data
+
+
+        public static List<XY> Data(List<XY> XYList)
+        {
+            _points.Clear();
+            foreach(XY XYw in XYList){
+            _points.Add(new XY(XYw));
+
+            }
+            return _points;
+
+
+        }//end
+
+
         //used to get neighbors for the kmeans algorithm
         public static string GetId(int xid, int yid)
         {
@@ -172,33 +189,7 @@ namespace DataMiningTeam.BLL
             return xid + ";" + yid;
         }
 
-        public static List<XY> CreateDataSet()
-        {
-
-            GlobalClass.program += "7. CreateDataSet .. ";
-
-            // Create random region of clusters
-            for (int i = 0; i < 50; i++)
-            {
-                var x = MinX + _rand.NextDouble() * 100;
-                var y = MinY + _rand.NextDouble() * 100;
-                _points.Add(new XY(x, y));
-            }
-            for (int i = 0; i < 50; i++)
-            {
-                var x = MinX + 200 + _rand.NextDouble() * 100;
-                var y = MinY + 10 + _rand.NextDouble() * 100;
-                _points.Add(new XY(x, y));
-            }
-            for (int i = 0; i < 50; i++)
-            {
-                var x = MinX + 50 + _rand.NextDouble() * 100;
-                var y = MinY + 150 + _rand.NextDouble() * 100;
-                _points.Add(new XY(x, y));
-            }
-            return _points;
-
-        }
+        
 
         public void Run(ClusterType clustertype)
         {
@@ -249,7 +240,7 @@ namespace DataMiningTeam.BLL
                     sb.Append(string.Format("Cluster - cluster point({0}, {1}, {2});{3}",
                         ToStringEN(mm.X), ToStringEN(mm.Y),
                                             mm.Size, NL));
-                   
+
                     clu33[count] = mm.Size;
                     count++;
                     plist.Add(mm);
@@ -273,8 +264,8 @@ namespace DataMiningTeam.BLL
                     sb.Append(NL + (string.Format(NL + "Cluster - cluster point({0}, {1}, {2});{3}",
                     ToStringEN(c.X), ToStringEN(c.Y),
                                         c.Size, NL)));
-                   
-                 
+                    sb.Append("Cluster group number .. " + c.CGroup.ToString() + NL);
+
                     foreach (XY p in _points)
                     {
                         if (p.CGroup == c.CGroup)
@@ -468,13 +459,13 @@ namespace DataMiningTeam.BLL
             public string YToString { get { return Y.ToString(S, Culture_enUS); } }
             public XY(double x, double y)
             {
-           
+
                 X = x;
                 Y = y;
                 Size = 1;
             }
 
-            
+
             public static XY plist;
             public XY(XY p) //clone
             {
@@ -577,7 +568,7 @@ namespace DataMiningTeam.BLL
                 kcentroids = new XY[kone];
                 var set = new HashSet<XY>();
                 int i = 0;
-                
+
 
                 int MAX = list.Count;
                 while (MAX >= k12)
@@ -604,7 +595,10 @@ namespace DataMiningTeam.BLL
                 GlobalClass.program += "22. BaseClusternewKmeans.BAseGetClusterResult .. ";
                 //var clusterPoints = new List<XY>();
 
-             
+                if (DoUpdateAllCentroidsToNearestContainingPoint)
+                {
+                    //BaseUpdateAllCentroidsToNearestContainingPoint();
+                }//end if 
                 foreach (var item in BaseBucketsLookup)
                 {
                     var bucket = item.Value;
@@ -617,7 +611,7 @@ namespace DataMiningTeam.BLL
             }
             public static List<XY> clist;
 
-            public static XY BaseGetCentroidFromCluster(List<XY> list) //O(n)
+            public static XY BaseGetCentroidFromCluster(List<XY> list) 
             {
 
                 GlobalClass.program += "23. BaseClusternewKmeans.Basegetcentroidfromcluster .. ";
@@ -646,9 +640,9 @@ namespace DataMiningTeam.BLL
             public static int counterk = 0;
             public static string GetRandomGroup()
             {
-                counterk++; 
-                int r = Rand.Next(0, 1000);
-               
+                counterk++;
+                int r = Rand.Next(0, 10);
+
                 return string.Format("centroid group {0}{1}", r, counterk);
 
             }
@@ -755,7 +749,7 @@ namespace DataMiningTeam.BLL
         {
 
             public static int InitClusterSize = kmeansForm.getk();
-                
+
             // start from this cluster points
 
             // heuristic, set tolerance for cluster density, has effect on running time.
@@ -763,7 +757,7 @@ namespace DataMiningTeam.BLL
             private const double MAX_ERROR = 30;
 
             private const int _MaxIterations = 100; // cluster point optimization iterations
-           
+            private static int _MaxClusters = 100;
             public static List<XY> clpoints;
 
             public KMeans(List<XY> dataset)
@@ -814,8 +808,25 @@ namespace DataMiningTeam.BLL
                     BaseBucketsLookup.Add(i.ToString(), newbucket);
                 }
 
-             
-                
+                //
+                double currentMaxError = double.MaxValue;
+                while (currentMaxError > MAX_ERROR && BaseBucketsLookup.Count < _MaxClusters)
+                {
+                    RunIterationsUntilKClusterPlacementAreDone();
+
+                    var id = BaseGetMaxError();
+                    //BaseGetMaxError();
+                    var bucket = BaseBucketsLookup[id];
+                    currentMaxError = bucket.ErrorLevel; //update
+                    if (currentMaxError > MAX_ERROR)
+                    {
+                        var longest = BaseGetLongestPoint(bucket.Centroid, bucket.Points);
+                        var newcentroid = new XY(longest);
+                        var newid = BaseBucketsLookup.Count.ToString();
+                        var newbucket = new Bucket(newid) { Centroid = newcentroid };
+                        BaseBucketsLookup.Add(newid, newbucket);
+                    }
+                }
             }
 
             public static void RunIterationsUntilKClusterPlacementAreDone()
@@ -935,7 +946,7 @@ namespace DataMiningTeam.BLL
                 {
                     var bucket = BaseBucketsLookup[key];
                     if (bucket.IsUsed == false)
-                        continue;
+                       continue;
 
                     var x = bucket.Xid;
                     var y = bucket.Yid;

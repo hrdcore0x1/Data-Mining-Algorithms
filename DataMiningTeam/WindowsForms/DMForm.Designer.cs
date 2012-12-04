@@ -34,7 +34,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnExecute = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.rtbResults = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMinSupport = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.lblAlgorithm = new System.Windows.Forms.Label();
             this.cmbAlgorithm = new System.Windows.Forms.ComboBox();
             this.myToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.button7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBonus1
@@ -89,15 +89,6 @@
             this.btnExecute.Text = "Execute";
             this.btnExecute.UseVisualStyleBackColor = true;
             this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(567, 12);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Help";
-            this.button7.UseVisualStyleBackColor = true;
             // 
             // rtbResults
             // 
@@ -191,7 +182,16 @@
             this.myToolTip.AutoPopDelay = 10000;
             this.myToolTip.InitialDelay = 500;
             this.myToolTip.ReshowDelay = 100;
-            this.myToolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.myToolTip_Popup);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(567, 12);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Help";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // DMForm
             // 
@@ -217,8 +217,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DMForm";
             this.Text = "Data Mining Team Project";
-            this.Load += new System.EventHandler(this.DMForm_Load);
-            this.Disposed += new System.EventHandler(this.DMForm_Unload);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,7 +228,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnExecute;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.RichTextBox rtbResults;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblMinSupport;
@@ -242,5 +239,6 @@
         private System.Windows.Forms.Label lblAlgorithm;
         private System.Windows.Forms.ComboBox cmbAlgorithm;
         private System.Windows.Forms.ToolTip myToolTip;
+        private System.Windows.Forms.Button button7;
     }
 }

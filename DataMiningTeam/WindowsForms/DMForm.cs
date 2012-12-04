@@ -172,10 +172,9 @@ namespace DataMiningTeam.WindowsForms
 
         private void button4_Click(object sender, EventArgs e)
         {
-            kmeansForm form = new kmeansForm(this);
+            kmeansForm form = new kmeansForm();
             form.Show();
             this.Hide();
-
 
 
 
@@ -192,6 +191,11 @@ namespace DataMiningTeam.WindowsForms
         private void myToolTip_Popup(object sender, PopupEventArgs e)
         {
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.youtube.com/watch?v=3t8MeE8Ik4Y");
         }//button1_Click
     }//class
 }//namespace

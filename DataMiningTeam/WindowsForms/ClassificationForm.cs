@@ -54,12 +54,12 @@ namespace DataMiningTeam.WindowsForms
                 {
                     trainingDtos.RemoveAt(0);
                 }
-
             }//if
             else
             {
                 MessageBox.Show("Please select a valid file.");
             }//else
+
         }
         private void ClassificationForm_Close(object sender, EventArgs e)
         {

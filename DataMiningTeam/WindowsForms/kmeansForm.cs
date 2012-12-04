@@ -14,46 +14,82 @@ using DataMiningTeam.Dto;
 //this form allows the user to enter kmeans specs
 namespace DataMiningTeam.WindowsForms
 {
-    public partial class kmeansForm : Form
+    public partial class kmeansForm : Form 
     {
         public List<TransactionDto> trainingDtos;
         public static int Kpick = 0;
         public static String Kval = String.Empty;
-        public static String randomMark = String.Empty;
-        private DMForm dfm;
-        public kmeansForm(DMForm dfm)
+        public static String randomMark = String.Empty; 
+
+        public kmeansForm()
         {
-            this.dfm = dfm;
             InitializeComponent();
         }
 
 
-        private void kmeansForm_Unload(object sender, EventArgs e)
-        {
-            dfm.Show();
-        }
-
         private void kmeansForm_Load(object sender, EventArgs e)
-        {
-            Kpick = 3;
-            Kval = "3";
+        {  
+            
             //adds new kind of file       
             this.comboBox1.Items.Add("| Delimited Points (x,y) File");
-            Kpick = 3;
+            this.txtKset.Text = "3";
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
-        
+        public static readonly Random _rand = new Random();
+        public const double MinX = 10;
+        public const double MinY = 10;
+        public const double MaxX = 400;
+        public const double MaxY = 300;
+        public NewKmeans.XY XY; 
         private void btnStart_Click(object sender, EventArgs e)
         {
+             List<NewKmeans.XY> _pointsb = new List<NewKmeans.XY>();
+           
 
+            // Create random region of clusters
+            for (int i = 0; i < 50; i++)
+            {
+                var x = _rand.Next(0, 100);
+                var y =  _rand.NextDouble() * 100;
+                _pointsb.Add(new NewKmeans.XY(x, y));
+            }
+            for (int i = 0; i < 50; i++)
+            {
+                var x = _rand.Next(0, 100);
+                var y = _rand.Next(0, 100);
+                _pointsb.Add(new NewKmeans.XY(x, y));
+            }
+            for (int i = 0; i < 50; i++)
+            {
+                var x = _rand.Next(0, 100);
+                var y = _rand.Next(0, 100);
+                _pointsb.Add(new  NewKmeans.XY(x, y));
+            }
+           
+
+
+
+
+            Kval = this.txtKset.Text;
+            int kvalint = Int16.Parse(Kval);
+            if (kvalint > 9)
+            {
+                MessageBox.Show("Please enter a value between 1 and 9.", "Consistency");
+                return;
+
+            }
+            Kpick = Int32.Parse(Kval);
+
+            
             randomMark = "y";
 
-            NewKmeans kmeans = new NewKmeans();
-            StringBuilder sb =  NewKmeans.kmeanstoo();
+            //NewKmeans kmeans = new NewKmeans();
+            StringBuilder sb = NewKmeans.kmeanstoo(_pointsb);
 
             this.txtData.Text = sb.ToString();
             
@@ -62,9 +98,9 @@ namespace DataMiningTeam.WindowsForms
             dsList = NewKmeans._points;
 
             String listds = String.Empty;
-            foreach(NewKmeans.XY XY in dsList){
+            foreach(NewKmeans.XY XYS in dsList){
 
-                listds +=  "(" + XY.XToString + "  " + XY.YToString + ") , ";
+                listds +=  "(" + XYS.XToString + "  " + XYS.YToString + ") , ";
 
             }//end foreach
 
@@ -96,30 +132,32 @@ namespace DataMiningTeam.WindowsForms
             DataSourceBLL dsBLL = new DataSourceBLL();
             trainingDtos = dsBLL.process(datasource);
 
-            if (trainingDtos == null) return; 
+            if (trainingDtos == null) return;
             if (trainingDtos.Count == 0) return;
 
             foreach (TransactionDto tdto in trainingDtos)
             {
                 tdto.items.Insert(0, tdto.tid);
             }
-            
+
 
             if (DialogResult.Yes == MessageBox.Show("Does your file have headers?", "File import", MessageBoxButtons.YesNo))
             {
                 trainingDtos.RemoveAt(0);
             }
-           
 
 
-            StringBuilder sb; 
-              sb = NewKmeans.kmeanst(trainingDtos);
-              this.dataGridView1.DataSource = NewKmeans._points;
-              this.txtData.Text = sb.ToString();
+
+            StringBuilder sb;
+            //NewKmeans newk = new NewKmeans();
+            sb = NewKmeans.kmeanst(trainingDtos);
+            this.dataGridView1.DataSource = NewKmeans._points;
+            this.txtData.Text = sb.ToString();
+          
           
         
         }
-
+    
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -143,28 +181,46 @@ namespace DataMiningTeam.WindowsForms
 
         private void KButton_Click(object sender, EventArgs e)
         {
-            try
+            
+            Kval = this.txtKset.Text;
+            int kvalint = Int16.Parse(Kval);
+            if (kvalint > 9)
             {
-                Kval = this.txtKset.Text;
-                int kvalint = Int16.Parse(Kval);
-                if (kvalint > 9)
-                {
-                    MessageBox.Show("Please enter a value between 1 and 9.", "Consistency");
-                    return;
-
-                }
-                Kpick = Int32.Parse(Kval);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Please enter a value for k.","K Means",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show("Please enter a value between 1 and 9.", "Consistency");
+                return;
 
             }
+            Kpick = Int32.Parse(Kval);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.Hide();
+
+            DMForm dmform = new DMForm();
+            dmform.ShowDialog();
+
+            this.Close();
+        }
+
+        private void btnreset_Click(object sender, EventArgs e)
+        {
+            this.txtKset.Text = "3";
+            this.dataGridView1.DataSource = String.Empty;
+            //NewKmeans clearnk = new NewKmeans();
+            this.txtData.Text = "";
+
+            //NewKmeans.datainput2 = null;
+            //NewKmeans.datainput = null;
+            //NewKmeans._points.Clear();
+
+            
+            return;     
+           
+            
+
 
         }
     }
+   
 }
