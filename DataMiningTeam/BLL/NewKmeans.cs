@@ -156,7 +156,11 @@ namespace DataMiningTeam.BLL
                     var y = TXY.items[r].ToString();
                     int ednin = y.IndexOf(",");
                     y = y.Substring(ednin + 1, (y.IndexOf(")") - 1 - ednin));
+<<<<<<< master
                   
+=======
+
+>>>>>>> local
                     double ydouble = Double.Parse(y);
                     _points.Add(new XY(xdouble, ydouble));
                 }//end for
@@ -172,8 +176,14 @@ namespace DataMiningTeam.BLL
         public static List<XY> Data(List<XY> XYList)
         {
             _points.Clear();
+<<<<<<< master
             foreach(XY XYw in XYList){
             _points.Add(new XY(XYw));
+=======
+            foreach (XY XYw in XYList)
+            {
+                _points.Add(new XY(XYw));
+>>>>>>> local
 
             }
             return _points;
@@ -189,7 +199,11 @@ namespace DataMiningTeam.BLL
             return xid + ";" + yid;
         }
 
+<<<<<<< master
         
+=======
+
+>>>>>>> local
 
         public void Run(ClusterType clustertype)
         {
@@ -611,7 +625,11 @@ namespace DataMiningTeam.BLL
             }
             public static List<XY> clist;
 
+<<<<<<< master
             public static XY BaseGetCentroidFromCluster(List<XY> list) 
+=======
+            public static XY BaseGetCentroidFromCluster(List<XY> list)
+>>>>>>> local
             {
 
                 GlobalClass.program += "23. BaseClusternewKmeans.Basegetcentroidfromcluster .. ";
@@ -946,7 +964,11 @@ namespace DataMiningTeam.BLL
                 {
                     var bucket = BaseBucketsLookup[key];
                     if (bucket.IsUsed == false)
+<<<<<<< master
                        continue;
+=======
+                        continue;
+>>>>>>> local
 
                     var x = bucket.Xid;
                     var y = bucket.Yid;

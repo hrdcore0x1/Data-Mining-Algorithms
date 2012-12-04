@@ -172,7 +172,12 @@ namespace DataMiningTeam.WindowsForms
 
         private void button4_Click(object sender, EventArgs e)
         {
+<<<<<<< master
             kmeansForm form = new kmeansForm();
+=======
+           kmeansForm form = new kmeansForm();
+
+>>>>>>> local
             form.Show();
             this.Hide();
 

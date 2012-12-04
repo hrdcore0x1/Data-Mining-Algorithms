@@ -19,7 +19,11 @@ namespace DataMiningTeam.WindowsForms
         public List<TransactionDto> trainingDtos;
         public static int Kpick = 0;
         public static String Kval = String.Empty;
+<<<<<<< master
         public static String randomMark = String.Empty; 
+=======
+        public static String randomMark = String.Empty;
+>>>>>>> local
 
         public kmeansForm()
         {
@@ -28,8 +32,13 @@ namespace DataMiningTeam.WindowsForms
 
 
         private void kmeansForm_Load(object sender, EventArgs e)
+<<<<<<< master
         {  
             
+=======
+        {
+
+>>>>>>> local
             //adds new kind of file       
             this.comboBox1.Items.Add("| Delimited Points (x,y) File");
             this.txtKset.Text = "3";
@@ -45,17 +54,29 @@ namespace DataMiningTeam.WindowsForms
         public const double MinY = 10;
         public const double MaxX = 400;
         public const double MaxY = 300;
+<<<<<<< master
         public NewKmeans.XY XY; 
         private void btnStart_Click(object sender, EventArgs e)
         {
              List<NewKmeans.XY> _pointsb = new List<NewKmeans.XY>();
            
+=======
+        public NewKmeans.XY XY;
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            List<NewKmeans.XY> _pointsb = new List<NewKmeans.XY>();
+
+>>>>>>> local
 
             // Create random region of clusters
             for (int i = 0; i < 50; i++)
             {
                 var x = _rand.Next(0, 100);
+<<<<<<< master
                 var y =  _rand.NextDouble() * 100;
+=======
+                var y = _rand.NextDouble() * 100;
+>>>>>>> local
                 _pointsb.Add(new NewKmeans.XY(x, y));
             }
             for (int i = 0; i < 50; i++)
@@ -68,9 +89,15 @@ namespace DataMiningTeam.WindowsForms
             {
                 var x = _rand.Next(0, 100);
                 var y = _rand.Next(0, 100);
+<<<<<<< master
                 _pointsb.Add(new  NewKmeans.XY(x, y));
             }
            
+=======
+                _pointsb.Add(new NewKmeans.XY(x, y));
+            }
+
+>>>>>>> local
 
 
 
@@ -84,6 +111,10 @@ namespace DataMiningTeam.WindowsForms
 
             }
             Kpick = Int32.Parse(Kval);
+<<<<<<< master
+=======
+
+>>>>>>> local
 
             
             randomMark = "y";
@@ -92,20 +123,27 @@ namespace DataMiningTeam.WindowsForms
             StringBuilder sb = NewKmeans.kmeanstoo(_pointsb);
 
             this.txtData.Text = sb.ToString();
-            
+
             List<NewKmeans.XY> dsList = new List<NewKmeans.XY>();
 
             dsList = NewKmeans._points;
 
             String listds = String.Empty;
+<<<<<<< master
             foreach(NewKmeans.XY XYS in dsList){
 
                 listds +=  "(" + XYS.XToString + "  " + XYS.YToString + ") , ";
+=======
+            foreach (NewKmeans.XY XYS in dsList)
+            {
+
+                listds += "(" + XYS.XToString + "  " + XYS.YToString + ") , ";
+>>>>>>> local
 
             }//end foreach
 
             this.dataGridView1.DataSource = dsList;
-           
+
         }
 
         private void GridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -153,9 +191,15 @@ namespace DataMiningTeam.WindowsForms
             sb = NewKmeans.kmeanst(trainingDtos);
             this.dataGridView1.DataSource = NewKmeans._points;
             this.txtData.Text = sb.ToString();
+<<<<<<< master
           
           
         
+=======
+
+
+
+>>>>>>> local
         }
     
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -168,20 +212,25 @@ namespace DataMiningTeam.WindowsForms
 
         }
 
-        public void setk(){
+        public void setk()
+        {
             Kpick = Int32.Parse(this.txtKset.Text);
 
         }
         public static int getk()
         {
-            
-                return Kpick;
-          
+
+            return Kpick;
+
         }
 
         private void KButton_Click(object sender, EventArgs e)
         {
+<<<<<<< master
             
+=======
+
+>>>>>>> local
             Kval = this.txtKset.Text;
             int kvalint = Int16.Parse(Kval);
             if (kvalint > 9)
@@ -214,6 +263,7 @@ namespace DataMiningTeam.WindowsForms
             //NewKmeans.datainput = null;
             //NewKmeans._points.Clear();
 
+<<<<<<< master
             
             return;     
            
@@ -224,3 +274,43 @@ namespace DataMiningTeam.WindowsForms
     }
    
 }
+=======
+
+            return;
+
+
+
+
+        }
+
+        private void btnClose_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            DMForm dmform = new DMForm();
+            dmform.ShowDialog();
+
+            this.Close();
+
+        }
+
+        private void btnReset_Click_1(object sender, EventArgs e)
+        {
+
+            this.txtKset.Text = "3";
+            this.dataGridView1.DataSource = String.Empty;
+            //NewKmeans clearnk = new NewKmeans();
+            this.txtData.Text = "";
+
+            //NewKmeans.datainput2 = null;
+            //NewKmeans.datainput = null;
+            //NewKmeans._points.Clear();
+
+
+            return;
+
+        }
+    }
+
+}
+>>>>>>> local

@@ -38,11 +38,19 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.txtKset = new System.Windows.Forms.TextBox();
             this.KButton = new System.Windows.Forms.Button();
+<<<<<<< master
+=======
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
+>>>>>>> local
             this.btnClose = new System.Windows.Forms.Button();
             this.adventureWorksEntitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.adventureWorksEntitiesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.adventureWorksEntitiesBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+<<<<<<< master
             this.btnreset = new System.Windows.Forms.Button();
+=======
+>>>>>>> local
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookExampleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adventureWorksEntitiesBindingSource)).BeginInit();
@@ -117,6 +125,7 @@
             this.KButton.UseVisualStyleBackColor = true;
             this.KButton.Click += new System.EventHandler(this.KButton_Click);
             // 
+<<<<<<< master
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(713, 379);
@@ -126,6 +135,36 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+=======
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(228, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Clusters (K)";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(536, 380);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(101, 23);
+            this.btnReset.TabIndex = 13;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click_1);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(662, 380);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(101, 23);
+            this.btnClose.TabIndex = 14;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
+>>>>>>> local
             // 
             // adventureWorksEntitiesBindingSource
             // 
@@ -139,6 +178,7 @@
             // 
             this.adventureWorksEntitiesBindingSource2.DataSource = typeof(DataMiningTeam.Data.AdventureWorksEntities);
             // 
+<<<<<<< master
             // btnreset
             // 
             this.btnreset.Location = new System.Drawing.Point(608, 379);
@@ -149,13 +189,22 @@
             this.btnreset.UseVisualStyleBackColor = true;
             this.btnreset.Click += new System.EventHandler(this.btnreset_Click);
             // 
+=======
+>>>>>>> local
             // kmeansForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< master
             this.ClientSize = new System.Drawing.Size(823, 414);
             this.Controls.Add(this.btnreset);
             this.Controls.Add(this.btnClose);
+=======
+            this.ClientSize = new System.Drawing.Size(823, 415);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.label1);
+>>>>>>> local
             this.Controls.Add(this.KButton);
             this.Controls.Add(this.txtKset);
             this.Controls.Add(this.btnLoad);
@@ -192,7 +241,13 @@
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.TextBox txtKset;
         private System.Windows.Forms.Button KButton;
+<<<<<<< master
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnreset;
+=======
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnClose;
+>>>>>>> local
     }
 }
