@@ -93,8 +93,8 @@ namespace DataMiningTeam.BLL
 
         //lists to contain points and clusters
         public static List<XY> _points = new List<XY>();
-        static List<XY> _clusters = new List<XY>();
-        static List<XY> clusterPoints = new List<XY>();
+        public static List<XY> _clusters = new List<XY>();
+        public static List<XY> clusterPoints = new List<XY>();
 
         public static readonly Random _rand = new Random();
         public const double MinX = 10;
@@ -202,6 +202,8 @@ namespace DataMiningTeam.BLL
 
         int counterx = 0;
 
+        public static Dictionary<string, Bucket> points = new Dictionary<string, Bucket>();
+
         //returns a string of the grid of clusters
         public StringBuilder GenerateClusterGrid()
         {
@@ -222,7 +224,7 @@ namespace DataMiningTeam.BLL
                     sb.Append(NL);
                 }
 
-            Dictionary<string, Bucket> points = new Dictionary<string, Bucket>();
+           
 
             string clusterInfo = "0";
             int cluscounter = 0;
@@ -555,7 +557,7 @@ namespace DataMiningTeam.BLL
         {
             public static List<XY> BaseDataset; // all points
             //id, bucket
-            public static readonly Dictionary<string, Bucket> BaseBucketsLookup =
+            public  static Dictionary<string, Bucket> BaseBucketsLookup =
                 new Dictionary<string, Bucket>();
             public abstract List<XY> GetCluster();
             public static int kone;
@@ -802,10 +804,15 @@ namespace DataMiningTeam.BLL
             {
                 GlobalClass.program += "32. runalgo .. ";
                 // Init clusters
-                var centroids = BaseGetRandomCentroids(BaseDataset, InitClusterSize);
+                XY[] centroids = BaseGetRandomCentroids(BaseDataset, InitClusterSize);
                 for (int i = 0; i < centroids.Length; i++)
-                {
-                    var newbucket = new Bucket(i.ToString()) { Centroid = centroids[i] };
+                { 
+                    Random _randkey = new Random();
+
+                    int randkey =  _randkey.Next(0, 1000)  +  i;
+
+                    //Bucket newbucket = new Bucket();
+                    Bucket newbucket = new Bucket(i.ToString()) { Centroid = centroids[i] };
                     BaseBucketsLookup.Add(i.ToString(), newbucket);
                 }
 

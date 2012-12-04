@@ -18,7 +18,7 @@ namespace DataMiningTeam.WindowsForms
     {
         public List<TransactionDto> trainingDtos;
         public static int Kpick = 0;
-        public static String Kval = String.Empty;
+        public static String Kval = "3";
         public static String randomMark = String.Empty;
         private DMForm dfm;
         public kmeansForm(DMForm dfm)
@@ -35,11 +35,11 @@ namespace DataMiningTeam.WindowsForms
 
         private void kmeansForm_Load(object sender, EventArgs e)
         {
-            Kpick = 3;
-            Kval = "3";
+            //Kpick = 3;
+            //Kval = "3";
             //adds new kind of file       
             this.comboBox1.Items.Add("| Delimited Points (x,y) File");
-            Kpick = 3;
+            //Kpick = 3;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -49,7 +49,14 @@ namespace DataMiningTeam.WindowsForms
         
         private void btnStart_Click(object sender, EventArgs e)
         {
-             List<NewKmeans.XY> _pointsb = new List<NewKmeans.XY>();
+            //kmeansForm.randomMark = "n";
+            if (Kval == null)
+            {
+                MessageBox.Show("Please specify a K value.");
+                return;
+            }//end if 
+            
+            List<NewKmeans.XY> _pointsb = new List<NewKmeans.XY>();
              Random _rand = new Random();
 
 
@@ -120,7 +127,7 @@ namespace DataMiningTeam.WindowsForms
         private void btnLoad_Click(object sender, EventArgs e)
         {
             //kmeansForm.randomMark = "n";
-            if (Kval == String.Empty)
+            if (Kval == null)
             {
                 MessageBox.Show("Please specify a K value.");
                 return;
@@ -183,6 +190,13 @@ namespace DataMiningTeam.WindowsForms
 
         private void KButton_Click(object sender, EventArgs e)
         {
+            //kmeansForm.randomMark = "n";
+            if (Kval == null)
+            {
+                MessageBox.Show("Please specify a K value.");
+                return;
+            }//end if 
+            
             try
             {
                 Kval = this.txtKset.Text;
@@ -204,6 +218,39 @@ namespace DataMiningTeam.WindowsForms
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                NewKmeans.BaseClusternewKmeans.BaseBucketsLookup.Clear();
+                NewKmeans.BaseClusternewKmeans.BaseDataset.Clear();
+                NewKmeans.GridBaseCluster.BaseBucketsLookup.Clear();
+                NewKmeans.points.Clear();
+
+                NewKmeans.KMeans.clusterPPP.Clear();
+                NewKmeans.KMeans.cluster.Clear();
+                NewKmeans.KMeans.clpoints.Clear();
+
+
+                NewKmeans.KMeans.clpoints.Clear();
+                NewKmeans.KMeans.BaseBucketsLookup.Clear();
+                NewKmeans.KMeans.BaseDataset.Clear();
+                Kpick = 0;
+
+
+
+                this.txtData.Text = "";
+                this.txtKset.Text = "";
+                this.dataGridView1.DataSource = String.Empty;
+            }//end try
+            catch
+            {
+                MessageBox.Show("You must run the program to reset it. Please close the application and begin again.");
+                return;
+            }//end catch
 
         }
     }
